@@ -1,0 +1,49 @@
+version: '3.9'
+
+services:
+
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress-car-wash
+    restart: always
+    ports:
+      - "8000:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+      - ./logs/wp:/var/log/apache2
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: db-car-wash
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db:/var/lib/mysql
+      - ./logs/mysql:/var/log/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin-car-wash
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: rootpass
+
+volumes:
+  wordpress:
+  db:

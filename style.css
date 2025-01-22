@@ -1,0 +1,1851 @@
+/******************************************************************************/
+/* Base																		  */
+/******************************************************************************/
+
+.cwb-clear-fix:after {
+    height: 0;
+    clear: both;
+    content: " ";
+    font-size: 0;
+    min-height: 0;
+    display: block;
+    visibility: hidden;
+}
+
+.cwb-list-reset {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+* html .cwb-clear-fix {
+    zoom: 1;
+}
+
+*:first-child + html .cwb-clear-fix {
+    zoom: 1;
+}
+
+.cwb-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.cwb-wrapper {
+    width: min(100%, 1140px);
+}
+
+/******************************************************************************/
+/* Default																	  */
+/******************************************************************************/
+
+.cwb-main * {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 150%;
+    font-family: 'Lato', serif;
+    box-sizing: border-box;
+}
+
+.cwb-main a {
+    outline: none;
+    text-decoration: none;
+}
+
+.cwb-main a:hover {
+    text-decoration: underline;
+}
+
+/******************************************************************************/
+/* Color																	  */
+/******************************************************************************/
+
+/**************************************************************************/
+/* Color / Color 1														  */
+/**************************************************************************/
+
+.cwb-main a,
+.cwb-main .cwb-button,
+.cwb-main .cwb-booking-summary > li > h5,
+.cwb-main .cwb-package-list > li > .cwb-package-price {
+    color: #0A81D1;
+}
+
+.cwb-main .cwb-button:hover,
+.cwb-main .cwb-state-selected > .cwb-button,
+.cwb-main .cwb-state-selected > .cwb-button-box > .cwb-button,
+.cwb-main .cwb-location-list > li:hover,
+.cwb-main .cwb-location-list > li.cwb-state-selected,
+.cwb-main .cwb-vehicle-list > li:hover,
+.cwb-main .cwb-vehicle-list > li.cwb-state-selected,
+.cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-step,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-arrow-left:hover,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-arrow-right:hover,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-month-arrow-left:hover,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-month-arrow-right:hover,
+.cwb-main .cwb-calendar .cwb-calendar-subheader .cwb-calendar-subheader-day-number.cwb-state-selected,
+.cwb-main .cwb-calendar .cwb-calendar-data a:hover,
+.cwb-main .cwb-calendar .cwb-calendar-data .cwb-state-selected > a {
+    background-color: #0A81D1;
+}
+
+.cwb-main .cwb-button,
+.cwb-main .cwb-location-list > li:hover,
+.cwb-main .cwb-location-list > li.cwb-state-selected,
+.cwb-main .cwb-vehicle-list > li:hover,
+.cwb-main .cwb-vehicle-list > li.cwb-state-selected,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-arrow-left:hover,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-arrow-right:hover,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-month-arrow-left:hover,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-month-arrow-right:hover,
+.cwb-main .cwb-calendar .cwb-calendar-subheader .cwb-calendar-subheader-day-number.cwb-state-selected,
+.cwb-main .cwb-calendar .cwb-calendar-data a:hover,
+.cwb-main .cwb-calendar .cwb-calendar-data .cwb-state-selected > a {
+    border-color: #0A81D1;
+}
+
+/**************************************************************************/
+/* Color / Color 2														  */
+/**************************************************************************/
+
+.cwb-main .cwb-button:hover,
+.cwb-main .cwb-state-selected > .cwb-button,
+.cwb-main .cwb-state-selected > .cwb-button-box > .cwb-button,
+.cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-step,
+.cwb-main .cwb-location-list > li:hover,
+.cwb-main .cwb-location-list > li.cwb-state-selected,
+.cwb-main .cwb-vehicle-list > li:hover,
+.cwb-main .cwb-vehicle-list > li:hover .cwb-vehicle-icon,
+.cwb-main .cwb-vehicle-list > li.cwb-state-selected,
+.cwb-main .cwb-vehicle-list > li.cwb-state-selected .cwb-vehicle-icon,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-arrow-left:hover,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-arrow-right:hover,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-month-arrow-left:hover,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-month-arrow-right:hover,
+.cwb-main .cwb-calendar .cwb-calendar-subheader .cwb-calendar-subheader-day-number.cwb-state-selected,
+.cwb-main .cwb-calendar .cwb-calendar-data a:hover,
+.cwb-main .cwb-calendar .cwb-calendar-data .cwb-state-selected > a {
+    color: #FFFFFF;
+}
+
+/**************************************************************************/
+/* Color / Color 3														  */
+/**************************************************************************/
+
+.cwb-main .cwb-service-list > li > .cwb-service-name,
+.cwb-main .cwb-package-list > li > .cwb-package-name,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-caption,
+.cwb-main .cwb-calendar .cwb-calendar-subheader .cwb-calendar-subheader-day-number,
+.cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-header > span,
+.cwb-main .cwb-form .cwb-agreement-header {
+    color: #222222;
+}
+
+/**************************************************************************/
+/* Color / Color 4														  */
+/**************************************************************************/
+
+.cwb-main .cwb-form .cwb-form-summary .cwb-form-info,
+.cwb-main .cwb-package-list > li > .cwb-package-service-list > li,
+.cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-subheader,
+.cwb-main .cwb-service-list > li > div.cwb-service-name .cwb-more-content,
+.cwb-main .cwb-calendar .cwb-calendar-data a,
+.cwb-main .cwb-agreement > div > div,
+.cwb-main .cwb-form textarea,
+.cwb-main .cwb-form input[type="text"],
+.cwb-main .cwb-form select {
+    color: #777777;
+}
+
+/**************************************************************************/
+/* Color / Color 5														  */
+/**************************************************************************/
+
+.cwb-main .cwb-form label,
+.cwb-main .cwb-location-list > li,
+.cwb-main .cwb-vehicle-list > li,
+.cwb-main .cwb-booking-summary > li > span,
+.cwb-main .cwb-package-list > li > .cwb-package-duration,
+.cwb-main .cwb-service-list > li > div.cwb-service-price,
+.cwb-main .cwb-service-list > li > div.cwb-service-duration,
+.cwb-main .cwb-calendar .cwb-calendar-subheader .cwb-calendar-subheader-day-name,
+.cwb-main .cwb-calendar .cwb-calendar-data,
+.cwb-main .cwb-calendar .cwb-calendar-subheader .cwb-calendar-subheader-day-number.cwb-state-disable {
+    color: #A8B1B6;
+}
+
+/**************************************************************************/
+/* Color / Color 6														  */
+/**************************************************************************/
+
+.cwb-main .cwb-location-list > li,
+.cwb-main .cwb-location-drop-down > select,
+.cwb-main .cwb-vehicle-list > li,
+.cwb-main .cwb-package-list > li,
+.cwb-main .cwb-service-list > li,
+.cwb-main .cwb-booking-summary > li,
+.cwb-main .cwb-form .cwb-form-field,
+.cwb-main .cwb-form .cwb-form-checkbox,
+.cwb-main .cwb-package-list > li > .cwb-package-duration,
+.cwb-main .cwb-calendar tr > th,
+.cwb-main .cwb-calendar tr > td,
+.cwb-main .cwb-calendar .cwb-calendar-subheader .cwb-calendar-subheader-day-number,
+.cwb-main .cwb-calendar .cwb-calendar-data a,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-arrow-left,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-arrow-right,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-month-arrow-left,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-month-arrow-right,
+.cwb-main .cwb-to-tab.ui-tabs .ui-tabs-nav li,
+.cwb-main .cwb-coupon-code input[name="coupon_code"] {
+    border-color: #E2E6E7;
+}
+
+/**************************************************************************/
+/* Color / Color 7														  */
+/**************************************************************************/
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item.cwb-state-disable > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-step {
+    background-color: #E0E0E0;
+}
+
+/**************************************************************************/
+/* Color / Color 8														  */
+/**************************************************************************/
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item.cwb-state-disable > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-step > span {
+    color: #FFFFFF;
+}
+
+/**************************************************************************/
+/* Color / Color 9														  */
+/**************************************************************************/
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item.cwb-state-disable > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-header > span,
+.cwb-main .cwb-main-list > li.cwb-main-list-item.cwb-state-disable > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-subheader > span {
+    color: #CCCCCC;
+}
+
+/**************************************************************************/
+/* Color / Color 10														  */
+/**************************************************************************/
+
+.cwb-main .cwb-meta-icon,
+.cwb-main .cwb-vehicle-icon,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-arrow-left,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-arrow-right,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-month-arrow-left,
+.cwb-main .cwb-calendar-header .cwb-calendar-header-month-arrow-right {
+    color: #A8B1B6;
+}
+
+/******************************************************************************/
+/* Main																		  */
+/******************************************************************************/
+
+.cwb-main {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+/**************************************************************************/
+/* Main / List															  */
+/**************************************************************************/
+
+.cwb-main .cwb-main-list {
+
+}
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item {
+    margin-bottom: 80px;
+}
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-location-list {
+    margin-bottom: 50px;
+}
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-vehicle-list {
+    margin-bottom: 68px;
+}
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-package-list {
+    margin-bottom: 50px;
+}
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header {
+
+}
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-step {
+    float: left;
+    width: 80px;
+    height: 80px;
+    padding: 3px;
+    line-height: 80px;
+    text-align: center;
+    border-radius: 100%;
+}
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-step > span {
+    font-size: 28px;
+}
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-step > span + span {
+    font-size: 18px;
+}
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-header,
+.cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-subheader {
+    margin: 0 0 0 110px;
+}
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-subheader {
+    margin-top: 4px;
+}
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-header > span {
+    font-size: 26px;
+}
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-subheader > span {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-content {
+    margin-top: 50px;
+}
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-booking.cwb-main-list-item-booking-sticky {
+
+
+}
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-booking.cwb-main-list-item-booking-sticky > .cwb-main-list-item-section-header {
+    display: none;
+}
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-booking.cwb-main-list-item-booking-sticky > .cwb-main-list-item-section-content {
+
+}
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-booking.cwb-main-list-item-booking-sticky > .cwb-main-list-item-section-content > .cwb-main-list-item-section-content {
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    z-index: 999;
+    position: fixed;
+    background: #FFFFFF;
+}
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-booking.cwb-main-list-item-booking-sticky > .cwb-main-list-item-section-content > .cwb-main-list-item-section-content > .cwb-booking-summary {
+    display: flex;
+    border-style: solid;
+    border-width: 2px 0 0 0;
+}
+
+.cwb-main.cwb-width-480 .cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-booking.cwb-main-list-item-booking-sticky > .cwb-main-list-item-section-content > .cwb-main-list-item-section-content > .cwb-booking-summary,
+.cwb-main.cwb-width-300 .cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-booking.cwb-main-list-item-booking-sticky > .cwb-main-list-item-section-content > .cwb-main-list-item-section-content > .cwb-booking-summary,
+.cwb-main.cwb-width-0 .cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-booking.cwb-main-list-item-booking-sticky > .cwb-main-list-item-section-content > .cwb-main-list-item-section-content > .cwb-booking-summary {
+    flex-wrap: wrap;
+}
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-booking.cwb-main-list-item-booking-sticky > .cwb-main-list-item-section-content > .cwb-main-list-item-section-content > .cwb-booking-summary > li {
+    float: none;
+    margin: 0;
+    border-top: none;
+}
+
+.cwb-main.cwb-width-480 .cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-booking.cwb-main-list-item-booking-sticky > .cwb-main-list-item-section-content > .cwb-main-list-item-section-content > .cwb-booking-summary > li,
+.cwb-main.cwb-width-300 .cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-booking.cwb-main-list-item-booking-sticky > .cwb-main-list-item-section-content > .cwb-main-list-item-section-content > .cwb-booking-summary > li,
+.cwb-main.cwb-width-0 .cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-booking.cwb-main-list-item-booking-sticky > .cwb-main-list-item-section-content > .cwb-main-list-item-section-content > .cwb-booking-summary > li {
+    width: 50%;
+}
+
+.cwb-main .cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-booking.cwb-main-list-item-booking-sticky > .cwb-main-list-item-section-content > .cwb-main-list-item-section-content > .cwb-booking-summary > li + li {
+    border-left: 0;
+}
+
+.cwb-main.cwb-width-768 .cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-booking.cwb-main-list-item-booking-sticky > .cwb-main-list-item-section-content > .cwb-main-list-item-section-content > .cwb-booking-summary > li > .cwb-meta-icon,
+.cwb-main.cwb-width-480 .cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-booking.cwb-main-list-item-booking-sticky > .cwb-main-list-item-section-content > .cwb-main-list-item-section-content > .cwb-booking-summary > li > .cwb-meta-icon,
+.cwb-main.cwb-width-300 .cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-booking.cwb-main-list-item-booking-sticky > .cwb-main-list-item-section-content > .cwb-main-list-item-section-content > .cwb-booking-summary > li > .cwb-meta-icon,
+.cwb-main.cwb-width-0 .cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-booking.cwb-main-list-item-booking-sticky > .cwb-main-list-item-section-content > .cwb-main-list-item-section-content > .cwb-booking-summary > li > .cwb-meta-icon {
+    display: none;
+}
+
+.cwb-main-list > li.cwb-main-list-item.cwb-main-list-item-booking.cwb-main-list-item-booking-sticky > .cwb-main-list-item-section-content > .cwb-main-list-item-section-content > .cwb-booking-summary > li > h5 > span {
+    font-size: 20px;
+    letter-spacing: 0
+}
+
+/******************************************************************************/
+/* Preloader																  */
+/******************************************************************************/
+
+#cwb-preloader {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: wait;
+    display: none;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+#cwb-preloader.cwb-state-enable {
+    display: block;
+}
+
+/******************************************************************************/
+/* Button																	  */
+/******************************************************************************/
+
+.cwb-button {
+    outline: none;
+    line-height: 1;
+    cursor: pointer;
+    text-align: left;
+    border-width: 2px;
+    position: relative;
+    border-style: solid;
+    border-radius: 999px;
+    display: inline-block;
+    padding: 13px 30px 15px 30px;
+    background-color: transparent;
+}
+
+.cwb-button.cwb-state-hidden {
+    display: none;
+}
+
+a.cwb-button,
+a.cwb-button:hover {
+    text-decoration: none;
+}
+
+.cwb-button,
+.cwb-state-selected .cwb-button:before {
+    transition: padding-right 100ms ease, opacity 200ms ease 100ms;
+}
+
+.cwb-button:before {
+    opacity: 0;
+    right: 25px;
+    position: absolute;
+}
+
+.cwb-state-selected .cwb-button {
+    padding-right: 50px;
+}
+
+.cwb-state-selected .cwb-button:before {
+    opacity: 1;
+}
+
+.cwb-button,
+.cwb-button > * {
+    line-height: 1;
+}
+
+/******************************************************************************/
+/* Button																	  */
+/******************************************************************************/
+
+.cwb-more-link {
+    margin-left: 10px;
+}
+
+/******************************************************************************/
+/* Location List																  */
+/******************************************************************************/
+
+.cwb-location-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 0 -6px -12px -6px;
+}
+
+.cwb-location-list > li {
+    flex-grow: 1;
+    flex-basis: 140px;
+    cursor: pointer;
+    padding: 60px 0;
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+    margin: 0 6px 12px 6px;
+}
+
+.cwb-location-list > li:only-child {
+    flex-grow: 0.1;
+}
+
+.cwb-location-list > li {
+    float: left \9;
+    width: 185px \9;
+}
+
+.cwb-location-list > li > div {
+
+}
+
+.cwb-location-list > li > div > div {
+    position: relative;
+    font-size: 24px;
+}
+
+.cwb-location-list > li > div > a {
+    display: none;
+}
+
+.cwb-main .cwb-location-drop-down {
+
+}
+
+.cwb-main .cwb-location-drop-down select {
+    border-width: 1px;
+    border-style: solid;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/******************************************************************************/
+/* Vehicle List																  */
+/******************************************************************************/
+
+.cwb-vehicle-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 0 -6px -12px -6px;
+}
+
+.cwb-vehicle-list > li {
+    flex-grow: 1;
+    flex-basis: 140px;
+    height: 147px;
+    cursor: pointer;
+    padding-top: 40px;
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+    margin: 0 6px 12px 6px;
+}
+
+.cwb-vehicle-list > li:only-child {
+    flex-grow: 0.1;
+}
+
+.cwb-vehicle-list > li {
+    float: left \9;
+    width: 185px \9;
+}
+
+.cwb-vehicle-list > li > div {
+
+}
+
+.cwb-vehicle-list > li > div > div {
+    position: relative;
+}
+
+.cwb-vehicle-list > li > div > div {
+    top: 3px;
+}
+
+.cwb-vehicle-list > li > div > div + div {
+    top: 5px;
+}
+
+/******************************************************************************/
+/* Package List																  */
+/******************************************************************************/
+
+.cwb-package-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: stretch;
+    margin: 0 -15px 0 -15px;
+}
+
+.cwb-package-list > li {
+    flex-grow: 1;
+    flex-basis: 210px;
+    text-align: center;
+    border-width: 1px;
+    border-style: solid;
+    position: relative;
+    margin: 0 15px 30px 15px;
+    padding: 25px 20px 75px 20px;
+}
+
+.cwb-package-list > li {
+    float: left \9;
+    width: 270px \9;
+}
+
+.cwb-package-list > li > .cwb-package-name {
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.cwb-package-list > li > .cwb-package-price {
+    margin-bottom: 30px;
+}
+
+.cwb-package-list > li > .cwb-package-price > span {
+    line-height: 1;
+}
+
+.cwb-package-list > li > .cwb-package-price > span.cwb-package-price-unit {
+    top: 0;
+    font-size: 64px;
+    font-weight: 300;
+    position: relative;
+}
+
+.cwb-package-list > li > .cwb-package-price > span.cwb-package-price-currency,
+.cwb-package-list > li > .cwb-package-price > span.cwb-package-price-decimal {
+    top: -28px;
+    font-size: 24px;
+    font-weight: 400;
+    position: relative;
+}
+
+.cwb-package-list > li > .cwb-package-duration {
+    line-height: 1;
+    border-style: solid;
+    margin-bottom: 30px;
+    padding: 15px 0 15px 0;
+    border-width: 1px 0 1px 0;
+}
+
+.cwb-package-list > li > .cwb-package-service-list {
+    margin-bottom: 30px;
+}
+
+.cwb-package-list > li > .cwb-package-service-list > li {
+    clear: both;
+}
+
+.cwb-package-list > li > div.cwb-button-box {
+    left: 0;
+    width: 100%;
+    bottom: 30px;
+    text-align: center;
+    position: absolute;
+}
+
+/******************************************************************************/
+/* Service																	  */
+/******************************************************************************/
+
+.cwb-service-list {
+
+}
+
+.cwb-service-list > li {
+    width: 100%;
+    display: table;
+    margin-top: -1px;
+    border-width: 1px;
+    border-style: solid;
+    box-sizing: border-box;
+    padding: 12px 20px 12px 20px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.cwb-service-list > li:first-child {
+    margin-top: 0;
+}
+
+.cwb-service-list > li > div {
+    text-align: left;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.cwb-service-list > li > div.cwb-service-name {
+    width: 55%;
+}
+
+.cwb-service-list > li > div.cwb-service-name .cwb-more-content {
+    clear: both;
+    margin-top: 5px;
+    font-size: 14px;
+    padding-right: 20px;
+}
+
+.cwb-service-list > li > div.cwb-service-duration {
+    width: 15%;
+}
+
+.cwb-service-list > li > div.cwb-service-price {
+    width: 15%;
+}
+
+.cwb-service-list > li > div.cwb-button-box {
+    width: 15%;
+}
+
+.cwb-service-list > li > div.cwb-button-box > .cwb-button {
+    float: right;
+}
+
+.cwb-main-list-item-service-list .cwb-main-list-item-section-content {
+    text-align: center;
+}
+
+.cwb-main-list-item-service-list .cwb-main-list-item-section-content .cwb-button-service-more {
+    margin-top: 30px;
+}
+
+.cwb-main.cwb-width-0 .cwb-service-list > li > *,
+.cwb-main.cwb-width-300 .cwb-service-list > li > *,
+.cwb-main.cwb-width-480 .cwb-service-list > li > * {
+    text-align: center;
+}
+
+.cwb-main.cwb-width-0 .cwb-service-list > li > div.cwb-service-name,
+.cwb-main.cwb-width-300 .cwb-service-list > li > div.cwb-service-name,
+.cwb-main.cwb-width-480 .cwb-service-list > li > div.cwb-service-name {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.cwb-main.cwb-width-0 .cwb-service-list > li > div.cwb-service-namee > div.cwb-more-content,
+.cwb-main.cwb-width-300 .cwb-service-list > li > div.cwb-service-name > div.cwb-more-content,
+.cwb-main.cwb-width-480 .cwb-service-list > li > div.cwb-service-name > div.cwb-more-content {
+    padding-right: 0;
+    margin-top: 10px;
+}
+
+.cwb-main.cwb-width-0 .cwb-service-list > li > div.cwb-service-duration,
+.cwb-main.cwb-width-300 .cwb-service-list > li > div.cwb-service-duration,
+.cwb-main.cwb-width-480 .cwb-service-list > li > div.cwb-service-duration {
+    clear: both;
+    margin-right: 10px;
+}
+
+.cwb-main.cwb-width-0 .cwb-service-list > li > div.cwb-service-duration,
+.cwb-main.cwb-width-300 .cwb-service-list > li > div.cwb-service-duration,
+.cwb-main.cwb-width-480 .cwb-service-list > li > div.cwb-service-duration,
+.cwb-main.cwb-width-0 .cwb-service-list > li > div.cwb-service-price,
+.cwb-main.cwb-width-300 .cwb-service-list > li > div.cwb-service-price,
+.cwb-main.cwb-width-480 .cwb-service-list > li > div.cwb-service-price {
+    width: auto;
+    display: inline-block;
+}
+
+.cwb-main.cwb-width-0 .cwb-service-list > li > .cwb-button-box,
+.cwb-main.cwb-width-300 .cwb-service-list > li > .cwb-button-box,
+.cwb-main.cwb-width-480 .cwb-service-list > li > .cwb-button-box {
+    clear: both;
+    float: none;
+    margin-top: 20px;
+    display: inherit;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/******************************************************************************/
+/* Calendar																	  */
+/******************************************************************************/
+
+.cwb-calendar-table-wrapper {
+    clear: both;
+    margin-top: 20px;
+    overflow-x: hidden;
+}
+
+.cwb-calendar {
+    width: 100%;
+    table-layout: fixed;
+    border-style: solid;
+    border-width: 0;
+    border-collapse: collapse;
+}
+
+.cwb-calendar tr {
+
+}
+
+.cwb-calendar tr > th,
+.cwb-calendar tr > td {
+    padding: 0;
+    min-width: 140px;
+    border-width: 1px;
+    border-style: solid;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+.cwb-calendar tr > th > div,
+.cwb-calendar tr > td > div {
+    padding: 20px;
+}
+
+/**************************************************************************/
+/* Calendar	/ Header													  */
+/**************************************************************************/
+
+.cwb-calendar-header {
+    text-align: center;
+}
+
+.cwb-calendar-header .cwb-calendar-header-arrow-left,
+.cwb-calendar-header .cwb-calendar-header-arrow-right,
+.cwb-calendar-header .cwb-calendar-header-arrow-left:hover,
+.cwb-calendar-header .cwb-calendar-header-arrow-right:hover {
+    text-decoration: none;
+}
+
+/*.cwb-calendar-header .cwb-calendar-header-arrow-left,*/
+/*.cwb-calendar-header .cwb-calendar-header-arrow-right {*/
+/*    top: -6px;*/
+/*    width: 47px;*/
+/*    height: 47px;*/
+/*    line-height: 42px;*/
+/*    border-width: 1px;*/
+/*    text-align: center;*/
+/*    border-radius: 100%;*/
+/*    border-style: solid;*/
+/*    position: relative;*/
+/*}*/
+
+.cwb-calendar-header.cwb-month-navigation .cwb-calendar-header-arrow-left,
+.cwb-calendar-header.cwb-month-navigation .cwb-calendar-header-arrow-right {
+    top: -3px;
+}
+
+/*.cwb-calendar-header .fa-solid.fa-arrow-left {*/
+/*    float: left;*/
+/*}*/
+
+/*.cwb-calendar-header .fa-solid.fa-arrow-left-right {*/
+/*    float: right;*/
+/*}*/
+
+.cwb-calendar-header .cwb-calendar-header-arrow-left {
+    float: left;
+}
+
+.cwb-calendar-header .cwb-calendar-header-arrow-right {
+    float: right;
+}
+
+.cwb-calendar-header .cwb-calendar-header-arrow-left,
+.cwb-calendar-header .cwb-calendar-header-arrow-right
+{
+    display: inline-block;
+    width: 47px;
+    height: 47px;
+    line-height: 42px;
+    border-width: 1px;
+    text-align: center;
+    border-radius: 100%;
+    border-style: solid;
+    position: relative;
+    top: -3px;
+}
+
+.cwb-calendar-header .cwb-calendar-header-caption {
+    display: inline-block;
+}
+
+.cwb-calendar-header .cwb-calendar-header-caption > span {
+    font-size: 24px;
+}
+
+.cwb-calendar-header .cwb-calendar-header-caption.cwb-month-navigation-responsive {
+    display: none;
+}
+
+.cwb-calendar-header .cwb-calendar-header-caption.cwb-month-navigation-responsive > a {
+    margin-top: 10px;
+}
+
+.cwb-calendar-header .cwb-calendar-header-month-arrow-left,
+.cwb-calendar-header .cwb-calendar-header-month-arrow-right,
+.cwb-calendar-header .cwb-calendar-header-month-arrow-left:hover,
+.cwb-calendar-header .cwb-calendar-header-month-arrow-right:hover {
+    text-decoration: none;
+}
+
+/*.cwb-calendar-header .fa-solid.fa-arrow-left,*/
+/*.cwb-calendar-header .fa-solid.fa-arrow-right {*/
+/*    display: inline-block;*/
+/*    width: 47px;*/
+/*    height: 47px;*/
+/*    line-height: 42px;*/
+/*    border-width: 1px;*/
+/*    text-align: center;*/
+/*    border-radius: 100%;*/
+/*    border-style: solid;*/
+/*    position: relative;*/
+/*    top: -3px;*/
+/*}*/
+
+.cwb-calendar-header .cwb-calendar-header-caption .cwb-calendar-header-month-arrow-left {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+
+/**************************************************************************/
+/* Calendar	/ Subheader													  */
+/**************************************************************************/
+
+.cwb-calendar .cwb-calendar-subheader {
+
+}
+
+
+.cwb-calendar .cwb-calendar-subheader .cwb-calendar-subheader-day-number {
+    float: left;
+    width: 47px;
+    height: 47px;
+    font-size: 24px;
+    line-height: 43px;
+    border-width: 1px;
+    text-align: center;
+    border-radius: 100%;
+    border-style: solid;
+}
+
+.cwb-calendar .cwb-calendar-subheader .cwb-calendar-subheader-day-name {
+    top: -0.5em;
+    float: right;
+    position: relative;
+}
+
+/**************************************************************************/
+/* Calendar	/ Data													  */
+/**************************************************************************/
+
+.cwb-calendar .cwb-calendar-data {
+    text-align: center;
+}
+
+.cwb-calendar .cwb-calendar-data a {
+    width: 100%;
+    font-size: 14px;
+    border-width: 1px;
+    margin-bottom: 10px;
+    border-style: solid;
+    border-radius: 999px;
+    display: inline-block;
+    padding: 10px 15px 10px 15px;
+}
+
+.cwb-calendar .cwb-calendar-data a,
+.cwb-calendar .cwb-calendar-data a:hover {
+    text-decoration: none;
+}
+
+.cwb-calendar .cwb-calendar-data .cwb-calendar-data-button-more {
+    margin-bottom: 0;
+}
+
+
+/******************************************************************************/
+/* Booking summary															  */
+/******************************************************************************/
+
+.cwb-booking-summary {
+
+}
+
+.cwb-booking-summary > li {
+    float: left;
+    width: 48.7179%;
+    text-align: right;
+    border-width: 1px;
+    border-style: solid;
+    margin-bottom: 30px;
+    padding: 35px 30px 30px 30px;
+}
+
+.cwb-main.cwb-width-0 .cwb-booking-summary > li,
+.cwb-main.cwb-width-480 .cwb-booking-summary > li,
+.cwb-main.cwb-width-300 .cwb-booking-summary > li {
+    width: 100%;
+    float: none !important;
+}
+
+.cwb-booking-summary > li.cwb-booking-summary-date,
+.cwb-booking-summary > li.cwb-booking-summary-duration {
+    float: left;
+}
+
+.cwb-booking-summary > li.cwb-booking-summary-time,
+.cwb-booking-summary > li.cwb-booking-summary-price {
+    float: right;
+}
+
+.cwb-booking-summary > li > h5 {
+    margin: -10px 0 0 0;
+}
+
+.cwb-booking-summary > li > h5,
+.cwb-booking-summary > li > h5 > span {
+    font-size: 24px;
+}
+
+.cwb-booking-summary > li > span {
+
+}
+
+.cwb-booking-summary > li > .cwb-meta-icon {
+    float: left;
+}
+
+/******************************************************************************/
+/* Steps navigation															  */
+/******************************************************************************/
+
+.cwb-main-list-item-navigation-list {
+
+}
+
+.cwb-main-list-item-navigation-list .cwb-main-list-item-section-content {
+    text-align: center;
+}
+
+.cwb-main-list-item-navigation-list .cwb-main-list-item-section-content .cwb-button {
+    margin: 0 10px;
+}
+
+/******************************************************************************/
+/* Contact Details															  */
+/******************************************************************************/
+
+.cwb-contact-details-options {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cwb-contact-details-options .cwb-button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/******************************************************************************/
+/* Tabs																		  */
+/******************************************************************************/
+
+.cwb-to-tab {
+    padding: 0;
+}
+
+.cwb-to-tab.ui-tabs .ui-tabs-nav {
+    padding: 0;
+}
+
+.cwb-to-tab.ui-tabs .ui-tabs-nav li {
+    border-width: 1px;
+    border-style: solid;
+    padding: 0;
+    margin: 1px .2em 0 0;
+    float: left;
+    position: relative;
+    top: 0;
+    list-style: none;
+    white-space: nowrap;
+}
+
+.cwb-to-tab.ui-tabs .ui-tabs-nav li:last-child {
+    float: right;
+    margin-right: 0;
+}
+
+.cwb-to-tab.ui-tabs .ui-tabs-panel {
+    padding: 0;
+}
+
+.ui-tabs .ui-tabs-panel {
+    display: block;
+    border-width: 0;
+    background: none;
+}
+
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+    float: left;
+    padding: .5em 1em;
+    text-decoration: none;
+}
+
+.ui-helper-clearfix:before, .ui-helper-clearfix:after {
+    content: '';
+    display: table;
+    border-collapse: collapse;
+}
+
+.ui-helper-clearfix:after {
+    clear: both;
+}
+
+/******************************************************************************/
+/* Form																		  */
+/******************************************************************************/
+
+.cwb-form {
+
+}
+
+.cwb-form label {
+    font-size: 14px;
+}
+
+.cwb-form textarea:focus,
+.cwb-form input[type="text"]:focus,
+.cwb-form input[type="password"]:focus,
+.cwb-form select:focus {
+    outline: none;
+}
+
+.cwb-form textarea,
+.cwb-form input[type="text"],
+.cwb-form input[type="password"],
+.cwb-form select {
+    width: 100%;
+    border: none;
+    padding: 10px 0 10px 0;
+}
+
+.cwb-form textarea {
+    resize: none;
+    overflow: hidden;
+    min-height: 95px;
+}
+
+.cwb-form input[type="text"] {
+
+}
+
+.cwb-form .cwb-form-field {
+    float: left;
+    padding: 15px;
+    margin-top: -1px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.cwb-form .cwb-form-field * {
+    clear: both;
+    display: block;
+}
+
+.cwb-form .cwb-form-field select,
+.cwb-form .cwb-form-field select option {
+    background: transparent;
+}
+
+.cwb-form .cwb-form-summary {
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+.cwb-form .cwb-form-summary .cwb-form-info {
+    margin-top: 40px;
+}
+
+.cwb-form .cwb-form-summary .cwb-button {
+    margin-top: 40px;
+}
+
+.cwb-form .cwb-form-field.cwb-form-width-33 {
+    width: 33.333333%;
+}
+
+.cwb-form .cwb-form-field.cwb-form-width-50 {
+    width: 50%;
+}
+
+.cwb-form .cwb-form-field.cwb-form-width-100 {
+    width: 100%;
+}
+
+.cwb-form .cwb-form-field.cwb-form-width-33 + .cwb-form-width-33,
+.cwb-form .cwb-form-field.cwb-form-width-50 + .cwb-form-width-50 {
+    border-left-width: 0;
+}
+
+.cwb-main.cwb-width-0 .cwb-form .cwb-form-field.cwb-form-width-33,
+.cwb-main.cwb-width-0 .cwb-form .cwb-form-field.cwb-form-width-50,
+.cwb-main.cwb-width-300 .cwb-form .cwb-form-field.cwb-form-width-33,
+.cwb-main.cwb-width-300 .cwb-form .cwb-form-field.cwb-form-width-50,
+.cwb-main.cwb-width-480 .cwb-form .cwb-form-field.cwb-form-width-33,
+.cwb-main.cwb-width-480 .cwb-form .cwb-form-field.cwb-form-width-50 {
+    width: 100%;
+    border-left-width: 1px;
+}
+
+/******************************************************************************/
+/* Form select dropdown                                                              */
+/******************************************************************************/
+
+.select2-hidden-accessible {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    height: 10px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+}
+
+.select2-container {
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    vertical-align: middle;
+}
+
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #343434;
+    border-radius: 0;
+    height: 40px;
+}
+
+.select2-container .select2-selection--single {
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 0 0 4px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 40px;
+    color: #444;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+    display: block;
+    padding-left: 8px;
+    padding-right: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/******************************************************************************/
+/* Form checkbox                                                              */
+/******************************************************************************/
+
+.cwb-main .cwb-form .cwb-form-checkbox {
+    float: left;
+    width: 30px;
+    height: 30px;
+    display: block;
+    cursor: pointer;
+    margin-top: -5px;
+    margin-right: 20px;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.cwb-main .cwb-form .cwb-form-checkbox > .cwb-meta-icon-check::before {
+    display: none;
+    font-size: 22px;
+    line-height: 28px;
+    text-align: center;
+}
+
+.cwb-main .cwb-form .cwb-form-checkbox.cwb-state-selected > .cwb-meta-icon-check::before {
+    display: block;
+}
+
+.cwb-main .cwb-form .cwb-form-checkbox + input[type="checkbox"] {
+    opacity: 0;
+}
+
+/******************************************************************************/
+/* Agreement                                                                  */
+/******************************************************************************/
+
+.cwb-main .cwb-agreement-header {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 70px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.cwb-agreement {
+    margin-top: 40px;
+    text-align: left;
+}
+
+.cwb-agreement > div {
+    margin-top: 15px;
+}
+
+.cwb-agreement > div > div {
+    margin-left: 50px;
+}
+
+/******************************************************************************/
+/* Coupon code																  */
+/******************************************************************************/
+
+.cwb-form .cwb-coupon-code {
+    text-align: left;
+    margin-top: 30px;
+}
+
+.cwb-form .cwb-coupon-code a.cwb-show-coupon {
+    display: inline-block;
+    line-height: 34px;
+}
+
+.cwb-form .cwb-coupon-code input[name="coupon_code"] {
+    width: auto;
+    display: none;
+    padding: 5px;
+    border-width: 1px;
+    border-style: solid;
+    margin-left: 10px;
+}
+
+.cwb-form .cwb-coupon-code a.cwb-button-apply-coupon {
+    display: none;
+    margin-left: 10px;
+    margin-top: 0;
+    padding: 5px 20px 7px 20px;
+    line-height: 1;
+}
+
+.cwb-form .cwb-coupon-code div {
+    display: none;
+    margin-top: 10px;
+}
+
+.cwb-form .cwb-coupon-code div.cwb-coupon-code-success {
+    color: #5AAC4A;
+}
+
+.cwb-form .cwb-coupon-code div.cwb-coupon-code-failure {
+    color: #BD432D;
+}
+
+/******************************************************************************/
+/* Register																	  */
+/******************************************************************************/
+
+.cwb-register {
+    text-align: left;
+    margin-top: 30px;
+}
+
+.cwb-register label {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.cwb-register input[type="checkbox"] {
+    margin: 0;
+}
+
+/******************************************************************************/
+/* Notice																	  */
+/******************************************************************************/
+
+.cwb-notice {
+    border: none;
+    display: none;
+    margin-bottom: 40px;
+    padding: 35px 35px 20px 35px;
+}
+
+.cwb-width-0 .cwb-notice {
+    text-align: center;
+}
+
+.cwb-notice.cwb-notice-success {
+    background-color: #F5F5F5;
+}
+
+.cwb-notice.cwb-notice-error {
+    background-color: #FAEEED;
+}
+
+.cwb-notice > div {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.cwb-notice .cwb-notice-content {
+    margin-top: -20px;
+    margin-left: 20px;
+}
+
+.cwb-width-0 .cwb-notice .cwb-notice-content {
+    margin-top: 10px;
+    margin-left: 0;
+}
+
+.cwb-notice .cwb-notice-content .cwb-notice-header {
+    font-size: 24px;
+}
+
+.cwb-notice .cwb-notice-content .cwb-notice-text {
+
+}
+
+.cwb-notice.cwb-notice-success .cwb-notice-content .cwb-notice-header {
+    color: #5AAC4A;
+}
+
+.cwb-notice.cwb-notice-success .cwb-notice-content .cwb-notice-text {
+    color: #777777;
+}
+
+.cwb-notice.cwb-notice-error .cwb-notice-content .cwb-notice-header {
+    color: #BD432D;
+}
+
+.cwb-notice.cwb-notice-error .cwb-notice-content .cwb-notice-text {
+    color: #BD432D;
+}
+
+/******************************************************************************/
+/* Stripe form																  */
+/******************************************************************************/
+
+#cwb-stripe-form button.stripe-button-el {
+    display: none !important;
+}
+
+/******************************************************************************/
+/* Icon																		  */
+/******************************************************************************/
+
+/**************************************************************************/
+/* Icon / Meta															  */
+/**************************************************************************/
+
+@font-face {
+    font-family: 'cwb-meta-icon';
+    src: url('../font/cwb-meta.eot');
+    src: url('../font/cwb-meta.eot') format('embedded-opentype'), url('../font/cwb-meta.ttf') format('truetype'), url('../font/cwb-meta.woff') format('woff'), url('../font/cwb-meta.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.fa-classic, .fa-regular, .fa-solid, .far, .fas {
+    font-family: "Font Awesome 6 Free", serif !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-solid {
+    /*font-weight: 600;*/
+}
+
+.cwb-button:before,
+.cwb-meta-icon {
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.cwb-button:before,
+.cwb-meta-icon-check:before {
+    content: "\65";
+    font-size: 16px;
+}
+
+.cwb-meta-icon-total-price:before {
+    content: "\69";
+    font-size: 48px;
+}
+
+.cwb-meta-icon-date:before {
+    content: "\66";
+    font-size: 48px;
+}
+
+.cwb-meta-icon-time:before {
+    content: "\67";
+    font-size: 48px;
+}
+
+.cwb-meta-icon-total-duration:before {
+    content: "\68";
+    font-size: 48px;
+}
+
+.fa-regular.fa-clock:before {
+    font-size: 18px;
+    top: 2px;
+    margin-right: 4px;
+    position: relative;
+}
+
+.cwb-meta-icon-arrow-horizontal:before {
+    font-size: 18px;
+    top: 2px;
+    position: relative;
+}
+
+.cwb-meta-icon-price:before {
+    content: "\62";
+    font-size: 18px;
+    top: 2px;
+    margin-right: 4px;
+    position: relative;
+}
+
+.cwb-meta-icon-arrow-vertical:before {
+    content: "\63";
+    font-size: 18px;
+}
+
+.cwb-meta-icon-success:before {
+    content: "\6a";
+    color: #59AC49;
+    font-size: 48px;
+}
+
+.cwb-meta-icon-error:before {
+    content: "\6b";
+    color: #BD432D;
+    font-size: 48px;
+}
+
+.cwb-meta-icon-date:before,
+.cwb-meta-icon-time:before,
+.cwb-meta-icon-total-price:before,
+.cwb-meta-icon-total-duration:before {
+    top: 10px;
+    position: relative;
+}
+
+/**************************************************************************/
+/* Vehicle icon															  */
+/**************************************************************************/
+
+@font-face {
+    font-family: 'cwb-vehicle';
+    src: url('../font/cwb-vehicle.eot');
+    src: url('../font/cwb-vehicle.eot') format('embedded-opentype'), url('../font/cwb-vehicle.ttf') format('truetype'), url('../font/cwb-vehicle.woff') format('woff'), url('../font/cwb-vehicle.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.cwb-vehicle-icon {
+    font-family: 'cwb-vehicle', serif !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.cwb-vehicle-icon-jetski:before {
+    content: "\79";
+    font-size: 28px;
+}
+
+.cwb-vehicle-icon-boat:before {
+    content: "\78";
+    font-size: 30px;
+}
+
+.cwb-vehicle-icon-quad:before {
+    content: "\75";
+    font-size: 61px;
+}
+
+.cwb-vehicle-icon-trailer:before {
+    content: "\74";
+    font-size: 23px;
+}
+
+.cwb-vehicle-icon-bicycle:before {
+    content: "\77";
+    font-size: 41px;
+}
+
+.cwb-vehicle-icon-motorcycle:before {
+    content: "\76";
+    font-size: 60px;
+}
+
+.cwb-vehicle-icon-mini-car:before {
+    content: "\61";
+    font-size: 60px;
+}
+
+.cwb-vehicle-icon-small-car:before {
+    content: "\62";
+    font-size: 60px;
+}
+
+.cwb-vehicle-icon-pickup:before {
+    content: "\67";
+    font-size: 60px;
+}
+
+.cwb-vehicle-icon-limousine:before {
+    content: "\68";
+    font-size: 60px;
+}
+
+.cwb-vehicle-icon-4x4:before {
+    content: "\66";
+    font-size: 61px;
+}
+
+.cwb-vehicle-icon-car-mid-size:before {
+    content: "\63";
+    font-size: 60px;
+}
+
+.cwb-vehicle-icon-truck-mid-size:before {
+    content: "\6b";
+    font-size: 60px;
+}
+
+.cwb-vehicle-icon-truck:before {
+    content: "\6c";
+    font-size: 60px;
+}
+
+.cwb-vehicle-icon-double-decker:before {
+    content: "\70";
+    font-size: 60px;
+}
+
+.cwb-vehicle-icon-bus:before {
+    content: "\6f";
+    font-size: 60px;
+}
+
+.cwb-vehicle-icon-van:before {
+    content: "\69";
+    font-size: 60px;
+}
+
+.cwb-vehicle-icon-midibus:before {
+    content: "\6e";
+    font-size: 60px;
+}
+
+.cwb-vehicle-icon-heavy-equipment:before {
+    content: "\71";
+    font-size: 60px;
+}
+
+.cwb-vehicle-icon-station-wagon:before {
+    content: "\64";
+    font-size: 60px;
+}
+
+.cwb-vehicle-icon-suv:before {
+    content: "\65";
+    font-size: 60px;
+}
+
+.cwb-vehicle-icon-truck-large:before {
+    content: "\72";
+    font-size: 60px;
+}
+
+.cwb-vehicle-icon-minibus:before {
+    content: "\6d";
+    font-size: 60px;
+}
+
+.cwb-main .cwb-main-list,
+.cwb-vehicle-icon-caravan:before {
+    content: "\73";
+    font-size: 60px;
+}
+
+.cwb-vehicle-icon-minivan:before {
+    content: "\6a";
+    font-size: 60px;
+}
+
+/******************************************************************************/
+/* Responsive																  */
+/******************************************************************************/
+
+/**************************************************************************/
+/* Responsive / 1189													  */
+/**************************************************************************/
+
+@media screen and (max-width: 1189px) {
+    .cwb-package-list > li {
+        padding: 25px 15px 75px 15px;
+        margin: 0 10px 20px 10px;
+    }
+
+    .cwb-package-list {
+        margin: 0 -10px 0 -10px;
+    }
+
+    .cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-header > span {
+        font-size: 24px;
+    }
+
+    .cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-step > span {
+        font-size: 24px;
+    }
+
+    .cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-step > span + span {
+        font-size: 18px;
+    }
+
+    .cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-step {
+        width: 70px;
+        height: 70px;
+        line-height: 70px;
+    }
+
+    .cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-header,
+    .cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-subheader {
+        margin: 0 0 0 95px;
+    }
+
+    .cwb-main .cwb-location-list > li > div > div {
+        font-size: 20px;
+    }
+
+    .cwb-main .cwb-package-list > li > .cwb-package-name {
+        font-size: 20px;
+    }
+
+    .cwb-main .cwb-calendar-header .cwb-calendar-header-caption > span {
+        font-size: 20px;
+    }
+
+    .cwb-main .cwb-calendar .cwb-calendar-subheader .cwb-calendar-subheader-day-number {
+        font-size: 20px;
+    }
+
+    .cwb-main .cwb-booking-summary > li > h5,
+    .cwb-main .cwb-booking-summary > li > h5 > span {
+        font-size: 20px;
+    }
+
+    .cwb-main .cwb-calendar tr > th > div,
+    .cwb-main .cwb-calendar tr > td > div {
+        padding: 15px;
+    }
+
+    .cwb-main .cwb-service-list > li {
+        padding: 12px 15px 12px 15px;
+    }
+
+    .cwb-main .cwb-booking-summary > li {
+        padding: 32px 25px 25px 25px;
+    }
+
+    .cwb-main .cwb-meta-icon-date::before,
+    .cwb-main .cwb-meta-icon-time::before,
+    .cwb-main .cwb-meta-icon-total-price::before,
+    .cwb-main .cwb-meta-icon-total-duration::before {
+        top: 7px;
+    }
+}
+
+/**************************************************************************/
+/* Responsive / 959														  */
+/**************************************************************************/
+
+@media screen and (max-width: 959px) {
+    .cwb-booking-summary > li {
+        margin-bottom: 20px;
+    }
+}
+
+/**************************************************************************/
+/* Responsive / 767														  */
+/**************************************************************************/
+
+@media screen and (max-width: 767px) {
+    .cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-header > span {
+        font-size: 22px;
+    }
+
+    .cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-subheader > span {
+        font-size: 18px;
+    }
+
+    .cwb-main .cwb-main-list > li.cwb-main-list-item > div.cwb-main-list-item-section-header > .cwb-main-list-item-section-header-step > span {
+        font-size: 22px;
+    }
+
+    .cwb-main .cwb-service-list > li {
+        display: block;
+    }
+
+    .cwb-main .cwb-service-list > li > div.cwb-button-box {
+        width: auto;
+    }
+
+    .cwb-main .cwb-service-list > li > div.cwb-button-box > .cwb-button {
+        float: none;
+    }
+
+    .cwb-calendar-header .cwb-calendar-header-caption.cwb-month-navigation-desktop {
+        display: none;
+    }
+
+    .cwb-calendar-header .cwb-calendar-header-caption.cwb-month-navigation-responsive {
+        display: inline-block;
+    }
+
+    .cwb-button {
+        padding: 10px 25px 12px 25px;
+    }
+}
+
+/**************************************************************************/
+/* Responsive / 479														  */
+/**************************************************************************/
+
+@media screen and (max-width: 479px) {
+    .cwb-contact-details-options .cwb-button:first-of-type {
+        margin-bottom: 10px;
+    }
+
+    .cwb-to-tab.ui-tabs .ui-tabs-nav li:last-child {
+        float: left;
+    }
+}
