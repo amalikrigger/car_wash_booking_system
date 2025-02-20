@@ -975,6 +975,10 @@ a.hwb-button:hover {
     font-size: 24px;
 }
 
+.hwb-booking-summary-date h5 span:nth-child(2) {
+    font-size: 16px !important;
+}
+
 .hwb-booking-summary > li > span {
 
 }
@@ -1312,6 +1316,10 @@ a.hwb-button:hover {
     .hwb-main .hwb-booking-summary > li > h5,
     .hwb-main .hwb-booking-summary > li > h5 > span {
         font-size: 20px;
+    }
+
+    .hwb-booking-summary-date h5 span:nth-child(2) {
+        font-size: 16px !important;
     }
 
     .hwb-main .hwb-calendar tr > th > div,
