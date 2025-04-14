@@ -166,9 +166,9 @@ function hwb_get_available_slots() {
 
     // Get inputs from AJAX
     $date = isset($_POST['date']) ? sanitize_text_field($_POST['date']) : null;
-    $duration = isset($_POST['package_duration']) ? intval($_POST['package_duration']) : null;
+    $duration = isset($_POST['duration']) ? intval($_POST['duration']) : null; // Expecting 'duration' now
 
-    if (!$date || !$duration) {
+    if (!$date || !$duration) { // Check for 'duration'
         wp_send_json_error(['message' => 'Invalid input data.', 'received_date' => $date, 'received_duration' => $duration]);
     }
 
@@ -235,7 +235,7 @@ function hwb_get_available_slots() {
             $slots = generate_slots(
                 $specificRange->start_time,
                 $specificRange->end_time,
-                $duration,
+                $duration, // Use $duration directly
                 $gracePeriod,
                 $currentDate,
                 $now,
@@ -250,7 +250,7 @@ function hwb_get_available_slots() {
                     $slots = array_merge($slots, generate_slots(
                         $range->start_time,
                         $range->end_time,
-                        $duration,
+                        $duration, // Use $duration directly
                         $gracePeriod,
                         $currentDate,
                         $now,
@@ -273,7 +273,7 @@ function hwb_get_available_slots() {
         // Remove booked slots
         foreach ($bookings as $booking) {
             if ($booking->date === $currentDate->format('Y-m-d')) {
-                $slots = filter_booked_slots($slots, $bookings, $duration, $resourceCapacity, $currentDate, $gracePeriod);
+                $slots = filter_booked_slots($slots, $bookings, $duration, $resourceCapacity, $currentDate, $gracePeriod); // Use $duration directly
             }
         }
 
@@ -302,7 +302,9 @@ function generate_slots($startTime, $endTime, $duration, $gracePeriod, $currentD
 
     while ($start < $end) {
         // Calculate the end of the current slot
-        $slotEnd = (clone $start)->modify("+{$duration} minutes")->modify("+{$gracePeriod} minutes");
+
+        $slotEnd = (clone $start)->modify("+{$duration} minutes");
+//         $slotEnd = (clone $start)->modify("+{$duration} minutes")->modify("+{$gracePeriod} minutes");
         if ($slotEnd > $end) {
             break; // Stop if the slot doesn't fit within the range
         }

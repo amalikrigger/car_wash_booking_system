@@ -259,11 +259,11 @@ function hwb_render_booking_form() {
                                                 <div class="hwb-clear-fix">
                                                     <div class="hwb-form-field hwb-form-width-50">
                                                         <label>First name *</label>
-                                                        <input type="text" name="client_first_name" autocomplete="off" value="">
+                                                        <input type="text" name="client_first_name" autocomplete="off" value="" required>
                                                     </div>
                                                     <div class="hwb-form-field hwb-form-width-50">
                                                         <label>Last Name *</label>
-                                                        <input type="text" name="client_second_name" autocomplete="off" value="">
+                                                        <input type="text" name="client_second_name" autocomplete="off" value="" required>
                                                     </div>
                                                 </div>
                                                 <!-- Street Field (Conditional) -->
@@ -304,17 +304,17 @@ function hwb_render_booking_form() {
                                                 <div class="hwb-clear-fix">
                                                     <div class="hwb-form-field hwb-form-width-50">
                                                         <label>Your E-mail *</label>
-                                                        <input type="text" name="client_email_address" autocomplete="off" value="">
+                                                        <input type="text" name="client_email_address" autocomplete="off" value="" required>
                                                     </div>
                                                     <div class="hwb-form-field hwb-form-width-50">
                                                         <label>Phone Number *</label>
-                                                        <input type="text" name="client_phone_number" autocomplete="off" value="">
+                                                        <input type="text" name="client_phone_number" autocomplete="off" value="" required>
                                                     </div>
                                                 </div>
                                                 <div class="hwb-clear-fix">
                                                     <div class="hwb-form-field hwb-form-width-100">
                                                         <label>Vehicle Make and Model *</label>
-                                                        <input type="text" name="client_vehicle" autocomplete="off" value="">
+                                                        <input type="text" name="client_vehicle" autocomplete="off" value="" required>
                                                     </div>
                                                 </div>
                                                 <!-- Message Field (Conditional) -->
@@ -413,11 +413,11 @@ function hwb_render_booking_form() {
                                                 <div class="hwb-clear-fix">
                                                     <div class="hwb-form-field hwb-form-width-50">
                                                         <label>First name *</label>
-                                                        <input type="text" name="update_client_first_name" autocomplete="off" value="">
+                                                        <input type="text" name="update_client_first_name" autocomplete="off" value="" required>
                                                     </div>
                                                     <div class="hwb-form-field hwb-form-width-50">
                                                         <label>Last Name *</label>
-                                                        <input type="text" name="update_client_second_name" autocomplete="off" value="">
+                                                        <input type="text" name="update_client_second_name" autocomplete="off" value="" required>
                                                     </div>
                                                 </div>
                                                 <div class="hwb-clear-fix">
@@ -449,17 +449,17 @@ function hwb_render_booking_form() {
                                                 <div class="hwb-clear-fix">
                                                     <div class="hwb-form-field hwb-form-width-50">
                                                         <label>Your E-mail *</label>
-                                                        <input type="text" name="update_client_email_address" autocomplete="off" value="amalikrigger93@gmail.com">
+                                                        <input type="text" name="update_client_email_address" autocomplete="off" value="amalikrigger93@gmail.com" required>
                                                     </div>
                                                     <div class="hwb-form-field hwb-form-width-50">
                                                         <label>Phone Number *</label>
-                                                        <input type="text" name="update_client_phone_number" autocomplete="off" value="">
+                                                        <input type="text" name="update_client_phone_number" autocomplete="off" value="" required>
                                                     </div>
                                                 </div>
                                                 <div class="hwb-clear-fix">
                                                     <div class="hwb-form-field hwb-form-width-100">
                                                         <label>Vehicle Make and Model *</label>
-                                                        <input type="text" name="update_client_vehicle" autocomplete="off" value="">
+                                                        <input type="text" name="update_client_vehicle" autocomplete="off" value="" required>
                                                     </div>
                                                 </div>
                                                 <div class="hwb-form-summary hwb-clear-fix">

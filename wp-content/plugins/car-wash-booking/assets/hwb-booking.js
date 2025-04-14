@@ -230,32 +230,46 @@ jQuery(document).ready(function ($) {
             return;
         }
 
-        const formattedDate = date.toISOString().split("T")[0]; // Format date as YYYY-MM-DD
-        $.ajax({
-            url: hwb_ajax.ajax_url,
-            type: "POST",
-            data: {
-                action: "hwb_get_available_slots", // Backend action name
-                nonce: hwb_ajax.nonce,
-                date: formattedDate,
-                package_duration: selectedPackageDuration // Send the package duration
-            },
-            success: function (response) {
-                if (response.success && response.data?.slots) {
-                    const slotsForWeek = response.data.slots; // Get slots from the response
-                    console.log("Available slots for the week:", slotsForWeek);
-                    renderCalendar(slotsForWeek, date);
-                } else {
-                    console.error("No available slots:", response);
-                    renderCalendar([], date); // Render "Not available"
-                }
-            },
-            error: function () {
-                console.error("Failed to fetch available slots.");
-                renderCalendar([], date); // Render "Not available"
+    let addonDurations = [];
+    selectedAddons.forEach(addonId => {
+        const addonElement = $(`#hwb-addon-list .hwb-service-id-${addonId}.hwb-state-selected`);
+        if (addonElement.length) {
+            addonDurations.push(parseInt(addonElement.data("duration"), 10));
+        }
+    });
+
+    // Calculate total duration here on the frontend
+    let total_duration = selectedPackageDuration;
+    addonDurations.forEach(duration => {
+        total_duration += duration;
+    });
+
+    const formattedDate = date.toISOString().split("T")[0];
+    $.ajax({
+        url: hwb_ajax.ajax_url,
+        type: "POST",
+        data: {
+            action: "hwb_get_available_slots",
+            nonce: hwb_ajax.nonce,
+            date: formattedDate,
+            duration: total_duration // Send total duration
+        },
+        success: function (response) {
+            if (response.success && response.data?.slots) {
+                const slotsForWeek = response.data.slots;
+                console.log("Available slots for the week:", slotsForWeek);
+                renderCalendar(slotsForWeek, date);
+            } else {
+                console.error("No available slots:", response);
+                renderCalendar([], date);
             }
-        });
-    }
+        },
+        error: function () {
+            console.error("Failed to fetch available slots.");
+            renderCalendar([], date);
+        }
+    });
+}
 
     // Arrow click event listeners
     $(".hwb-calendar-header-arrow-left").on("click", function (e) {
@@ -411,6 +425,7 @@ jQuery(document).ready(function ($) {
         }
 
         updateBookingSummary();
+        fetchAvailableSlots(currentDate); // Call fetchAvailableSlots to refresh calendar
     });
 
     // Time slot selection handler (apply selected state to <li>)
