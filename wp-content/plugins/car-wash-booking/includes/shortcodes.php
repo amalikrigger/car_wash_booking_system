@@ -383,7 +383,7 @@ function hwb_render_booking_form() {
                                                             <span class="hwb-form-checkbox">
                                                                 <span class="hwb-meta-icon hwb-meta-icon-check"></span>
                                                             </span>
-                                                            <input type="checkbox" name="privacy_policy_accepted" value="1" required>
+                                                            <input type="checkbox" name="privacy_policy_accepted" value="0" required>
                                                             <div>
                                                                 I have read and agree to the
                                                                 <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
@@ -393,27 +393,11 @@ function hwb_render_booking_form() {
                                                             <span class="hwb-form-checkbox">
                                                                 <span class="hwb-meta-icon hwb-meta-icon-check"></span>
                                                             </span>
-                                                            <input type="checkbox" name="terms_accepted" value="1" required>
+                                                            <input type="checkbox" name="terms_accepted" value="0" required>
                                                             <div>
                                                                 I have read and agree to the
                                                                 <a href="/terms-and-conditions" target="_blank">Terms & Conditions</a>.
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="hwb-agreement">
-                                                        <div class="hwb-clear-fix">
-                                                                <span class="hwb-form-checkbox">
-    							                                <span class="hwb-meta-icon hwb-meta-icon-check"></span>
-                                                                </span>
-                                                            <input type="hidden" value="0" autocomplete="off">
-                                                            <div>Read Privacy Policy</div>
-                                                        </div>
-                                                        <div class="hwb-clear-fix">
-                                                                <span class="hwb-form-checkbox">
-                                                                <span class="hwb-meta-icon hwb-meta-icon-check"></span>
-                                                                </span>
-                                                            <input type="hidden" value="0" autocomplete="off">
-                                                            <div>Read Terms & Conditions</div>
                                                         </div>
                                                     </div>
                                                     <div class="hwb-form-info">We will confirm your appointment with you by phone or e-mail within 24 hours of receiving your request.

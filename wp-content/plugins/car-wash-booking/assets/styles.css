@@ -391,6 +391,33 @@
 
 .hwb-main .hwb-form .hwb-form-checkbox + input[type="checkbox"] {
     opacity: 0;
+    display: none;
+}
+
+.hwb-form-checkbox {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.hwb-form-checkbox.hwb-state-selected {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.hwb-form-checkbox.hwb-state-selected .hwb-meta-icon-check::before {
+    content: "\2713"; /* Unicode checkmark */
+    color: #fff;
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /******************************************************************************/

@@ -463,4 +463,21 @@ jQuery(document).ready(function ($) {
 
         updateBookingSummary();
     });
+
+    // Handle checkbox toggle for custom checkboxes
+    $(".hwb-form-checkbox").on("click", function () {
+        const checkbox = $(this).next("input[type='checkbox']");
+        const isChecked = checkbox.prop("checked");
+
+        // Toggle the checkbox state
+        checkbox.prop("checked", !isChecked);
+
+        // Add or remove the selected state
+        $(this).toggleClass("hwb-state-selected", !isChecked);
+    });
+
+    // Ensure clicking the label or link does not interfere with the checkbox toggle
+    $(".hwb-agreement div").on("click", function (e) {
+        e.stopPropagation();
+    });
 });
