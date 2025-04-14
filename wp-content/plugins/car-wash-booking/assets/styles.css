@@ -223,6 +223,8 @@
 
 .hwb-form textarea:focus,
 .hwb-form input[type="text"]:focus,
+.hwb-form input[type="email"]:focus,
+.hwb-form input[type="tel"]:focus,
 .hwb-form input[type="password"]:focus,
 .hwb-form select:focus {
     outline: none;
@@ -230,6 +232,8 @@
 
 .hwb-form textarea,
 .hwb-form input[type="text"],
+.hwb-form input[type="email"],
+.hwb-form input[type="tel"],
 .hwb-form input[type="password"],
 .hwb-form select {
     width: 100%;
