@@ -765,3 +765,6 @@ AH00558: apache2: Could not reliably determine the server's fully qualified doma
 [14-Apr-2025 21:25:09 UTC] PHP Parse error:  Unclosed '{' on line 9 in /var/www/html/wp-content/plugins/car-wash-booking/includes/shortcodes.php on line 479
 [14-Apr-2025 21:25:18 UTC] PHP Parse error:  Unclosed '{' on line 9 in /var/www/html/wp-content/plugins/car-wash-booking/includes/shortcodes.php on line 479
 [14-Apr-2025 21:25:22 UTC] PHP Parse error:  Unclosed '{' on line 9 in /var/www/html/wp-content/plugins/car-wash-booking/includes/shortcodes.php on line 479
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.20.0.2. Set the 'ServerName' directive globally to suppress this message
+[Tue Apr 15 17:53:08.107071 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Tue Apr 15 17:53:08.112197 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'

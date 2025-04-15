@@ -239,6 +239,7 @@
     width: 100%;
     border: none;
     padding: 10px 0 10px 0;
+    background-color: transparent;
 }
 
 .hwb-form textarea {
