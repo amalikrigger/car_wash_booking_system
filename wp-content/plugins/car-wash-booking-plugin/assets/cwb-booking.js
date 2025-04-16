@@ -7,7 +7,7 @@ jQuery(document).ready(function ($) {
     let selectedPackageDuration = null; // For time slot calculations
     let currentDate = new Date(); // Start with today's date
     let currentSelectedLocationId = null; // Variable to store the currently selected location ID
-    let locationFieldsConfigs = hwb_ajax.location_fields_configs; // Get location fields configs from localized data
+    let locationFieldsConfigs = cwb_ajax.location_fields_configs; // Get location fields configs from localized data
 
 // Function to update the visibility of form fields based on location config
     function updateBookingFormFields(locationId) {
@@ -33,13 +33,13 @@ jQuery(document).ready(function ($) {
             const enabled = isEnabled === "1" || isEnabled === 1;
 
             // Select the form field element using a class naming convention.
-            const fieldElement = $(`.hwb-location-field-${field}`);
+            const fieldElement = $(`.cwb-location-field-${field}`);
             if (fieldElement.length) {
                 // Log the action for debugging.
                 console.log(`${enabled ? 'Show' : 'Hide'} Field: ${field}, Enabled: ${isEnabled}`);
 
                 // Toggle the visibility class based on the 'enabled' boolean.
-                fieldElement.toggleClass('hwb-state-hidden', !enabled);
+                fieldElement.toggleClass('cwb-state-hidden', !enabled);
             }
         });
     }
@@ -50,49 +50,49 @@ jQuery(document).ready(function ($) {
         console.log("Updating Summary - Price:", selectedPrice, "Duration:", selectedDuration);
 
         // Update date and time
-        $(".hwb-booking-summary-date h5 span:nth-child(2)").text(selectedDate || "?");
-        $(".hwb-booking-summary-time h5 span:nth-child(2)").text(selectedTime || "?");
+        $(".cwb-booking-summary-date h5 span:nth-child(2)").text(selectedDate || "?");
+        $(".cwb-booking-summary-time h5 span:nth-child(2)").text(selectedTime || "?");
 
         // Update duration (hours and minutes)
-        $(".hwb-booking-summary-duration h5 span:nth-child(1)").text(Math.floor(selectedDuration / 60));
-        $(".hwb-booking-summary-duration h5 span:nth-child(3)").text(selectedDuration % 60);
+        $(".cwb-booking-summary-duration h5 span:nth-child(1)").text(Math.floor(selectedDuration / 60));
+        $(".cwb-booking-summary-duration h5 span:nth-child(3)").text(selectedDuration % 60);
 
         // Update price correctly
-        $(".hwb-booking-summary-price h5 span:nth-child(2)").text(`${selectedPrice.toFixed(2)}`);
+        $(".cwb-booking-summary-price h5 span:nth-child(2)").text(`${selectedPrice.toFixed(2)}`);
 
         console.log("Final Updated Price:", selectedPrice.toFixed(2));
     }
 
-    $(".hwb-package").removeClass("hwb-state-selected");
-    $("#hwb-addon-list").empty();
-    $(".hwb-main-list-item-service-list").addClass("hwb-state-disable");
+    $(".cwb-package").removeClass("cwb-state-selected");
+    $("#cwb-addon-list").empty();
+    $(".cwb-main-list-item-service-list").addClass("cwb-state-disable");
 
     // Function to load vehicles based on location ID
     function loadVehicles(locationId) {
         $.ajax({
-            url: hwb_ajax.ajax_url,
+            url: cwb_ajax.ajax_url,
             type: "POST",
             data: {
-                action: "hwb_get_vehicles",
-                nonce: hwb_ajax.nonce,
+                action: "cwb_get_vehicles",
+                nonce: cwb_ajax.nonce,
                 location_id: locationId,
             },
             success: function (response) {
                 console.log("Vehicles loaded: ", response);
-                const vehicleList = $("#hwb-vehicle-list");
+                const vehicleList = $("#cwb-vehicle-list");
                 vehicleList.html(response);
 
                 // Automatically select the first vehicle and load packages
-                const firstVehicle = vehicleList.find(".hwb-vehicle").first();
+                const firstVehicle = vehicleList.find(".cwb-vehicle").first();
                 if (firstVehicle.length) {
-                    firstVehicle.addClass("hwb-state-selected");
+                    firstVehicle.addClass("cwb-state-selected");
                     const firstVehicleId = firstVehicle.data("id");
                     loadPackages(firstVehicleId);
                 } else {
                     // If no vehicles, reset packages and addons
-                    $("#hwb-package-list").empty();
-                    $("#hwb-addon-list").empty();
-                    $(".hwb-main-list-item-service-list").addClass("hwb-state-disable");
+                    $("#cwb-package-list").empty();
+                    $("#cwb-addon-list").empty();
+                    $(".cwb-main-list-item-service-list").addClass("cwb-state-disable");
                 }
             },
             error: function () {
@@ -104,16 +104,16 @@ jQuery(document).ready(function ($) {
     // Function to load packages based on vehicle type ID
     function loadPackages(vehicleTypeId) {
         $.ajax({
-            url: hwb_ajax.ajax_url,
+            url: cwb_ajax.ajax_url,
             type: "POST",
             data: {
-                action: "hwb_get_packages",
-                nonce: hwb_ajax.nonce,
+                action: "cwb_get_packages",
+                nonce: cwb_ajax.nonce,
                 vehicle_type_id: vehicleTypeId,
             },
             success: function (response) {
                 console.log("Packages loaded: ", response);
-                const packageList = $("#hwb-package-list");
+                const packageList = $("#cwb-package-list");
                 packageList.html(response);
             },
             error: function () {
@@ -125,23 +125,23 @@ jQuery(document).ready(function ($) {
     function loadAddons(packageId) {
         console.log("Fetching add-ons for Package ID:", packageId);
         $.ajax({
-            url: hwb_ajax.ajax_url,
+            url: cwb_ajax.ajax_url,
             type: "POST",
             data: {
-                action: "hwb_get_addons",
-                nonce: hwb_ajax.nonce,
+                action: "cwb_get_addons",
+                nonce: cwb_ajax.nonce,
                 package_id: packageId,
             },
             success: function (response) {
                 console.log("Add-ons loaded:", response);
-                const addonList = $("#hwb-addon-list");
+                const addonList = $("#cwb-addon-list");
                 addonList.html(response);
 
-                const serviceListContainer = $(".hwb-main-list-item-service-list");
+                const serviceListContainer = $(".cwb-main-list-item-service-list");
                 if (response.trim() === "" || $(response).find("li").length === 0) {
-                    serviceListContainer.addClass("hwb-state-disable");
+                    serviceListContainer.addClass("cwb-state-disable");
                 } else {
-                    serviceListContainer.removeClass("hwb-state-disable");
+                    serviceListContainer.removeClass("cwb-state-disable");
                 }
             },
             error: function () {
@@ -158,9 +158,9 @@ jQuery(document).ready(function ($) {
 
     // Function to render the calendar UI
     function renderCalendar(slots, startDate) {
-        const calendarHeader = $(".hwb-calendar-header-caption");
-        const calendarSubheaderRow = $(".hwb-calendar-subheader");
-        const calendarDataRow = $(".hwb-calendar-data");
+        const calendarHeader = $(".cwb-calendar-header-caption");
+        const calendarSubheaderRow = $(".cwb-calendar-subheader");
+        const calendarDataRow = $(".cwb-calendar-data");
         console.log("Rendering calendar for:", startDate);
         console.log("Available slots for the week:", slots);
 
@@ -187,9 +187,9 @@ jQuery(document).ready(function ($) {
             // Add day header
             calendarSubheaderRow.append(`
             <th data-full-date="${dayDate.toLocaleDateString("en-CA")}">
-                <div class="hwb-clear-fix">
-                    <span class="hwb-calendar-subheader-day-number">${dayNumber}</span>
-                    <span class="hwb-calendar-subheader-day-name">${dayName}</span>
+                <div class="cwb-clear-fix">
+                    <span class="cwb-calendar-subheader-day-number">${dayNumber}</span>
+                    <span class="cwb-calendar-subheader-day-name">${dayName}</span>
                 </div>
             </th>
         `);
@@ -197,7 +197,7 @@ jQuery(document).ready(function ($) {
             // Add time slots or "Not available"
             let dataCell = `<td><div>`;
             if (slotData.length > 0) {
-                dataCell += `<ul class="hwb-list-reset">`;
+                dataCell += `<ul class="cwb-list-reset">`;
                 slotData.forEach((slot) => {
                     dataCell += `<li><a href="#" data-time="${slot}">${slot}</a></li>`;
                 });
@@ -232,7 +232,7 @@ jQuery(document).ready(function ($) {
 
     let addonDurations = [];
     selectedAddons.forEach(addonId => {
-        const addonElement = $(`#hwb-addon-list .hwb-service-id-${addonId}.hwb-state-selected`);
+        const addonElement = $(`#cwb-addon-list .cwb-service-id-${addonId}.cwb-state-selected`);
         if (addonElement.length) {
             addonDurations.push(parseInt(addonElement.data("duration"), 10));
         }
@@ -246,11 +246,11 @@ jQuery(document).ready(function ($) {
 
     const formattedDate = date.toISOString().split("T")[0];
     $.ajax({
-        url: hwb_ajax.ajax_url,
+        url: cwb_ajax.ajax_url,
         type: "POST",
         data: {
-            action: "hwb_get_available_slots",
-            nonce: hwb_ajax.nonce,
+            action: "cwb_get_available_slots",
+            nonce: cwb_ajax.nonce,
             date: formattedDate,
             duration: total_duration // Send total duration
         },
@@ -272,12 +272,12 @@ jQuery(document).ready(function ($) {
 }
 
     // Arrow click event listeners
-    $(".hwb-calendar-header-arrow-left").on("click", function (e) {
+    $(".cwb-calendar-header-arrow-left").on("click", function (e) {
         e.preventDefault();
         updateCalendar(-1); // Go back 1 day
     });
 
-    $(".hwb-calendar-header-arrow-right").on("click", function (e) {
+    $(".cwb-calendar-header-arrow-right").on("click", function (e) {
         e.preventDefault();
         updateCalendar(1); // Go forward 1 day
     });
@@ -286,7 +286,7 @@ jQuery(document).ready(function ($) {
     renderCalendar([], currentDate);
 
     // On page load, populate vehicles for the default location
-    const defaultLocation = $(".hwb-location[data-default='true']");
+    const defaultLocation = $(".cwb-location[data-default='true']");
     if (defaultLocation.length) {
         const defaultLocationId = defaultLocation.data("id");
         loadVehicles(defaultLocationId);
@@ -295,14 +295,14 @@ jQuery(document).ready(function ($) {
     }
 
     // Handle location selection
-    $(".hwb-location").on("click", function () {
+    $(".cwb-location").on("click", function () {
         const locationId = $(this).data("id");
-        const isAlreadySelected = $(this).hasClass("hwb-state-selected");
+        const isAlreadySelected = $(this).hasClass("cwb-state-selected");
 
         if (locationId !== currentSelectedLocationId) {
             // Only reset if a different location is selected
-            $(".hwb-location").removeClass("hwb-state-selected");
-            $(this).addClass("hwb-state-selected");
+            $(".cwb-location").removeClass("cwb-state-selected");
+            $(this).addClass("cwb-state-selected");
 
             // Reset booking flow to default state
             selectedDate = null;
@@ -312,12 +312,12 @@ jQuery(document).ready(function ($) {
             selectedAddons = [];
             selectedPackageDuration = null;
 
-            $("#hwb-package-list").empty();
-            $("#hwb-addon-list").empty();
-            $(".hwb-package").removeClass("hwb-state-selected");
-            $(".hwb-addon-list li").removeClass("hwb-state-selected");
-            $(".hwb-calendar-data li").removeClass("hwb-state-selected");
-            $(".hwb-main-list-item-service-list").addClass("hwb-state-disable");
+            $("#cwb-package-list").empty();
+            $("#cwb-addon-list").empty();
+            $(".cwb-package").removeClass("cwb-state-selected");
+            $(".cwb-addon-list li").removeClass("cwb-state-selected");
+            $(".cwb-calendar-data li").removeClass("cwb-state-selected");
+            $(".cwb-main-list-item-service-list").addClass("cwb-state-disable");
 
             renderCalendar([], currentDate);
             updateBookingSummary();
@@ -326,26 +326,26 @@ jQuery(document).ready(function ($) {
             updateBookingFormFields(locationId); // Update form fields for the selected location
         } else if (!isAlreadySelected) {
              // If the clicked location was not already selected but is the same as currentSelectedLocationId (shouldn't happen under normal circumstances but for robustness)
-            $(".hwb-location").removeClass("hwb-state-selected");
-            $(this).addClass("hwb-state-selected");
+            $(".cwb-location").removeClass("cwb-state-selected");
+            $(this).addClass("cwb-state-selected");
         }
         // If the clicked location is already selected, do nothing (no reset)
     });
 
     // Handle vehicle type selection
-    $("#hwb-vehicle-list").on("click", ".hwb-vehicle", function () {
+    $("#cwb-vehicle-list").on("click", ".cwb-vehicle", function () {
         const vehicleTypeId = $(this).data("id");
-        $(".hwb-vehicle").removeClass("hwb-state-selected");
-        $(this).addClass("hwb-state-selected");
+        $(".cwb-vehicle").removeClass("cwb-state-selected");
+        $(this).addClass("cwb-state-selected");
         loadPackages(vehicleTypeId);
     });
 
     // Handle package selection
-    $("#hwb-package-list").on("click", ".hwb-package", function () {
+    $("#cwb-package-list").on("click", ".cwb-package", function () {
         const packageId = $(this).data("id");
         const packageDuration = parseInt($(this).data("duration"), 10);
         const packagePrice = parseFloat($(this).data("price"));  // Ensure numeric value
-        const isSelected = $(this).hasClass("hwb-state-selected");
+        const isSelected = $(this).hasClass("cwb-state-selected");
 
         console.log("Package Selected:", packageId, "Duration:", packageDuration, "Price:", packagePrice);
 
@@ -356,7 +356,7 @@ jQuery(document).ready(function ($) {
 
         if (isSelected) {
             // Deselect package
-            $(this).removeClass("hwb-state-selected");
+            $(this).removeClass("cwb-state-selected");
 
             selectedDate = null;
             selectedTime = null;
@@ -366,12 +366,12 @@ jQuery(document).ready(function ($) {
 
             renderCalendar([], currentDate);
             updateBookingSummary();
-            $("#hwb-addon-list").empty();
-            $(".hwb-main-list-item-service-list").addClass("hwb-state-disable");
+            $("#cwb-addon-list").empty();
+            $(".cwb-main-list-item-service-list").addClass("cwb-state-disable");
         } else {
             // Select package
-            $(".hwb-package").removeClass("hwb-state-selected");
-            $(this).addClass("hwb-state-selected");
+            $(".cwb-package").removeClass("cwb-state-selected");
+            $(this).addClass("cwb-state-selected");
 
             selectedDate = null;
             selectedTime = null;
@@ -389,7 +389,7 @@ jQuery(document).ready(function ($) {
     });
 
     // Add-on selection handler with explicit conversions
-    $("#hwb-addon-list").on("click", ".hwb-button", function (e) {
+    $("#cwb-addon-list").on("click", ".cwb-button", function (e) {
         // Prevent the default link behavior
         e.preventDefault();
 
@@ -410,15 +410,15 @@ jQuery(document).ready(function ($) {
         selectedTime = null;
 
         // Toggle the add-on selection and update totals accordingly
-        if (addonItem.hasClass("hwb-state-selected")) {
+        if (addonItem.hasClass("cwb-state-selected")) {
             // Remove the add-on and subtract its values
-            addonItem.removeClass("hwb-state-selected");
+            addonItem.removeClass("cwb-state-selected");
             selectedAddons = selectedAddons.filter(id => id !== addonId);
             selectedDuration -= addonDuration;
             selectedPrice -= addonPrice;
         } else {
             // Add the add-on and add its values
-            addonItem.addClass("hwb-state-selected");
+            addonItem.addClass("cwb-state-selected");
             selectedAddons.push(addonId);
             selectedDuration += addonDuration;
             selectedPrice += addonPrice;
@@ -429,21 +429,21 @@ jQuery(document).ready(function ($) {
     });
 
     // Time slot selection handler (apply selected state to <li>)
-    $(document).on("click", ".hwb-calendar-data li", function (e) {
+    $(document).on("click", ".cwb-calendar-data li", function (e) {
         e.preventDefault();
 
         // Remove selected state from all time slots
-        $(".hwb-calendar-data li").removeClass("hwb-state-selected");
+        $(".cwb-calendar-data li").removeClass("cwb-state-selected");
 
         // Add selected state to clicked slot
-        $(this).addClass("hwb-state-selected");
+        $(this).addClass("cwb-state-selected");
 
         // Extract time from clicked slot
         selectedTime = $(this).find("a").data("time"); // Get the time from the <a> inside the <li>
 
         // Extract date from associated table header
         const selectedIndex = $(this).closest("td").index();
-        const selectedDateStr = $(".hwb-calendar-subheader th").eq(selectedIndex).attr("data-full-date");
+        const selectedDateStr = $(".cwb-calendar-subheader th").eq(selectedIndex).attr("data-full-date");
 
         console.log("✅ Selected Date Str:", selectedDateStr);
 
@@ -465,7 +465,7 @@ jQuery(document).ready(function ($) {
     });
 
     // Handle checkbox toggle for custom checkboxes
-    $(".hwb-form-checkbox").on("click", function () {
+    $(".cwb-form-checkbox").on("click", function () {
         const checkbox = $(this).next("input[type='checkbox']");
         const isChecked = checkbox.prop("checked");
 
@@ -473,11 +473,11 @@ jQuery(document).ready(function ($) {
         checkbox.prop("checked", !isChecked);
 
         // Add or remove the selected state
-        $(this).toggleClass("hwb-state-selected", !isChecked);
+        $(this).toggleClass("cwb-state-selected", !isChecked);
     });
 
     // Ensure clicking the label or link does not interfere with the checkbox toggle
-    $(".hwb-agreement div").on("click", function (e) {
+    $(".cwb-agreement div").on("click", function (e) {
         e.stopPropagation();
     });
 });

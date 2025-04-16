@@ -1,6 +1,6 @@
 <?php
-function hwb_get_vehicles() {
-    check_ajax_referer('hwb_nonce', 'nonce');
+function cwb_get_vehicles() {
+    check_ajax_referer('cwb_nonce', 'nonce');
 
     global $wpdb;
     $location_id = intval($_POST['location_id']);
@@ -8,8 +8,8 @@ function hwb_get_vehicles() {
     // Query for vehicles associated with the location
     $vehicles = $wpdb->get_results(
         $wpdb->prepare(
-            "SELECT vt.id, vt.name, vt.icon FROM {$wpdb->prefix}hwb_vehicle_types vt
-             JOIN {$wpdb->prefix}hwb_location_vehicle_types lvt ON vt.id = lvt.vehicle_type_id
+            "SELECT vt.id, vt.name, vt.icon FROM {$wpdb->prefix}cwb_vehicle_types vt
+             JOIN {$wpdb->prefix}cwb_location_vehicle_types lvt ON vt.id = lvt.vehicle_type_id
              WHERE lvt.location_id = %d",
             $location_id
         ),
@@ -20,7 +20,7 @@ function hwb_get_vehicles() {
     $html = '';
     if (!empty($vehicles)) {
         foreach ($vehicles as $vehicle) {
-            $html .= "<li class='hwb-vehicle' data-id='" . esc_attr($vehicle['id']) . "'>
+            $html .= "<li class='cwb-vehicle' data-id='" . esc_attr($vehicle['id']) . "'>
                         <div>
                             <i class='" . esc_attr($vehicle['icon']) . "'></i>
                             <div>" . esc_html($vehicle['name']) . "</div>
@@ -35,14 +35,14 @@ function hwb_get_vehicles() {
     wp_die();
 }
 
-add_action('wp_ajax_hwb_get_vehicles', 'hwb_get_vehicles');
-add_action('wp_ajax_nopriv_hwb_get_vehicles', 'hwb_get_vehicles');
+add_action('wp_ajax_cwb_get_vehicles', 'cwb_get_vehicles');
+add_action('wp_ajax_nopriv_cwb_get_vehicles', 'cwb_get_vehicles');
 
 /**
  * AJAX handler to fetch packages based on vehicle type.
  */
-function hwb_get_packages() {
-    check_ajax_referer('hwb_nonce', 'nonce');
+function cwb_get_packages() {
+    check_ajax_referer('cwb_nonce', 'nonce');
 
     global $wpdb;
     $vehicle_type_id = intval($_POST['vehicle_type_id']);
@@ -50,8 +50,8 @@ function hwb_get_packages() {
     $packages = $wpdb->get_results(
         $wpdb->prepare(
             "SELECT p.id, p.name, p.price, p.duration
-             FROM {$wpdb->prefix}hwb_packages p
-             JOIN {$wpdb->prefix}hwb_vehicle_packages vp ON p.id = vp.package_id
+             FROM {$wpdb->prefix}cwb_packages p
+             JOIN {$wpdb->prefix}cwb_vehicle_packages vp ON p.id = vp.package_id
              WHERE vp.vehicle_type_id = %d",
             $vehicle_type_id
         ),
@@ -64,40 +64,40 @@ function hwb_get_packages() {
         $services = $wpdb->get_results(
             $wpdb->prepare(
                 "SELECT s.name
-                 FROM {$wpdb->prefix}hwb_services s
-                 JOIN {$wpdb->prefix}hwb_package_services ps ON s.id = ps.service_id
+                 FROM {$wpdb->prefix}cwb_services s
+                 JOIN {$wpdb->prefix}cwb_package_services ps ON s.id = ps.service_id
                  WHERE ps.package_id = %d",
                 $package['id']
             ),
             ARRAY_A
         );
 
-        $serviceListHtml = '<ul class="hwb-package-service-list hwb-list-reset hwb-clear-fix">';
+        $serviceListHtml = '<ul class="cwb-package-service-list cwb-list-reset cwb-clear-fix">';
         foreach ($services as $service) {
             $serviceListHtml .= '<li>' . esc_html($service['name']) . '</li>';
         }
         $serviceListHtml .= '</ul>';
 
         // Format the duration for display
-        $formatted_duration = hwb_format_duration($package['duration']);
+        $formatted_duration = cwb_format_duration($package['duration']);
 
-         $html .= "<li class='hwb-package hwb-package-id-" . esc_attr($package['id']) . "'
+         $html .= "<li class='cwb-package cwb-package-id-" . esc_attr($package['id']) . "'
                              data-id='" . esc_attr($package['id']) . "'
                              data-duration='" . esc_attr($package['duration']) . "'
                              data-price='" . esc_attr($package['price']) . "'>  <!-- Ensure price is included -->
-                             <h5 class='hwb-package-name'>" . esc_html($package['name']) . "</h5>
-                             <div class='hwb-package-price'>
-                                 <span class='hwb-package-price-currency'>$</span>
-                                 <span class='hwb-package-price-unit'>" . esc_html($package['price']) . "</span>
-                                 <span class='hwb-package-price-decimal'>00</span>
+                             <h5 class='cwb-package-name'>" . esc_html($package['name']) . "</h5>
+                             <div class='cwb-package-price'>
+                                 <span class='cwb-package-price-currency'>$</span>
+                                 <span class='cwb-package-price-unit'>" . esc_html($package['price']) . "</span>
+                                 <span class='cwb-package-price-decimal'>00</span>
                              </div>
-                             <div class='hwb-package-duration'>
+                             <div class='cwb-package-duration'>
                                  <i class='fa-regular fa-clock'></i>
                                  <span>" . esc_html($formatted_duration) . "</span>
                              </div>
                              $serviceListHtml
-                             <div class='hwb-button-box'>
-                                 <a class='hwb-button' href='#' onClick='return false;'>Book Now</a>
+                             <div class='cwb-button-box'>
+                                 <a class='cwb-button' href='#' onClick='return false;'>Book Now</a>
                              </div>
                          </li>";
     }
@@ -106,11 +106,11 @@ function hwb_get_packages() {
     wp_die();
 }
 
-add_action('wp_ajax_hwb_get_packages', 'hwb_get_packages');
-add_action('wp_ajax_nopriv_hwb_get_packages', 'hwb_get_packages');
+add_action('wp_ajax_cwb_get_packages', 'cwb_get_packages');
+add_action('wp_ajax_nopriv_cwb_get_packages', 'cwb_get_packages');
 
-function hwb_get_addons() {
-    check_ajax_referer('hwb_nonce', 'nonce');
+function cwb_get_addons() {
+    check_ajax_referer('cwb_nonce', 'nonce');
 
     global $wpdb;
     $package_id = intval($_POST['package_id']);
@@ -118,8 +118,8 @@ function hwb_get_addons() {
     $addons = $wpdb->get_results(
         $wpdb->prepare(
             "SELECT s.id, s.name, s.price, s.duration
-             FROM {$wpdb->prefix}hwb_services s
-             JOIN {$wpdb->prefix}hwb_package_addons pa ON s.id = pa.service_id
+             FROM {$wpdb->prefix}cwb_services s
+             JOIN {$wpdb->prefix}cwb_package_addons pa ON s.id = pa.service_id
              WHERE pa.package_id = %d",
             $package_id
         ),
@@ -128,40 +128,40 @@ function hwb_get_addons() {
 
     $html = '';
     if (!empty($addons)) {
-        $html .= '<ul class="hwb-service-list hwb-list-reset hwb-clear-fix">';
+        $html .= '<ul class="cwb-service-list cwb-list-reset cwb-clear-fix">';
         foreach ($addons as $addon) {
             // Format the duration for display
-            $formatted_duration = hwb_format_duration($addon['duration']);
+            $formatted_duration = cwb_format_duration($addon['duration']);
 
-            $html .= "<li class='hwb-clear-fix hwb-service-id-" . esc_attr($addon['id']) . "'
+            $html .= "<li class='cwb-clear-fix cwb-service-id-" . esc_attr($addon['id']) . "'
                         data-id='" . esc_attr($addon['id']) . "'
                         data-duration='" . esc_attr($addon['duration']) . "'
                         data-price='" . esc_attr($addon['price']) . "'>
-                        <div class='hwb-service-name'>" . esc_html($addon['name']) . "</div>
-                        <div class='hwb-service-duration'>
-                            <span class='hwb-meta-icon hwb-meta-icon-duration'></span>" . esc_html($formatted_duration) . "
+                        <div class='cwb-service-name'>" . esc_html($addon['name']) . "</div>
+                        <div class='cwb-service-duration'>
+                            <span class='cwb-meta-icon cwb-meta-icon-duration'></span>" . esc_html($formatted_duration) . "
                         </div>
-                        <div class='hwb-service-price'>
-                            <span class='hwb-meta-icon hwb-meta-icon-price'></span>$" . esc_html($addon['price']) . "
+                        <div class='cwb-service-price'>
+                            <span class='cwb-meta-icon cwb-meta-icon-price'></span>$" . esc_html($addon['price']) . "
                         </div>
-                        <div class='hwb-button-box'>
-                            <a class='hwb-button' href='#'>Select</a>
+                        <div class='cwb-button-box'>
+                            <a class='cwb-button' href='#'>Select</a>
                         </div>
                       </li>";
         }
         $html .= '</ul>';
     } else {
-        $html .= '<div class="hwb-disabled">No add-on services available for this package.</div>';
+        $html .= '<div class="cwb-disabled">No add-on services available for this package.</div>';
     }
 
     echo $html;
     wp_die();
 }
 
-add_action('wp_ajax_hwb_get_addons', 'hwb_get_addons');
-add_action('wp_ajax_nopriv_hwb_get_addons', 'hwb_get_addons');
+add_action('wp_ajax_cwb_get_addons', 'cwb_get_addons');
+add_action('wp_ajax_nopriv_cwb_get_addons', 'cwb_get_addons');
 
-function hwb_get_available_slots() {
+function cwb_get_available_slots() {
     global $wpdb;
 
     // Get inputs from AJAX
@@ -178,7 +178,7 @@ function hwb_get_available_slots() {
     $responseSlots = [];
 
     // Fetch settings (minimum booking time, grace period, advance booking period)
-    $settings = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}hwb_settings LIMIT 1");
+    $settings = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}cwb_settings LIMIT 1");
     $minimumBookingTime = $settings ? intval($settings->minimum_booking_time) : 0;
     $advanceBookingPeriod = $settings ? intval($settings->advance_booking_period) : 30;
     $gracePeriod = $settings ? intval($settings->grace_period) : 0;
@@ -189,31 +189,31 @@ function hwb_get_available_slots() {
     // Fetch weekday time ranges
     $weekdayRanges = $wpdb->get_results("
         SELECT weekday, TIME_FORMAT(start_time, '%H:%i') AS start_time, TIME_FORMAT(end_time, '%H:%i') AS end_time
-        FROM {$wpdb->prefix}hwb_weekday_time_ranges
+        FROM {$wpdb->prefix}cwb_weekday_time_ranges
     ");
 
     // Fetch specific date time ranges
     $dateRanges = $wpdb->get_results("
         SELECT date, TIME_FORMAT(start_time, '%H:%i') AS start_time, TIME_FORMAT(end_time, '%H:%i') AS end_time
-        FROM {$wpdb->prefix}hwb_date_time_ranges
+        FROM {$wpdb->prefix}cwb_date_time_ranges
         WHERE date BETWEEN '{$startDate->format('Y-m-d')}' AND '{$endDate->format('Y-m-d')}'
     ", OBJECT_K);
 
     // Fetch excluded dates and times
     $excludedDates = $wpdb->get_results("
         SELECT start_date, end_date, TIME_FORMAT(start_time, '%H:%i') AS start_time, TIME_FORMAT(end_time, '%H:%i') AS end_time
-        FROM {$wpdb->prefix}hwb_excluded_dates
+        FROM {$wpdb->prefix}cwb_excluded_dates
     ");
 
     // Fetch existing bookings
     $bookings = $wpdb->get_results("
         SELECT date, TIME_FORMAT(start_time, '%H:%i') AS start_time, TIME_FORMAT(end_time, '%H:%i') AS end_time
-        FROM {$wpdb->prefix}hwb_bookings
+        FROM {$wpdb->prefix}cwb_bookings
         WHERE date BETWEEN '{$startDate->format('Y-m-d')}' AND '{$endDate->format('Y-m-d')}'
     ");
 
     // Fetch resource capacity
-    $resourceCapacity = $wpdb->get_var("SELECT SUM(capacity) FROM {$wpdb->prefix}hwb_resources");
+    $resourceCapacity = $wpdb->get_var("SELECT SUM(capacity) FROM {$wpdb->prefix}cwb_resources");
 
     // Generate slots for each day in the date range
     for ($i = 0; $i < 7; $i++) {
@@ -284,8 +284,8 @@ function hwb_get_available_slots() {
     wp_send_json_success(['slots' => $responseSlots]);
 }
 
-add_action('wp_ajax_hwb_get_available_slots', 'hwb_get_available_slots');
-add_action('wp_ajax_nopriv_hwb_get_available_slots', 'hwb_get_available_slots');
+add_action('wp_ajax_cwb_get_available_slots', 'cwb_get_available_slots');
+add_action('wp_ajax_nopriv_cwb_get_available_slots', 'cwb_get_available_slots');
 
 // Update `generate_slots` to include `minimum_booking_time`
 function generate_slots($startTime, $endTime, $duration, $gracePeriod, $currentDate, $now, $minimumBookingTime) {
@@ -432,8 +432,8 @@ function filter_booked_slots($slots, $bookings, $duration, $resourceCapacity, $c
     return $filteredSlots;
 }
 
-// function hwb_get_available_slots() {
-//     if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'hwb_nonce')) {
+// function cwb_get_available_slots() {
+//     if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'cwb_nonce')) {
 //         wp_send_json_error(['message' => 'Invalid nonce.'], 400);
 //     }
 //
@@ -469,11 +469,11 @@ function filter_booked_slots($slots, $bookings, $duration, $resourceCapacity, $c
 //     wp_send_json_success(['slots' => $response_slots]);
 // }
 //
-// add_action('wp_ajax_hwb_get_available_slots', 'hwb_get_available_slots');
-// add_action('wp_ajax_nopriv_hwb_get_available_slots', 'hwb_get_available_slots');
+// add_action('wp_ajax_cwb_get_available_slots', 'cwb_get_available_slots');
+// add_action('wp_ajax_nopriv_cwb_get_available_slots', 'cwb_get_available_slots');
 
 // Helper function to format duration
-function hwb_format_duration($duration) {
+function cwb_format_duration($duration) {
     $hours = floor($duration / 60);
     $minutes = $duration % 60;
 

@@ -3,20 +3,20 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
-function hwb_initialize_database() {
+function cwb_initialize_database() {
     global $wpdb;
 
     $charset_collate = $wpdb->get_charset_collate();
 
     // Locations table
-    $locations_table = "CREATE TABLE {$wpdb->prefix}hwb_locations (
+    $locations_table = "CREATE TABLE {$wpdb->prefix}cwb_locations (
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         address VARCHAR(255) NOT NULL
     ) $charset_collate;";
 
     // Location Fields Configuration Table - NEW TABLE
-    $location_fields_config_table = "CREATE TABLE {$wpdb->prefix}hwb_location_fields_config (
+    $location_fields_config_table = "CREATE TABLE {$wpdb->prefix}cwb_location_fields_config (
         id INT AUTO_INCREMENT PRIMARY KEY,
         location_id INT NOT NULL,
         message_enabled BOOLEAN NOT NULL DEFAULT 0,
@@ -28,27 +28,27 @@ function hwb_initialize_database() {
         country_enabled BOOLEAN NOT NULL DEFAULT 0,
         lat_long_enabled BOOLEAN NOT NULL DEFAULT 0,
         service_location_enabled BOOLEAN NOT NULL DEFAULT 0,
-        FOREIGN KEY (location_id) REFERENCES {$wpdb->prefix}hwb_locations(id) ON DELETE CASCADE
+        FOREIGN KEY (location_id) REFERENCES {$wpdb->prefix}cwb_locations(id) ON DELETE CASCADE
     ) $charset_collate;";
 
     // Vehicle Types table
-    $vehicle_types_table = "CREATE TABLE {$wpdb->prefix}hwb_vehicle_types (
+    $vehicle_types_table = "CREATE TABLE {$wpdb->prefix}cwb_vehicle_types (
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         icon VARCHAR(255) NOT NULL
     ) $charset_collate;";
 
     // Location to Vehicle Type mapping table
-    $location_vehicle_table = "CREATE TABLE {$wpdb->prefix}hwb_location_vehicle_types (
+    $location_vehicle_table = "CREATE TABLE {$wpdb->prefix}cwb_location_vehicle_types (
         id INT AUTO_INCREMENT PRIMARY KEY,
         location_id INT NOT NULL,
         vehicle_type_id INT NOT NULL,
-        FOREIGN KEY (location_id) REFERENCES {$wpdb->prefix}hwb_locations(id) ON DELETE CASCADE,
-        FOREIGN KEY (vehicle_type_id) REFERENCES {$wpdb->prefix}hwb_vehicle_types(id) ON DELETE CASCADE
+        FOREIGN KEY (location_id) REFERENCES {$wpdb->prefix}cwb_locations(id) ON DELETE CASCADE,
+        FOREIGN KEY (vehicle_type_id) REFERENCES {$wpdb->prefix}cwb_vehicle_types(id) ON DELETE CASCADE
     ) $charset_collate;";
 
     // Packages table
-    $packages_table = "CREATE TABLE {$wpdb->prefix}hwb_packages (
+    $packages_table = "CREATE TABLE {$wpdb->prefix}cwb_packages (
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         price DECIMAL(10, 2) NOT NULL,
@@ -56,7 +56,7 @@ function hwb_initialize_database() {
     ) $charset_collate;";
 
     // Services table
-    $services_table = "CREATE TABLE {$wpdb->prefix}hwb_services (
+    $services_table = "CREATE TABLE {$wpdb->prefix}cwb_services (
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         price DECIMAL(10, 2) NOT NULL,
@@ -64,34 +64,34 @@ function hwb_initialize_database() {
     ) $charset_collate;";
 
     // Package to Service mapping
-    $package_service_table = "CREATE TABLE {$wpdb->prefix}hwb_package_services (
+    $package_service_table = "CREATE TABLE {$wpdb->prefix}cwb_package_services (
         id INT AUTO_INCREMENT PRIMARY KEY,
         package_id INT NOT NULL,
         service_id INT NOT NULL,
-        FOREIGN KEY (package_id) REFERENCES {$wpdb->prefix}hwb_packages(id) ON DELETE CASCADE,
-        FOREIGN KEY (service_id) REFERENCES {$wpdb->prefix}hwb_services(id) ON DELETE CASCADE
+        FOREIGN KEY (package_id) REFERENCES {$wpdb->prefix}cwb_packages(id) ON DELETE CASCADE,
+        FOREIGN KEY (service_id) REFERENCES {$wpdb->prefix}cwb_services(id) ON DELETE CASCADE
     ) $charset_collate;";
 
     // Vehicle to Package mapping
-    $vehicle_package_table = "CREATE TABLE {$wpdb->prefix}hwb_vehicle_packages (
+    $vehicle_package_table = "CREATE TABLE {$wpdb->prefix}cwb_vehicle_packages (
         id INT AUTO_INCREMENT PRIMARY KEY,
         vehicle_type_id INT NOT NULL,
         package_id INT NOT NULL,
-        FOREIGN KEY (vehicle_type_id) REFERENCES {$wpdb->prefix}hwb_vehicle_types(id) ON DELETE CASCADE,
-        FOREIGN KEY (package_id) REFERENCES {$wpdb->prefix}hwb_packages(id) ON DELETE CASCADE
+        FOREIGN KEY (vehicle_type_id) REFERENCES {$wpdb->prefix}cwb_vehicle_types(id) ON DELETE CASCADE,
+        FOREIGN KEY (package_id) REFERENCES {$wpdb->prefix}cwb_packages(id) ON DELETE CASCADE
     ) $charset_collate;";
 
     // Package to Add-On Service mapping table
-    $package_addon_table = "CREATE TABLE {$wpdb->prefix}hwb_package_addons (
+    $package_addon_table = "CREATE TABLE {$wpdb->prefix}cwb_package_addons (
         package_id INT NOT NULL,
         service_id INT NOT NULL,
         PRIMARY KEY (package_id, service_id),
-        FOREIGN KEY (package_id) REFERENCES {$wpdb->prefix}hwb_packages(id) ON DELETE CASCADE,
-        FOREIGN KEY (service_id) REFERENCES {$wpdb->prefix}hwb_services(id) ON DELETE CASCADE
+        FOREIGN KEY (package_id) REFERENCES {$wpdb->prefix}cwb_packages(id) ON DELETE CASCADE,
+        FOREIGN KEY (service_id) REFERENCES {$wpdb->prefix}cwb_services(id) ON DELETE CASCADE
     ) $charset_collate;";
 
     // Settings table
-    $settings_table = "CREATE TABLE {$wpdb->prefix}hwb_settings (
+    $settings_table = "CREATE TABLE {$wpdb->prefix}cwb_settings (
         id INT AUTO_INCREMENT PRIMARY KEY,
         minimum_booking_time INT NOT NULL,         -- Minutes before booking is allowed
         advance_booking_period INT NOT NULL,       -- Maximum days in advance booking is allowed
@@ -99,7 +99,7 @@ function hwb_initialize_database() {
     ) $charset_collate;";
 
     // Weekday Time Ranges table
-    $weekday_time_ranges_table = "CREATE TABLE {$wpdb->prefix}hwb_weekday_time_ranges (
+    $weekday_time_ranges_table = "CREATE TABLE {$wpdb->prefix}cwb_weekday_time_ranges (
         id INT AUTO_INCREMENT PRIMARY KEY,
         weekday ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') NOT NULL,
         start_time TIME NOT NULL,
@@ -107,7 +107,7 @@ function hwb_initialize_database() {
     ) $charset_collate;";
 
     // Specific Date Time Ranges table
-    $date_time_ranges_table = "CREATE TABLE {$wpdb->prefix}hwb_date_time_ranges (
+    $date_time_ranges_table = "CREATE TABLE {$wpdb->prefix}cwb_date_time_ranges (
         id INT AUTO_INCREMENT PRIMARY KEY,
         date DATE NOT NULL,
         start_time TIME NOT NULL,
@@ -115,7 +115,7 @@ function hwb_initialize_database() {
     ) $charset_collate;";
 
     // Excluded Dates table
-    $excluded_dates_table = "CREATE TABLE {$wpdb->prefix}hwb_excluded_dates (
+    $excluded_dates_table = "CREATE TABLE {$wpdb->prefix}cwb_excluded_dates (
         id INT AUTO_INCREMENT PRIMARY KEY,
         start_date DATE NOT NULL,
         end_date DATE NOT NULL,
@@ -124,14 +124,14 @@ function hwb_initialize_database() {
     ) $charset_collate;";
 
     // Resources table
-    $resources_table = "CREATE TABLE {$wpdb->prefix}hwb_resources (
+    $resources_table = "CREATE TABLE {$wpdb->prefix}cwb_resources (
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         capacity INT NOT NULL DEFAULT 1           -- Max concurrent bookings this resource can handle
     ) $charset_collate;";
 
     // Bookings table
-    $bookings_table = "CREATE TABLE {$wpdb->prefix}hwb_bookings (
+    $bookings_table = "CREATE TABLE {$wpdb->prefix}cwb_bookings (
         id INT AUTO_INCREMENT PRIMARY KEY,
         package_id INT NOT NULL,
         date DATE NOT NULL,
@@ -140,7 +140,7 @@ function hwb_initialize_database() {
         resource_id INT DEFAULT NULL,
         user_id INT NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (package_id) REFERENCES {$wpdb->prefix}hwb_packages(id) ON DELETE CASCADE
+        FOREIGN KEY (package_id) REFERENCES {$wpdb->prefix}cwb_packages(id) ON DELETE CASCADE
     ) $charset_collate;";
 
     // Execute all table creation queries
@@ -162,18 +162,18 @@ function hwb_initialize_database() {
     dbDelta($bookings_table);
 
     // Populate tables with default data
-    hwb_populate_default_data();
+    cwb_populate_default_data();
 }
 
-function hwb_populate_default_data() {
+function cwb_populate_default_data() {
     global $wpdb;
 
     // Pre-populate locations if the table is empty.
-    $existing_locations = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}hwb_locations");
+    $existing_locations = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_locations");
 
     if ($existing_locations == 0) {
         $wpdb->insert(
-            "{$wpdb->prefix}hwb_locations",
+            "{$wpdb->prefix}cwb_locations",
             [
                 'name' => 'Remote',
                 'address' => 'Remote Location'
@@ -182,7 +182,7 @@ function hwb_populate_default_data() {
         );
 
         $wpdb->insert(
-            "{$wpdb->prefix}hwb_locations",
+            "{$wpdb->prefix}cwb_locations",
             [
                 'name' => 'St. Croix',
                 'address' => 'St. Croix Location'
@@ -192,9 +192,9 @@ function hwb_populate_default_data() {
     }
 
     // Pre-populate location fields config - NEW DATA POPULATION
-    $existing_location_fields_config = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}hwb_location_fields_config");
+    $existing_location_fields_config = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_location_fields_config");
     if ($existing_location_fields_config == 0) {
-        $locations = $wpdb->get_results("SELECT id FROM {$wpdb->prefix}hwb_locations", ARRAY_A);
+        $locations = $wpdb->get_results("SELECT id FROM {$wpdb->prefix}cwb_locations", ARRAY_A);
         foreach ($locations as $location) {
             $config = [
                 'location_id' => $location['id'],
@@ -209,7 +209,7 @@ function hwb_populate_default_data() {
                 'service_location_enabled' => ($location['id'] == 2 ? 1 : 0), // Service Location for St. Croix only
             ];
             $wpdb->insert(
-                "{$wpdb->prefix}hwb_location_fields_config",
+                "{$wpdb->prefix}cwb_location_fields_config",
                 $config,
                 ['%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d']
             );
@@ -217,7 +217,7 @@ function hwb_populate_default_data() {
     }
 
     // Pre-populate vehicle types if the table is empty.
-    $existing_vehicle_types = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}hwb_vehicle_types");
+    $existing_vehicle_types = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_vehicle_types");
 
     if ($existing_vehicle_types == 0) {
         $vehicle_types = [
@@ -230,7 +230,7 @@ function hwb_populate_default_data() {
 
         foreach ($vehicle_types as $vehicle) {
             $wpdb->insert(
-                "{$wpdb->prefix}hwb_vehicle_types",
+                "{$wpdb->prefix}cwb_vehicle_types",
                 $vehicle,
                 ['%s', '%s']
             );
@@ -238,8 +238,8 @@ function hwb_populate_default_data() {
     }
 
     // Associate all vehicle types with both locations.
-    $locations = $wpdb->get_results("SELECT id, name FROM {$wpdb->prefix}hwb_locations", ARRAY_A);
-    $vehicle_types = $wpdb->get_results("SELECT id, name FROM {$wpdb->prefix}hwb_vehicle_types", ARRAY_A);
+    $locations = $wpdb->get_results("SELECT id, name FROM {$wpdb->prefix}cwb_locations", ARRAY_A);
+    $vehicle_types = $wpdb->get_results("SELECT id, name FROM {$wpdb->prefix}cwb_vehicle_types", ARRAY_A);
 
     foreach ($locations as $location) {
         foreach ($vehicle_types as $vehicle) {
@@ -249,7 +249,7 @@ function hwb_populate_default_data() {
             }
 
             $wpdb->insert(
-                "{$wpdb->prefix}hwb_location_vehicle_types",
+                "{$wpdb->prefix}cwb_location_vehicle_types",
                 [
                     'location_id' => $location['id'],
                     'vehicle_type_id' => $vehicle['id']
@@ -260,11 +260,11 @@ function hwb_populate_default_data() {
     }
 
     // Insert default settings if the table is empty.
-    $existing_settings = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}hwb_settings");
+    $existing_settings = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_settings");
 
     if ($existing_settings == 0) {
         $wpdb->insert(
-            "{$wpdb->prefix}hwb_settings",
+            "{$wpdb->prefix}cwb_settings",
             [
                 'minimum_booking_time' => 30, // 30 minutes
                 'advance_booking_period' => 7, // 7 days for testing
@@ -275,7 +275,7 @@ function hwb_populate_default_data() {
     }
 
     // Insert default weekday time ranges if the table is empty.
-    $existing_weekday_time_ranges = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}hwb_weekday_time_ranges");
+    $existing_weekday_time_ranges = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_weekday_time_ranges");
 
     if ($existing_weekday_time_ranges == 0) {
         $weekday_time_ranges = [
@@ -286,7 +286,7 @@ function hwb_populate_default_data() {
 
         foreach ($weekday_time_ranges as $range) {
             $wpdb->insert(
-                "{$wpdb->prefix}hwb_weekday_time_ranges",
+                "{$wpdb->prefix}cwb_weekday_time_ranges",
                 $range,
                 ['%s', '%s', '%s']
             );
@@ -294,7 +294,7 @@ function hwb_populate_default_data() {
     }
 
     // Insert default specific date time ranges if the table is empty.
-    $existing_date_time_ranges = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}hwb_date_time_ranges");
+    $existing_date_time_ranges = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_date_time_ranges");
 
     if ($existing_date_time_ranges == 0) {
         $specific_date_ranges = [
@@ -304,7 +304,7 @@ function hwb_populate_default_data() {
 
         foreach ($specific_date_ranges as $range) {
             $wpdb->insert(
-                "{$wpdb->prefix}hwb_date_time_ranges",
+                "{$wpdb->prefix}cwb_date_time_ranges",
                 $range,
                 ['%s', '%s', '%s']
             );
@@ -312,7 +312,7 @@ function hwb_populate_default_data() {
     }
 
     // Insert default excluded dates if the table is empty.
-    $existing_excluded_dates = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}hwb_excluded_dates");
+    $existing_excluded_dates = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_excluded_dates");
 
     if ($existing_excluded_dates == 0) {
         $excluded_dates = [
@@ -321,7 +321,7 @@ function hwb_populate_default_data() {
 
         foreach ($excluded_dates as $excluded_date) {
             $wpdb->insert(
-                "{$wpdb->prefix}hwb_excluded_dates",
+                "{$wpdb->prefix}cwb_excluded_dates",
                 $excluded_date,
                 ['%s', '%s']
             );
@@ -329,7 +329,7 @@ function hwb_populate_default_data() {
     }
 
     // Insert default resources if the table is empty.
-    $existing_resources = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}hwb_resources");
+    $existing_resources = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_resources");
 
     if ($existing_resources == 0) {
         $resources = [
@@ -339,7 +339,7 @@ function hwb_populate_default_data() {
 
         foreach ($resources as $resource) {
             $wpdb->insert(
-                "{$wpdb->prefix}hwb_resources",
+                "{$wpdb->prefix}cwb_resources",
                 $resource,
                 ['%s', '%d']
             );
@@ -347,7 +347,7 @@ function hwb_populate_default_data() {
     }
 
     // Insert packages if the table is empty.
-    $existing_packages = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}hwb_packages");
+    $existing_packages = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_packages");
 
     if ($existing_packages == 0) {
         $packages = [
@@ -360,7 +360,7 @@ function hwb_populate_default_data() {
 
         foreach ($packages as $package) {
             $wpdb->insert(
-                "{$wpdb->prefix}hwb_packages",
+                "{$wpdb->prefix}cwb_packages",
                 $package,
                 ['%s', '%f', '%d']
             );
@@ -368,7 +368,7 @@ function hwb_populate_default_data() {
     }
 
     // Insert services if the table is empty
-    $existing_services = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}hwb_services");
+    $existing_services = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_services");
 
     if ($existing_services == 0) {
         $services = [
@@ -386,7 +386,7 @@ function hwb_populate_default_data() {
 
         foreach ($services as $service) {
             $wpdb->insert(
-                "{$wpdb->prefix}hwb_services",
+                "{$wpdb->prefix}cwb_services",
                 $service,
                 ['%s', '%f', '%d']
             );
@@ -403,12 +403,12 @@ function hwb_populate_default_data() {
     ];
 
     foreach ($package_services as $package_name => $service_names) {
-        $package_id = $wpdb->get_var($wpdb->prepare("SELECT id FROM {$wpdb->prefix}hwb_packages WHERE name = %s", $package_name));
+        $package_id = $wpdb->get_var($wpdb->prepare("SELECT id FROM {$wpdb->prefix}cwb_packages WHERE name = %s", $package_name));
 
         foreach ($service_names as $service_name) {
-            $service_id = $wpdb->get_var($wpdb->prepare("SELECT id FROM {$wpdb->prefix}hwb_services WHERE name = %s", $service_name));
+            $service_id = $wpdb->get_var($wpdb->prepare("SELECT id FROM {$wpdb->prefix}cwb_services WHERE name = %s", $service_name));
             $wpdb->insert(
-                "{$wpdb->prefix}hwb_package_services",
+                "{$wpdb->prefix}cwb_package_services",
                 ['package_id' => $package_id, 'service_id' => $service_id],
                 ['%d', '%d']
             );
@@ -416,10 +416,10 @@ function hwb_populate_default_data() {
     }
 
     // Associate packages with vehicles.
-    $vehicle_types = $wpdb->get_results("SELECT id, name FROM {$wpdb->prefix}hwb_vehicle_types", ARRAY_A);
+    $vehicle_types = $wpdb->get_results("SELECT id, name FROM {$wpdb->prefix}cwb_vehicle_types", ARRAY_A);
 
     foreach ($vehicle_types as $vehicle) {
-        $packages = $wpdb->get_results("SELECT id, name FROM {$wpdb->prefix}hwb_packages", ARRAY_A);
+        $packages = $wpdb->get_results("SELECT id, name FROM {$wpdb->prefix}cwb_packages", ARRAY_A);
 
         foreach ($packages as $package) {
             if ($vehicle['name'] === 'Minivan' && $package['name'] !== 'Fresh & Fly') {
@@ -427,7 +427,7 @@ function hwb_populate_default_data() {
             }
 
             $wpdb->insert(
-                "{$wpdb->prefix}hwb_vehicle_packages",
+                "{$wpdb->prefix}cwb_vehicle_packages",
                 ['vehicle_type_id' => $vehicle['id'], 'package_id' => $package['id']],
                 ['%d', '%d']
             );
@@ -435,7 +435,7 @@ function hwb_populate_default_data() {
     }
 
     // Associate add-on services with packages.
-    $existing_addons = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}hwb_package_addons");
+    $existing_addons = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_package_addons");
 
     if ($existing_addons == 0) {
         $package_addons = [
@@ -448,18 +448,18 @@ function hwb_populate_default_data() {
 
         foreach ($package_addons as $package_name => $addon_services) {
             $package_id = $wpdb->get_var($wpdb->prepare(
-                "SELECT id FROM {$wpdb->prefix}hwb_packages WHERE name = %s",
+                "SELECT id FROM {$wpdb->prefix}cwb_packages WHERE name = %s",
                 $package_name
             ));
 
             foreach ($addon_services as $service_name) {
                 $service_id = $wpdb->get_var($wpdb->prepare(
-                    "SELECT id FROM {$wpdb->prefix}hwb_services WHERE name = %s",
+                    "SELECT id FROM {$wpdb->prefix}cwb_services WHERE name = %s",
                     $service_name
                 ));
 
                 $wpdb->insert(
-                    "{$wpdb->prefix}hwb_package_addons",
+                    "{$wpdb->prefix}cwb_package_addons",
                     ['package_id' => $package_id, 'service_id' => $service_id],
                     ['%d', '%d']
                 );
@@ -468,7 +468,7 @@ function hwb_populate_default_data() {
     }
 
     // Insert default bookings for testing.
-    $existing_bookings = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}hwb_bookings");
+    $existing_bookings = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_bookings");
 
     if ($existing_bookings == 0) {
         $bookings = [
@@ -479,7 +479,7 @@ function hwb_populate_default_data() {
 
         foreach ($bookings as $booking) {
             $wpdb->insert(
-                "{$wpdb->prefix}hwb_bookings",
+                "{$wpdb->prefix}cwb_bookings",
                 $booking,
                 ['%d', '%s', '%s', '%s', '%d', '%d']
             );
@@ -490,10 +490,10 @@ function hwb_populate_default_data() {
 /**
  * Get location fields configuration.
  */
-function hwb_get_location_fields_config( $location_id ) {
+function cwb_get_location_fields_config( $location_id ) {
     global $wpdb;
 
-    $table_name = $wpdb->prefix . 'hwb_location_fields_config';
+    $table_name = $wpdb->prefix . 'cwb_location_fields_config';
     $result = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table_name WHERE location_id = %d", $location_id ), ARRAY_A );
 
     return $result ? $result : []; // Return array, empty if no config found
@@ -502,10 +502,10 @@ function hwb_get_location_fields_config( $location_id ) {
 /**
  * Insert a test booking into the database.
  */
-function hwb_insert_booking( $data ) {
+function cwb_insert_booking( $data ) {
     global $wpdb;
 
-    $table_name = $wpdb->prefix . 'hwb_bookings';
+    $table_name = $wpdb->prefix . 'cwb_bookings';
 
     $result = $wpdb->insert(
         $table_name,
@@ -546,10 +546,10 @@ function hwb_insert_booking( $data ) {
 /**
  * Get locations for booking.
  */
-function hwb_get_locations() {
+function cwb_get_locations() {
     global $wpdb;
 
-    $table_name = $wpdb->prefix . 'hwb_locations';
+    $table_name = $wpdb->prefix . 'cwb_locations';
     $results = $wpdb->get_results( "SELECT id, name FROM $table_name", ARRAY_A );
 
     return $results;
@@ -558,10 +558,10 @@ function hwb_get_locations() {
 /**
  * Get vehicle types for booking.
  */
-function hwb_get_vehicle_types() {
+function cwb_get_vehicle_types() {
     global $wpdb;
 
-    $table_name = $wpdb->prefix . 'hwb_vehicle_types';
+    $table_name = $wpdb->prefix . 'cwb_vehicle_types';
     $results = $wpdb->get_results( "SELECT id, name FROM $table_name", ARRAY_A );
 
     return $results;
