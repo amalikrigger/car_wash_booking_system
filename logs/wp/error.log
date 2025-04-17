@@ -847,3 +847,285 @@ AH00558: apache2: Could not reliably determine the server's fully qualified doma
 [17-Apr-2025 00:37:57 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
 [17-Apr-2025 00:37:57 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
 [17-Apr-2025 00:37:57 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 01:27:23 UTC] PHP Fatal error:  Uncaught Error: Class "CWBS_API_Endpoints" not found in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/api/class-api-endpoints.php:251
+Stack trace:
+#0 /var/www/html/wp-content/plugins/car-wash-booking-plugin/car-wash-booking.php(16): include_once()
+#1 /var/www/html/wp-settings.php(473): include_once('/var/www/html/w...')
+#2 /var/www/html/wp-config.php(133): require_once('/var/www/html/w...')
+#3 /var/www/html/wp-load.php(50): require_once('/var/www/html/w...')
+#4 /var/www/html/wp-admin/admin-ajax.php(22): require_once('/var/www/html/w...')
+#5 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/api/class-api-endpoints.php on line 251
+[17-Apr-2025 09:20:15 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/api/class-api-endpoints.php on line 254
+[Thu Apr 17 09:31:11.409791 2025] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.24.0.4. Set the 'ServerName' directive globally to suppress this message
+[Thu Apr 17 09:31:32.763110 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Thu Apr 17 09:31:32.763786 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (2, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (2, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (2, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (2, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (2, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:24 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, cwb_create_tables, cwb_initialize_database, cwb_populate_default_data
+[17-Apr-2025 09:32:57 UTC] PHP Fatal error:  Uncaught Error: Class "CWB_Location" not found in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/shortcodes/class-shortcodes.php:24
+Stack trace:
+#0 /var/www/html/wp-includes/shortcodes.php(433): cwb_render_booking_form('', '', 'cwb_booking_for...')
+#1 [internal function]: do_shortcode_tag(Array)
+#2 /var/www/html/wp-includes/shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(cwb_bo...', 'do_shortcode_ta...', '[cwb_booking_fo...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): do_shortcode('[cwb_booking_fo...')
+#4 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters('[cwb_booking_fo...', Array)
+#5 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1863): apply_filters('the_content', '<!-- wp:shortco...')
+#6 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(952): WP_REST_Posts_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WP_REST_Posts_Controller->update_item(Object(WP_REST_Request))
+#8 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#9 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#10 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wp/v2/pages/5')
+#11 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#12 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#13 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#14 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#15 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#16 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#17 /var/www/html/wp-blog-header.php(16): wp()
+#18 /var/www/html/index.php(17): require('/var/www/html/w...')
+#19 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/shortcodes/class-shortcodes.php on line 24
+[17-Apr-2025 09:33:06 UTC] PHP Fatal error:  Uncaught Error: Class "CWB_Location" not found in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/shortcodes/class-shortcodes.php:24
+Stack trace:
+#0 /var/www/html/wp-includes/shortcodes.php(433): cwb_render_booking_form('', '', 'cwb_booking_for...')
+#1 [internal function]: do_shortcode_tag(Array)
+#2 /var/www/html/wp-includes/shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(cwb_bo...', 'do_shortcode_ta...', '[cwb_booking_fo...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): do_shortcode('[cwb_booking_fo...')
+#4 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters('[cwb_booking_fo...', Array)
+#5 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1863): apply_filters('the_content', '<!-- wp:shortco...')
+#6 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(952): WP_REST_Posts_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WP_REST_Posts_Controller->update_item(Object(WP_REST_Request))
+#8 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#9 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#10 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wp/v2/pages/5')
+#11 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#12 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#13 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#14 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#15 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#16 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#17 /var/www/html/wp-blog-header.php(16): wp()
+#18 /var/www/html/index.php(17): require('/var/www/html/w...')
+#19 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/shortcodes/class-shortcodes.php on line 24
+[17-Apr-2025 09:33:17 UTC] PHP Fatal error:  Uncaught Error: Class "CWB_Location" not found in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/shortcodes/class-shortcodes.php:24
+Stack trace:
+#0 /var/www/html/wp-includes/shortcodes.php(433): cwb_render_booking_form('', '', 'cwb_booking_for...')
+#1 [internal function]: do_shortcode_tag(Array)
+#2 /var/www/html/wp-includes/shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(cwb_bo...', 'do_shortcode_ta...', '[cwb_booking_fo...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): do_shortcode('[cwb_booking_fo...')
+#4 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters('[cwb_booking_fo...', Array)
+#5 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1863): apply_filters('the_content', '<!-- wp:shortco...')
+#6 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(952): WP_REST_Posts_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WP_REST_Posts_Controller->update_item(Object(WP_REST_Request))
+#8 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#9 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#10 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wp/v2/pages/5')
+#11 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#12 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#13 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#14 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#15 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#16 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#17 /var/www/html/wp-blog-header.php(16): wp()
+#18 /var/www/html/index.php(17): require('/var/www/html/w...')
+#19 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/shortcodes/class-shortcodes.php on line 24
+[17-Apr-2025 09:33:43 UTC] PHP Fatal error:  Uncaught Error: Class "CWB_Location" not found in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/shortcodes/class-shortcodes.php:24
+Stack trace:
+#0 /var/www/html/wp-includes/shortcodes.php(433): cwb_render_booking_form('', '', 'cwb_booking_for...')
+#1 [internal function]: do_shortcode_tag(Array)
+#2 /var/www/html/wp-includes/shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(cwb_bo...', 'do_shortcode_ta...', '[cwb_booking_fo...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): do_shortcode('[cwb_booking_fo...')
+#4 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters('[cwb_booking_fo...', Array)
+#5 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php(620): apply_filters('the_content', '<!-- wp:shortco...')
+#6 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-autosaves-controller.php(451): WP_REST_Revisions_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-autosaves-controller.php(253): WP_REST_Autosaves_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#8 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WP_REST_Autosaves_Controller->create_item(Object(WP_REST_Request))
+#9 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#10 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#11 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wp/v2/pages/5/...')
+#12 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#13 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#14 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#15 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#16 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#17 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#18 /var/www/html/wp-blog-header.php(16): wp()
+#19 /var/www/html/index.php(17): require('/var/www/html/w...')
+#20 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/shortcodes/class-shortcodes.php on line 24
+[17-Apr-2025 09:33:51 UTC] PHP Fatal error:  Uncaught Error: Class "CWB_Location" not found in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/shortcodes/class-shortcodes.php:24
+Stack trace:
+#0 /var/www/html/wp-includes/shortcodes.php(433): cwb_render_booking_form('', '', 'cwb_booking_for...')
+#1 [internal function]: do_shortcode_tag(Array)
+#2 /var/www/html/wp-includes/shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(cwb_bo...', 'do_shortcode_ta...', '[cwb_booking_fo...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): do_shortcode('[cwb_booking_fo...')
+#4 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters('[cwb_booking_fo...', Array)
+#5 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1863): apply_filters('the_content', '<!-- wp:shortco...')
+#6 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(569): WP_REST_Posts_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WP_REST_Posts_Controller->get_item(Object(WP_REST_Request))
+#8 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#9 /var/www/html/wp-includes/rest-api.php(551): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#10 /var/www/html/wp-includes/rest-api.php(2918): rest_do_request(Object(WP_REST_Request))
+#11 [internal function]: rest_preload_api_request(Array, '/wp/v2/pages/5?...')
+#12 /var/www/html/wp-includes/block-editor.php(750): array_reduce(Array, 'rest_preload_ap...', Array)
+#13 /var/www/html/wp-admin/edit-form-blocks.php(77): block_editor_rest_api_preload(Array, Object(WP_Block_Editor_Context))
+#14 /var/www/html/wp-admin/post.php(187): require('/var/www/html/w...')
+#15 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/shortcodes/class-shortcodes.php on line 24
+[17-Apr-2025 09:33:57 UTC] PHP Fatal error:  Uncaught Error: Class "CWB_Location" not found in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/shortcodes/class-shortcodes.php:24
+Stack trace:
+#0 /var/www/html/wp-includes/shortcodes.php(433): cwb_render_booking_form('', '', 'cwb_booking_for...')
+#1 [internal function]: do_shortcode_tag(Array)
+#2 /var/www/html/wp-includes/shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(cwb_bo...', 'do_shortcode_ta...', '[cwb_booking_fo...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): do_shortcode('[cwb_booking_fo...')
+#4 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters('[cwb_booking_fo...', Array)
+#5 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1863): apply_filters('the_content', '<!-- wp:shortco...')
+#6 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(569): WP_REST_Posts_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WP_REST_Posts_Controller->get_item(Object(WP_REST_Request))
+#8 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#9 /var/www/html/wp-includes/rest-api.php(551): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#10 /var/www/html/wp-includes/rest-api.php(2918): rest_do_request(Object(WP_REST_Request))
+#11 [internal function]: rest_preload_api_request(Array, '/wp/v2/pages/5?...')
+#12 /var/www/html/wp-includes/block-editor.php(750): array_reduce(Array, 'rest_preload_ap...', Array)
+#13 /var/www/html/wp-admin/edit-form-blocks.php(77): block_editor_rest_api_preload(Array, Object(WP_Block_Editor_Context))
+#14 /var/www/html/wp-admin/post.php(187): require('/var/www/html/w...')
+#15 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/shortcodes/class-shortcodes.php on line 24
+[17-Apr-2025 09:34:07 UTC] PHP Fatal error:  Uncaught Error: Class "CWB_Location" not found in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/shortcodes/class-shortcodes.php:24
+Stack trace:
+#0 /var/www/html/wp-includes/shortcodes.php(433): cwb_render_booking_form('', '', 'cwb_booking_for...')
+#1 [internal function]: do_shortcode_tag(Array)
+#2 /var/www/html/wp-includes/shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(cwb_bo...', 'do_shortcode_ta...', '[cwb_booking_fo...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): do_shortcode('[cwb_booking_fo...')
+#4 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters('[cwb_booking_fo...', Array)
+#5 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1863): apply_filters('the_content', '<!-- wp:shortco...')
+#6 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(569): WP_REST_Posts_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WP_REST_Posts_Controller->get_item(Object(WP_REST_Request))
+#8 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#9 /var/www/html/wp-includes/rest-api.php(551): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#10 /var/www/html/wp-includes/rest-api.php(2918): rest_do_request(Object(WP_REST_Request))
+#11 [internal function]: rest_preload_api_request(Array, '/wp/v2/pages/5?...')
+#12 /var/www/html/wp-includes/block-editor.php(750): array_reduce(Array, 'rest_preload_ap...', Array)
+#13 /var/www/html/wp-admin/edit-form-blocks.php(77): block_editor_rest_api_preload(Array, Object(WP_Block_Editor_Context))
+#14 /var/www/html/wp-admin/post.php(187): require('/var/www/html/w...')
+#15 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/shortcodes/class-shortcodes.php on line 24
+[17-Apr-2025 09:34:41 UTC] PHP Fatal error:  Uncaught Error: Class "CWB_Location" not found in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/shortcodes/class-shortcodes.php:24
+Stack trace:
+#0 /var/www/html/wp-includes/shortcodes.php(433): cwb_render_booking_form('', '', 'cwb_booking_for...')
+#1 [internal function]: do_shortcode_tag(Array)
+#2 /var/www/html/wp-includes/shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(cwb_bo...', 'do_shortcode_ta...', '[cwb_booking_fo...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): do_shortcode('[cwb_booking_fo...')
+#4 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters('[cwb_booking_fo...', Array)
+#5 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1863): apply_filters('the_content', '<!-- wp:shortco...')
+#6 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(952): WP_REST_Posts_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WP_REST_Posts_Controller->update_item(Object(WP_REST_Request))
+#8 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#9 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#10 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wp/v2/pages/11')
+#11 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#12 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#13 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#14 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#15 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#16 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#17 /var/www/html/wp-blog-header.php(16): wp()
+#18 /var/www/html/index.php(17): require('/var/www/html/w...')
+#19 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/shortcodes/class-shortcodes.php on line 24
+[17-Apr-2025 09:35:30 UTC] PHP Fatal error:  Uncaught Error: Class "CWB_Location" not found in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/shortcodes/class-shortcodes.php:24
+Stack trace:
+#0 /var/www/html/wp-includes/shortcodes.php(433): cwb_render_booking_form('', '', 'cwb_booking_for...')
+#1 [internal function]: do_shortcode_tag(Array)
+#2 /var/www/html/wp-includes/shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(cwb_bo...', 'do_shortcode_ta...', '[cwb_booking_fo...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): do_shortcode('[cwb_booking_fo...')
+#4 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters('[cwb_booking_fo...', Array)
+#5 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php(620): apply_filters('the_content', '<!-- wp:shortco...')
+#6 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-autosaves-controller.php(451): WP_REST_Revisions_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-autosaves-controller.php(253): WP_REST_Autosaves_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#8 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WP_REST_Autosaves_Controller->create_item(Object(WP_REST_Request))
+#9 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#10 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#11 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wp/v2/pages/11...')
+#12 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#13 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#14 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#15 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#16 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#17 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#18 /var/www/html/wp-blog-header.php(16): wp()
+#19 /var/www/html/index.php(17): require('/var/www/html/w...')
+#20 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/shortcodes/class-shortcodes.php on line 24
+[17-Apr-2025 09:39:53 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function cwb_format_duration() in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/api/class-api-endpoints.php:60
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): CWB_API_Endpoints->get_packages('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/admin-ajax.php(188): do_action('wp_ajax_cwb_get...')
+#4 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/api/class-api-endpoints.php on line 60
+[17-Apr-2025 09:54:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function cwb_format_duration() in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/api/class-api-endpoints.php:60
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): CWB_API_Endpoints->get_packages('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/admin-ajax.php(188): do_action('wp_ajax_cwb_get...')
+#4 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/api/class-api-endpoints.php on line 60
+[17-Apr-2025 10:12:18 UTC] PHP Warning:  Undefined variable $responseSlots in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/api/class-api-endpoints.php on line 146
+[17-Apr-2025 10:12:28 UTC] PHP Warning:  Undefined variable $responseSlots in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/api/class-api-endpoints.php on line 146
+[17-Apr-2025 10:12:37 UTC] PHP Warning:  Undefined variable $responseSlots in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/api/class-api-endpoints.php on line 146
+[17-Apr-2025 10:14:27 UTC] PHP Warning:  Undefined variable $responseSlots in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/api/class-api-endpoints.php on line 146
+[17-Apr-2025 10:14:31 UTC] PHP Warning:  Undefined variable $responseSlots in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/api/class-api-endpoints.php on line 146
+[17-Apr-2025 10:16:50 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function alert() in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/api/class-api-endpoints.php:142
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): CWB_API_Endpoints->get_available_slots('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/admin-ajax.php(188): do_action('wp_ajax_cwb_get...')
+#4 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/api/class-api-endpoints.php on line 142
+[17-Apr-2025 10:17:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function alert() in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/api/class-api-endpoints.php:142
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): CWB_API_Endpoints->get_available_slots('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/admin-ajax.php(188): do_action('wp_ajax_cwb_get...')
+#4 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/api/class-api-endpoints.php on line 142
+[17-Apr-2025 10:20:05 UTC] PHP Warning:  Undefined variable $responseSlots in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/api/class-api-endpoints.php on line 146
+[17-Apr-2025 10:43:02 UTC] PHP Parse error:  syntax error, unexpected token "new", expecting "function" or "const" in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/api/class-api-endpoints.php on line 256
+[17-Apr-2025 10:45:41 UTC] PHP Warning:  Undefined variable $responseSlots in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/api/class-api-endpoints.php on line 146
+[17-Apr-2025 10:46:04 UTC] PHP Warning:  Undefined variable $responseSlots in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/api/class-api-endpoints.php on line 146

@@ -15,6 +15,13 @@ include_once plugin_dir_path(__FILE__) . 'includes/shortcodes/class-shortcodes.p
 include_once plugin_dir_path(__FILE__) . 'includes/database/class-database-setup.php';
 include_once plugin_dir_path(__FILE__) . 'includes/api/class-api-endpoints.php';
 
+// Include Models (add these lines)
+include_once plugin_dir_path(__FILE__) . 'includes/classes/class-location.php';
+include_once plugin_dir_path(__FILE__) . 'includes/classes/class-vehicle-type.php';
+include_once plugin_dir_path(__FILE__) . 'includes/classes/class-package.php';
+include_once plugin_dir_path(__FILE__) . 'includes/classes/class-service.php';
+include_once plugin_dir_path(__FILE__) . 'includes/classes/class-booking.php';
+
 // Register activation hook.
 register_activation_hook(__FILE__, 'cwb_create_tables');
 
@@ -24,7 +31,7 @@ function cwb_create_tables() {
 }
 
 // Enqueue styles and scripts.
-add_action('wp_enqueue_scripts', 'cwbs_enqueue_assets');
-function cwbs_enqueue_assets() {
+add_action('wp_enqueue_scripts', 'cwb_enqueue_assets');
+function cwb_enqueue_assets() {
 }
 ?>

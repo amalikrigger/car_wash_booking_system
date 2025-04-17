@@ -21,9 +21,9 @@ function cwb_render_booking_form() {
 
     // Fetch location fields configurations for all locations
     $location_fields_configs = [];
-    $locations = cwb_get_locations();
+    $locations = CWB_Location::get_all();
     foreach ($locations as $location) {
-        $location_fields_configs[$location['id']] = cwb_get_location_fields_config($location['id']);
+        $location_fields_configs[$location['id']] = CWB_Location::get_fields_config( $location['id'] );
     }
 
     // Pass AJAX URL, nonce, and location fields config to the script.
@@ -56,7 +56,7 @@ function cwb_render_booking_form() {
                             <div class="cwb-main-list-item-section-content cwb-clear-fix">
                                 <ul class="cwb-location-list cwb-list-reset cwb-clear-fix">
                                     <?php
-                                    $locations = cwb_get_locations();
+                                    $locations = CWB_Location::get_all();
                                     $first = true; // Flag to track the first location
                                     foreach ($locations as $location) {
                                         $selected = $first ? 'cwb-state-selected' : '';

@@ -488,18 +488,6 @@ function cwb_populate_default_data() {
 }
 
 /**
- * Get location fields configuration.
- */
-function cwb_get_location_fields_config( $location_id ) {
-    global $wpdb;
-
-    $table_name = $wpdb->prefix . 'cwb_location_fields_config';
-    $result = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table_name WHERE location_id = %d", $location_id ), ARRAY_A );
-
-    return $result ? $result : []; // Return array, empty if no config found
-}
-
-/**
  * Insert a test booking into the database.
  */
 function cwb_insert_booking( $data ) {
@@ -541,30 +529,6 @@ function cwb_insert_booking( $data ) {
     );
 
     return $result ? $wpdb->insert_id : false;
-}
-
-/**
- * Get locations for booking.
- */
-function cwb_get_locations() {
-    global $wpdb;
-
-    $table_name = $wpdb->prefix . 'cwb_locations';
-    $results = $wpdb->get_results( "SELECT id, name FROM $table_name", ARRAY_A );
-
-    return $results;
-}
-
-/**
- * Get vehicle types for booking.
- */
-function cwb_get_vehicle_types() {
-    global $wpdb;
-
-    $table_name = $wpdb->prefix . 'cwb_vehicle_types';
-    $results = $wpdb->get_results( "SELECT id, name FROM $table_name", ARRAY_A );
-
-    return $results;
 }
 
 ?>
