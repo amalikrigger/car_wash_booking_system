@@ -10,21 +10,27 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
-require_once plugin_dir_path( __FILE__ ) . 'includes/class-cwb.php';
+function activate_car_wash_booking_system() { // Update function name with plugin prefix
+    require_once plugin_dir_path( __FILE__ ) . 'includes/class-cwb-activator.php';
+    CWB_Activator::activate();
+}
 
-// Register activation hook.
+/**
+ * The code that runs during plugin deactivation.
+ * This action is documented in includes/class-cwbs-deactivator.php
+ */
+function deactivate_car_wash_booking_system() { // Update function name with plugin prefix
+    require_once plugin_dir_path( __FILE__ ) . 'includes/class-cwb-deactivator.php';
+    CWB_Deactivator::deactivate();
+}
 register_activation_hook(__FILE__, array( 'CWB_Activator', 'activate' ));
 register_deactivation_hook(__FILE__, array( 'CWB_Deactivator', 'deactivate' ));
 
-// Enqueue styles and scripts.
-add_action('wp_enqueue_scripts', 'cwb_enqueue_assets');
-function cwb_enqueue_assets() {
-}
-/**
- * Run the plugin.
- */
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-cwb.php';
+
 function run_car_wash_booking_system() {
     $plugin = new CWB_Plugin();
     $plugin->run();
 }
+
 run_car_wash_booking_system();
