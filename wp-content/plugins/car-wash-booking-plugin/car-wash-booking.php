@@ -10,28 +10,21 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
-// Include dependencies.
-include_once plugin_dir_path(__FILE__) . 'includes/shortcodes/class-shortcodes.php';
-include_once plugin_dir_path(__FILE__) . 'includes/database/class-database-setup.php';
-include_once plugin_dir_path(__FILE__) . 'includes/api/class-api-endpoints.php';
-
-// Include Models (add these lines)
-include_once plugin_dir_path(__FILE__) . 'includes/classes/class-location.php';
-include_once plugin_dir_path(__FILE__) . 'includes/classes/class-vehicle-type.php';
-include_once plugin_dir_path(__FILE__) . 'includes/classes/class-package.php';
-include_once plugin_dir_path(__FILE__) . 'includes/classes/class-service.php';
-include_once plugin_dir_path(__FILE__) . 'includes/classes/class-booking.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-cwb.php';
 
 // Register activation hook.
-register_activation_hook(__FILE__, 'cwb_create_tables');
-
-function cwb_create_tables() {
-    include_once plugin_dir_path(__FILE__) . 'includes/database/class-database-setup.php';
-    cwb_initialize_database();
-}
+register_activation_hook(__FILE__, array( 'CWB_Activator', 'activate' ));
+register_deactivation_hook(__FILE__, array( 'CWB_Deactivator', 'deactivate' ));
 
 // Enqueue styles and scripts.
 add_action('wp_enqueue_scripts', 'cwb_enqueue_assets');
 function cwb_enqueue_assets() {
 }
-?>
+/**
+ * Run the plugin.
+ */
+function run_car_wash_booking_system() {
+    $plugin = new CWB_Plugin();
+    $plugin->run();
+}
+run_car_wash_booking_system();

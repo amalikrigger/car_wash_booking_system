@@ -1,31 +1,33 @@
 <?php
-
 /**
- * Fired when the plugin is uninstalled.
+ * Uninstall Car Wash Booking System
  *
- * When populating this file, consider the following flow
- * of control:
- *
- * - This method should be static
- * - Check if the $_REQUEST content actually is the plugin name
- * - Run an admin referrer check to make sure it goes through authentication
- * - Verify the output of $_GET makes sense
- * - Repeat with other user roles. Best directly by using the links/query string parameters.
- * - Repeat things for multisite. Once for a single site in the network, once sitewide.
- *
- * This file may be updated more in future version of the Boilerplate; however, this is the
- * general skeleton and outline for how the file should work.
- *
- * For more information, see the following discussion:
- * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
- *
- * @link       http://example.com
- * @since      1.0.0
- *
- * @package    Plugin_Name
+ * @package Car_Wash_Booking_System
  */
 
-// If uninstall not called from WordPress, then exit.
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
-	exit;
+    exit;
+}
+
+global $wpdb;
+$tables_to_drop = [
+    "{$wpdb->prefix}cwb_locations",
+    "{$wpdb->prefix}cwb_location_fields_config",
+    "{$wpdb->prefix}cwb_vehicle_types",
+    "{$wpdb->prefix}cwb_location_vehicle_types",
+    "{$wpdb->prefix}cwb_packages",
+    "{$wpdb->prefix}cwb_services",
+    "{$wpdb->prefix}cwb_package_services",
+    "{$wpdb->prefix}cwb_vehicle_packages",
+    "{$wpdb->prefix}cwb_package_addons",
+    "{$wpdb->prefix}cwb_settings",
+    "{$wpdb->prefix}cwb_weekday_time_ranges",
+    "{$wpdb->prefix}cwb_date_time_ranges",
+    "{$wpdb->prefix}cwb_excluded_dates",
+    "{$wpdb->prefix}cwb_resources",
+    "{$wpdb->prefix}cwb_bookings",
+];
+
+foreach ( $tables_to_drop as $table_name ) {
+    $wpdb->query( "DROP TABLE IF EXISTS {$table_name}" );
 }
