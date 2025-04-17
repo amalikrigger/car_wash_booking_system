@@ -8,8 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function cwb_render_booking_form() {
     // Enqueue the stylesheet for the UI
-    wp_enqueue_style('cwb-styles-css', plugin_dir_url(__FILE__) . '../assets/styles.css');
-    wp_enqueue_style('cwb-colors-css', plugin_dir_url(__FILE__) . '../assets/colors.css');
+    wp_enqueue_style('cwb-styles-css', plugin_dir_url(__FILE__) . '../../public/assets/css/styles.css');
+    wp_enqueue_style('cwb-colors-css', plugin_dir_url(__FILE__) . '../../public/assets/css/colors.css');
     wp_enqueue_script(
         'font-awesome-kit', // Handle name
         'https://kit.fontawesome.com/c95283ecc5.js', // URL of the Font Awesome script
@@ -17,8 +17,7 @@ function cwb_render_booking_form() {
         null, // Version (null means no versioning)
         true // Load in the footer
     );
-    wp_enqueue_script('cwb-main-script', plugin_dir_url(__FILE__) . 'assets/main.js', ['jquery'], null, true);
-    wp_enqueue_script('cwb-booking-js', plugin_dir_url(__FILE__) . '../assets/cwb-booking.js', array('jquery'), null, true);
+    wp_enqueue_script('cwb-booking-js', plugin_dir_url(__FILE__) . '../../public/assets/js/cwb-booking.js', array('jquery'), null, true);
 
     // Fetch location fields configurations for all locations
     $location_fields_configs = [];
