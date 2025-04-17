@@ -9,12 +9,11 @@ jQuery(document).ready(function ($) {
     let currentSelectedLocationId = null; // Variable to store the currently selected location ID
     let locationFieldsConfigs = cwb_ajax.location_fields_configs; // Get location fields configs from localized data
 
-// Function to update the visibility of form fields based on location config
     function updateBookingFormFields(locationId) {
-        // Retrieve the configuration for the given location, or use an empty object as a fallback.
-        const config = locationFieldsConfigs[locationId] || {};
-
-        // List of fields whose visibility is controlled by the config.
+        // Get the configuration array for the given location ID
+        const configArray = locationFieldsConfigs[locationId] || [];
+        console.log(configArray);
+        // Fields to check visibility for
         const fields = [
             'street',
             'zip_code',
@@ -23,22 +22,25 @@ jQuery(document).ready(function ($) {
             'country',
             'message',
             'gratuity',
-            'service_location'
+            'service_location',
+            'latitude',
+            'longitude'
         ];
 
         fields.forEach(field => {
-            // The config key is assumed to be the field name with '_enabled' appended.
-            // Convert the value to a boolean: treat "1" or 1 as enabled.
-            const isEnabled = config[`${field}_enabled`];
-            const enabled = isEnabled === "1" || isEnabled === 1;
+            // Find the specific config object for this field
+            const fieldConfig = configArray.find(item => item.field_name === field);
 
-            // Select the form field element using a class naming convention.
+            // Determine if field should be visible based on is_visible property
+            const enabled = fieldConfig && (fieldConfig.is_visible === '1' || fieldConfig.is_visible === 1);
+
+            // Select the form field element
             const fieldElement = $(`.cwb-location-field-${field}`);
-            if (fieldElement.length) {
-                // Log the action for debugging.
-                console.log(`${enabled ? 'Show' : 'Hide'} Field: ${field}, Enabled: ${isEnabled}`);
 
-                // Toggle the visibility class based on the 'enabled' boolean.
+            if (fieldElement.length) {
+                console.log(`${enabled ? 'Show' : 'Hide'} Field: ${field}, Visible: ${fieldConfig ? fieldConfig.is_visible : 'not found'}`);
+
+                // Toggle visibility
                 fieldElement.toggleClass('cwb-state-hidden', !enabled);
             }
         });

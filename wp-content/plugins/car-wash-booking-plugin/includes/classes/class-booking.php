@@ -21,11 +21,10 @@ class CWB_Booking {
         $now = new DateTime(); // Current date and time
         $responseSlots = [];
 
-        // Fetch settings (minimum booking time, grace period, advance booking period)
-        $settings = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}cwb_settings LIMIT 1");
-        $minimumBookingTime = $settings ? intval($settings->minimum_booking_time) : 0;
-        $advanceBookingPeriod = $settings ? intval($settings->advance_booking_period) : 30;
-        $gracePeriod = $settings ? intval($settings->grace_period) : 0;
+        // Fetch settings individually by name (fixes the property access issue)
+        $minimumBookingTime = intval($wpdb->get_var("SELECT value FROM {$wpdb->prefix}cwb_settings WHERE name = 'minimum_booking_time'") ?: 30);
+        $advanceBookingPeriod = intval($wpdb->get_var("SELECT value FROM {$wpdb->prefix}cwb_settings WHERE name = 'advance_booking_period'") ?: 7);
+        $gracePeriod = intval($wpdb->get_var("SELECT value FROM {$wpdb->prefix}cwb_settings WHERE name = 'grace_period'") ?: 15);
 
         // Calculate the latest booking date allowed
         $latestBookingDate = (clone $now)->modify("+{$advanceBookingPeriod} days");
@@ -49,11 +48,14 @@ class CWB_Booking {
             FROM {$wpdb->prefix}cwb_excluded_dates
         ");
 
-        // Fetch existing bookings
+        // Fetch existing bookings - UPDATED QUERY
         $bookings = $wpdb->get_results("
-            SELECT date, TIME_FORMAT(start_time, '%H:%i') AS start_time, TIME_FORMAT(end_time, '%H:%i') AS end_time
+            SELECT
+                DATE(start_datetime) as date,
+                TIME_FORMAT(TIME(start_datetime), '%H:%i') AS start_time,
+                TIME_FORMAT(TIME(end_datetime), '%H:%i') AS end_time
             FROM {$wpdb->prefix}cwb_bookings
-            WHERE date BETWEEN '{$startDate->format('Y-m-d')}' AND '{$endDate->format('Y-m-d')}'
+            WHERE start_datetime BETWEEN '{$startDate->format('Y-m-d')} 00:00:00' AND '{$endDate->format('Y-m-d')} 23:59:59'
         ");
 
         // Fetch resource capacity

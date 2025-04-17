@@ -25,9 +25,6 @@ class CWB_Location {
     public static function get_fields_config( $location_id ) {
         global $wpdb;
         $table_name = $wpdb->prefix . 'cwb_location_fields_config';
-        return $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table_name WHERE location_id = %d", $location_id ), ARRAY_A );
+        return $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $table_name WHERE location_id = %d", $location_id ), ARRAY_A );
     }
-
-    // You can add more methods here later (e.g., get_by_id, create, update, delete)
-
 }

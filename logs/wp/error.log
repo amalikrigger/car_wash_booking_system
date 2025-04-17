@@ -1389,3 +1389,319 @@ Stack trace:
 #6 /var/www/html/index.php(17): require('/var/www/html/w...')
 #7 {main}
   thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php on line 17
+[17-Apr-2025 18:40:03 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/database/class-database-setup.php on line 404
+[17-Apr-2025 18:40:11 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/database/class-database-setup.php on line 404
+[Thu Apr 17 18:43:28.481911 2025] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.25.0.4. Set the 'ServerName' directive globally to suppress this message
+[Thu Apr 17 18:43:36.834359 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Thu Apr 17 18:43:36.834997 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[17-Apr-2025 18:44:21 UTC] PHP Warning:  include_once(/var/www/html/wp-content/plugins/car-wash-booking-plugin/database/class-database-setup.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb-activator.php on line 35
+[17-Apr-2025 18:44:21 UTC] PHP Warning:  include_once(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/database/class-database-setup.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb-activator.php on line 35
+[17-Apr-2025 18:44:21 UTC] PHP Fatal error:  Uncaught Error: Class "CWB_Database_Setup" not found in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb-activator.php:38
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): CWB_Activator::activate(false)
+#1 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/includes/plugin.php(693): do_action('activate_car-wa...', false)
+#4 /var/www/html/wp-admin/plugins.php(58): activate_plugin('car-wash-bookin...', 'http://localhos...', false)
+#5 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb-activator.php on line 38
+[17-Apr-2025 18:46:46 UTC] PHP Warning:  include_once(/var/www/html/wp-content/plugins/car-wash-booking-plugin/database/class-database-setup.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb-activator.php on line 35
+[17-Apr-2025 18:46:46 UTC] PHP Warning:  include_once(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/database/class-database-setup.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb-activator.php on line 35
+[17-Apr-2025 18:46:46 UTC] PHP Fatal error:  Uncaught Error: Class "CWB_Database_Setup" not found in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb-activator.php:38
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): CWB_Activator::activate(false)
+#1 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/includes/plugin.php(693): do_action('activate_car-wa...', false)
+#4 /var/www/html/wp-admin/plugins.php(58): activate_plugin('car-wash-bookin...', 'http://localhos...', false)
+#5 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb-activator.php on line 38
+[17-Apr-2025 18:49:35 UTC] PHP Fatal error:  Uncaught Error: Class "CWB_Database_Setup" not found in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb-activator.php:38
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): CWB_Activator::activate(false)
+#1 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/includes/plugin.php(693): do_action('activate_car-wa...', false)
+#4 /var/www/html/wp-admin/plugins.php(58): activate_plugin('car-wash-bookin...', 'http://localhos...', false)
+#5 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb-activator.php on line 38
+[17-Apr-2025 18:53:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method CWB_Database_Setup::initialize_database() in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb-activator.php:38
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): CWB_Activator::activate(false)
+#1 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/includes/plugin.php(693): do_action('activate_car-wa...', false)
+#4 /var/www/html/wp-admin/plugins.php(58): activate_plugin('car-wash-bookin...', 'http://localhos...', false)
+#5 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb-activator.php on line 38
+[17-Apr-2025 18:53:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method CWB_Database_Setup::initialize_database() in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb-activator.php:38
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): CWB_Activator::activate(false)
+#1 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/includes/plugin.php(693): do_action('activate_car-wa...', false)
+#4 /var/www/html/wp-admin/plugins.php(58): activate_plugin('car-wash-bookin...', 'http://localhos...', false)
+#5 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb-activator.php on line 38
+[17-Apr-2025 18:54:14 UTC] PHP Fatal error:  Uncaught Error: Non-static method CWB_Database_Setup::initialize_database() cannot be called statically in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb-activator.php:38
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): CWB_Activator::activate(false)
+#1 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/includes/plugin.php(693): do_action('activate_car-wa...', false)
+#4 /var/www/html/wp-admin/plugins.php(58): activate_plugin('car-wash-bookin...', 'http://localhos...', false)
+#5 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb-activator.php on line 38
+[17-Apr-2025 18:56:18 UTC] WordPress database error Failed to open the referenced table 'wp_cwb_customer_types' for query 
+
+    -- Customers Table
+    CREATE TABLE wp_cwb_customers (
+        id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        user_id BIGINT UNSIGNED COMMENT 'WordPress user ID if registered',
+        customer_type_id INT UNSIGNED,
+        first_name VARCHAR(50) NOT NULL,
+        last_name VARCHAR(50) NOT NULL,
+        email VARCHAR(100) NOT NULL,
+        phone VARCHAR(50),
+        street VARCHAR(100),
+        city VARCHAR(100),
+        state VARCHAR(50),
+        zip_code VARCHAR(20),
+        country VARCHAR(50),
+        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
+        KEY idx_email (email),
+        KEY idx_user_id (user_id),
+        KEY idx_customer_type_id (customer_type_id),
+        FOREIGN KEY (customer_type_id) REFERENCES wp_cwb_customer_types (id) ON DELETE SET NULL
+    ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, dbDelta
+[17-Apr-2025 18:56:18 UTC] WordPress database error Failed to open the referenced table 'wp_cwb_customers' for query 
+
+    -- Bookings Table
+    CREATE TABLE wp_cwb_bookings (
+        id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        booking_number VARCHAR(50) NOT NULL,
+        booking_source_id INT UNSIGNED,
+        marketing_campaign_id INT UNSIGNED,
+        customer_id BIGINT UNSIGNED NOT NULL,
+        location_id BIGINT UNSIGNED NOT NULL,
+        vehicle_type_id BIGINT UNSIGNED NOT NULL,
+        vehicle_details VARCHAR(255),
+        package_id BIGINT UNSIGNED, -- Nullable if booking can be service-based
+        resource_id BIGINT UNSIGNED,
+        booking_status_id INT UNSIGNED NOT NULL DEFAULT 1,
+        start_datetime DATETIME NOT NULL,
+        end_datetime DATETIME NOT NULL,
+        subtotal DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+        notes TEXT,
+        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
+        latitude DECIMAL(10,8),
+        longitude DECIMAL(11,8),
+        UNIQUE KEY idx_booking_number (booking_number),
+        KEY idx_booking_date (start_datetime),
+        KEY idx_booking_status_id (booking_status_id),
+        KEY idx_booking_source_id (booking_source_id),
+        KEY idx_marketing_campaign_id (marketing_campaign_id),
+        FOREIGN KEY (customer_id) REFERENCES wp_cwb_customers (id) ON DELETE RESTRICT,
+        FOREIGN KEY (location_id) REFERENCES wp_cwb_locations (id) ON DELETE RESTRICT,
+        FOREIGN KEY (vehicle_type_id) REFERENCES wp_cwb_vehicle_types (id) ON DELETE RESTRICT,
+        FOREIGN KEY (package_id) REFERENCES wp_cwb_packages (id) ON DELETE RESTRICT,
+        FOREIGN KEY (resource_id) REFERENCES wp_cwb_resources (id) ON DELETE SET NULL,
+        FOREIGN KEY (booking_status_id) REFERENCES wp_cwb_booking_statuses (id) ON DELETE RESTRICT,
+        FOREIGN KEY (booking_source_id) REFERENCES wp_cwb_booking_sources(id) ON DELETE SET NULL,
+        FOREIGN KEY (marketing_campaign_id) REFERENCES wp_cwb_marketing_campaigns(id) ON DELETE SET NULL
+    ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, dbDelta
+[17-Apr-2025 18:56:18 UTC] WordPress database error Failed to open the referenced table 'wp_cwb_bookings' for query 
+
+    -- Booking Services Table
+    CREATE TABLE wp_cwb_booking_services (
+        id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        booking_id BIGINT UNSIGNED NOT NULL,
+        service_id BIGINT UNSIGNED NOT NULL,
+        quantity INT UNSIGNED NOT NULL DEFAULT 1,
+        price DECIMAL(10,2) NOT NULL,
+        FOREIGN KEY (booking_id) REFERENCES wp_cwb_bookings (id) ON DELETE CASCADE,
+        FOREIGN KEY (service_id) REFERENCES wp_cwb_services (id) ON DELETE RESTRICT,
+        UNIQUE KEY unique_booking_service (booking_id, service_id)
+    ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, dbDelta
+[17-Apr-2025 18:56:18 UTC] WordPress database error Failed to open the referenced table 'wp_cwb_bookings' for query 
+
+    -- Booking Add-ons Table
+    CREATE TABLE wp_cwb_booking_addons (
+        id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        booking_id BIGINT UNSIGNED NOT NULL,
+        service_id BIGINT UNSIGNED NOT NULL,
+        price DECIMAL(10,2) NOT NULL,
+        FOREIGN KEY (booking_id) REFERENCES wp_cwb_bookings (id) ON DELETE CASCADE,
+        FOREIGN KEY (service_id) REFERENCES wp_cwb_services (id) ON DELETE RESTRICT
+    ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, dbDelta
+[17-Apr-2025 18:56:18 UTC] WordPress database error Failed to open the referenced table 'wp_cwb_bookings' for query 
+
+    -- Payments Table (NEW)
+    CREATE TABLE wp_cwb_payments (
+        id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        booking_id BIGINT UNSIGNED NOT NULL,
+        payment_method_id INT UNSIGNED NOT NULL, -- Foreign key to payment_methods
+        transaction_id VARCHAR(255),
+        amount DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+        tax DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+        gratuity DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+        total DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+        payment_status_id INT UNSIGNED NOT NULL DEFAULT 1, -- Foreign key to payment_statuses, default to 'Pending'
+        payment_date DATETIME,
+        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
+        KEY idx_booking_id (booking_id),
+        KEY idx_payment_method_id (payment_method_id),
+        KEY idx_payment_status_id (payment_status_id),
+        FOREIGN KEY (booking_id) REFERENCES wp_cwb_bookings (id) ON DELETE CASCADE,
+        FOREIGN KEY (payment_method_id) REFERENCES wp_cwb_payment_methods (id) ON DELETE RESTRICT,
+        FOREIGN KEY (payment_status_id) REFERENCES wp_cwb_payment_statuses (id) ON DELETE RESTRICT
+    ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, dbDelta
+[17-Apr-2025 18:56:18 UTC] WordPress database error Failed to open the referenced table 'wp_cwb_bookings' for query 
+
+    -- Booking Status History Table
+    CREATE TABLE wp_cwb_booking_history (
+        id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        booking_id BIGINT UNSIGNED NOT NULL,
+        status VARCHAR(20) NOT NULL, -- Still using string status for history for simplicity
+        notes TEXT,
+        created_by BIGINT UNSIGNED,
+        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (booking_id) REFERENCES wp_cwb_bookings (id) ON DELETE CASCADE,
+        KEY idx_booking_id (booking_id)
+    ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, dbDelta
+[17-Apr-2025 18:56:18 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function populate_default_data() in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/database/class-database-setup.php:402
+Stack trace:
+#0 /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb-activator.php(38): CWB_Database_Setup::initialize_database()
+#1 /var/www/html/wp-includes/class-wp-hook.php(324): CWB_Activator::activate(false)
+#2 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#3 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /var/www/html/wp-admin/includes/plugin.php(693): do_action('activate_car-wa...', false)
+#5 /var/www/html/wp-admin/plugins.php(58): activate_plugin('car-wash-bookin...', 'http://localhos...', false)
+#6 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/database/class-database-setup.php on line 402
+[Thu Apr 17 19:15:30.789718 2025] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.26.0.4. Set the 'ServerName' directive globally to suppress this message
+[Thu Apr 17 19:15:51.792175 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Thu Apr 17 19:15:51.793038 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (2, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (2, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (2, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (2, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (2, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Unknown column 'date' in 'field list' for query INSERT INTO `wp_cwb_bookings` (`package_id`, `date`, `start_time`, `end_time`, `resource_id`, `customer_id`) VALUES (1, '2025-02-05', '10:00:00', '10:30:00', 1, 1) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Unknown column 'date' in 'field list' for query INSERT INTO `wp_cwb_bookings` (`package_id`, `date`, `start_time`, `end_time`, `resource_id`, `customer_id`) VALUES (1, '2025-02-05', '11:00:00', '11:30:00', 1, 2) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:16:36 UTC] WordPress database error Unknown column 'date' in 'field list' for query INSERT INTO `wp_cwb_bookings` (`package_id`, `date`, `start_time`, `end_time`, `resource_id`, `customer_id`) VALUES (2, '2025-02-06', '09:30:00', '10:00:00', 2, 3) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[Thu Apr 17 19:17:44.883466 2025] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.27.0.4. Set the 'ServerName' directive globally to suppress this message
+[Thu Apr 17 19:18:04.548410 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Thu Apr 17 19:18:04.549065 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (2, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (2, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (2, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (2, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (2, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (3, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (4, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Column 'service_id' cannot be null for query INSERT INTO `wp_cwb_package_services` (`package_id`, `service_id`) VALUES (5, NULL) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Unknown column 'date' in 'field list' for query INSERT INTO `wp_cwb_bookings` (`package_id`, `date`, `start_time`, `end_time`, `resource_id`, `customer_id`) VALUES (1, '2025-02-05', '10:00:00', '10:30:00', 1, 1) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Unknown column 'date' in 'field list' for query INSERT INTO `wp_cwb_bookings` (`package_id`, `date`, `start_time`, `end_time`, `resource_id`, `customer_id`) VALUES (1, '2025-02-05', '11:00:00', '11:30:00', 1, 2) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:27:47 UTC] WordPress database error Unknown column 'date' in 'field list' for query INSERT INTO `wp_cwb_bookings` (`package_id`, `date`, `start_time`, `end_time`, `resource_id`, `customer_id`) VALUES (2, '2025-02-06', '09:30:00', '10:00:00', 2, 3) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[Thu Apr 17 19:35:08.784724 2025] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.31.0.4. Set the 'ServerName' directive globally to suppress this message
+[Thu Apr 17 19:35:19.437842 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Thu Apr 17 19:35:19.438525 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[17-Apr-2025 19:42:42 UTC] WordPress database error Unknown column 'date' in 'field list' for query INSERT INTO `wp_cwb_bookings` (`package_id`, `date`, `start_time`, `end_time`, `resource_id`, `customer_id`) VALUES (1, '2025-02-05', '10:00:00', '10:30:00', 1, 1) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:42:42 UTC] WordPress database error Unknown column 'date' in 'field list' for query INSERT INTO `wp_cwb_bookings` (`package_id`, `date`, `start_time`, `end_time`, `resource_id`, `customer_id`) VALUES (1, '2025-02-05', '11:00:00', '11:30:00', 1, 2) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:42:42 UTC] WordPress database error Unknown column 'date' in 'field list' for query INSERT INTO `wp_cwb_bookings` (`package_id`, `date`, `start_time`, `end_time`, `resource_id`, `customer_id`) VALUES (2, '2025-02-06', '09:30:00', '10:00:00', 2, 3) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[Thu Apr 17 19:45:41.619364 2025] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.0.4. Set the 'ServerName' directive globally to suppress this message
+[Thu Apr 17 19:45:54.214094 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Thu Apr 17 19:45:54.214896 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[17-Apr-2025 19:46:33 UTC] WordPress database error Cannot add or update a child row: a foreign key constraint fails (`wordpress`.`wp_cwb_bookings`, CONSTRAINT `wp_cwb_bookings_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `wp_cwb_customers` (`id`) ON DELETE RESTRICT) for query INSERT INTO `wp_cwb_bookings` (`booking_number`, `customer_id`, `location_id`, `vehicle_type_id`, `package_id`, `resource_id`, `booking_status_id`, `start_datetime`, `end_datetime`, `subtotal`) VALUES ('BK-68015a994e64e', 1, 1, 1, 1, 1, 1, '2025-02-05 10:00:00', '2025-02-05 10:30:00', 45.000000) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:46:33 UTC] WordPress database error Cannot add or update a child row: a foreign key constraint fails (`wordpress`.`wp_cwb_bookings`, CONSTRAINT `wp_cwb_bookings_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `wp_cwb_customers` (`id`) ON DELETE RESTRICT) for query INSERT INTO `wp_cwb_bookings` (`booking_number`, `customer_id`, `location_id`, `vehicle_type_id`, `package_id`, `resource_id`, `booking_status_id`, `start_datetime`, `end_datetime`, `subtotal`) VALUES ('BK-68015a994e650', 2, 1, 1, 1, 1, 1, '2025-02-05 11:00:00', '2025-02-05 11:30:00', 45.000000) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[17-Apr-2025 19:46:33 UTC] WordPress database error Cannot add or update a child row: a foreign key constraint fails (`wordpress`.`wp_cwb_bookings`, CONSTRAINT `wp_cwb_bookings_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `wp_cwb_customers` (`id`) ON DELETE RESTRICT) for query INSERT INTO `wp_cwb_bookings` (`booking_number`, `customer_id`, `location_id`, `vehicle_type_id`, `package_id`, `resource_id`, `booking_status_id`, `start_datetime`, `end_datetime`, `subtotal`) VALUES ('BK-68015a994e651', 3, 1, 2, 2, 2, 1, '2025-02-06 09:30:00', '2025-02-06 10:00:00', 50.000000) made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[Thu Apr 17 19:54:29.539181 2025] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.16.4. Set the 'ServerName' directive globally to suppress this message
+[Thu Apr 17 19:54:39.309251 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Thu Apr 17 19:54:39.309910 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Thu Apr 17 19:57:58.732701 2025] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.32.4. Set the 'ServerName' directive globally to suppress this message
+[Thu Apr 17 19:58:10.010301 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Thu Apr 17 19:58:10.011122 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[17-Apr-2025 19:59:48 UTC] PHP Warning:  Undefined property: stdClass::$minimum_booking_time in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/classes/class-booking.php on line 26
+[17-Apr-2025 19:59:48 UTC] PHP Warning:  Undefined property: stdClass::$advance_booking_period in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/classes/class-booking.php on line 27
+[17-Apr-2025 19:59:48 UTC] PHP Warning:  Undefined property: stdClass::$grace_period in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/classes/class-booking.php on line 28
+[17-Apr-2025 19:59:48 UTC] WordPress database error Unknown column 'date' in 'field list' for query 
+            SELECT date, TIME_FORMAT(start_time, '%H:%i') AS start_time, TIME_FORMAT(end_time, '%H:%i') AS end_time
+            FROM wp_cwb_bookings
+            WHERE date BETWEEN '2025-04-17' AND '2025-04-23'
+         made by do_action('wp_ajax_cwb_get_available_slots'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_API_Endpoints->get_available_slots, CWB_Booking::get_available_slots
+[17-Apr-2025 20:05:06 UTC] PHP Warning:  Undefined property: stdClass::$minimum_booking_time in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/classes/class-booking.php on line 26
+[17-Apr-2025 20:05:06 UTC] PHP Warning:  Undefined property: stdClass::$advance_booking_period in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/classes/class-booking.php on line 27
+[17-Apr-2025 20:05:06 UTC] PHP Warning:  Undefined property: stdClass::$grace_period in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/classes/class-booking.php on line 28
+[17-Apr-2025 20:46:11 UTC] PHP Parse error:  Unclosed '[' does not match ')' in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/classes/class-location.php on line 28
+[17-Apr-2025 20:46:12 UTC] PHP Parse error:  Unclosed '[' does not match ')' in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/classes/class-location.php on line 28
+[17-Apr-2025 20:47:12 UTC] PHP Parse error:  Unclosed '[' does not match ')' in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/classes/class-location.php on line 28
+[17-Apr-2025 20:47:39 UTC] PHP Parse error:  Unclosed '[' does not match ')' in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/classes/class-location.php on line 28
+[17-Apr-2025 20:47:41 UTC] PHP Parse error:  Unclosed '[' does not match ')' in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/classes/class-location.php on line 28
+[Thu Apr 17 21:07:07.925890 2025] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.48.4. Set the 'ServerName' directive globally to suppress this message
+[Thu Apr 17 21:07:17.217642 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Thu Apr 17 21:07:17.218395 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[17-Apr-2025 21:15:57 UTC] PHP Parse error:  syntax error, unexpected token "," in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/database/class-database-setup.php on line 628
+[17-Apr-2025 21:16:41 UTC] PHP Parse error:  syntax error, unexpected token "," in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/database/class-database-setup.php on line 628
+[17-Apr-2025 21:16:48 UTC] PHP Parse error:  syntax error, unexpected token "," in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/database/class-database-setup.php on line 628
+[17-Apr-2025 21:16:50 UTC] PHP Parse error:  syntax error, unexpected token "," in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/database/class-database-setup.php on line 628
+[17-Apr-2025 21:16:59 UTC] PHP Parse error:  syntax error, unexpected token "," in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/database/class-database-setup.php on line 628
+[17-Apr-2025 21:17:03 UTC] PHP Parse error:  syntax error, unexpected token "," in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/database/class-database-setup.php on line 628

@@ -32,7 +32,7 @@ class CWB_Activator {
      */
     public static function activate() {
         // Include database setup class (if not already included elsewhere)
-        include_once plugin_dir_path( dirname( __FILE__ ) ) . 'database/class-database-setup.php';
+        include_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/database/class-database-setup.php';
 
         // Call the database initialization function
         CWB_Database_Setup::initialize_database(); // Use the class and method from class-database-setup.php

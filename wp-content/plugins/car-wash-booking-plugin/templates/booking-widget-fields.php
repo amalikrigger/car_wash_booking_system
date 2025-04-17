@@ -12,11 +12,11 @@
         </div>
         <!-- Latitude and Longitude Fields -->
         <div class="cwb-clear-fix">
-            <div class="cwb-form-field cwb-form-width-50">
+            <div class="cwb-form-field cwb-form-width-50 cwb-location-field-latitude">
                 <label>Latitude *</label>
                 <input type="text" name="client_latitude" autocomplete="off" value="" required pattern="-?\d+(\.\d+)?" title="Please enter a valid latitude (e.g., 37.7749).">
             </div>
-            <div class="cwb-form-field cwb-form-width-50">
+            <div class="cwb-form-field cwb-form-width-50 cwb-location-field-longitude">
                 <label>Longitude *</label>
                 <input type="text" name="client_longitude" autocomplete="off" value="" required pattern="-?\d+(\.\d+)?" title="Please enter a valid longitude (e.g., -122.4194).">
             </div>
