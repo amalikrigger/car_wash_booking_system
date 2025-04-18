@@ -18,8 +18,8 @@ class CWB_Shortcodes {
      * @return string HTML output of the booking widget.
      */
     public function booking_widget_shortcode() {
-        $controller = new CWB_Booking_Widget_Controller(); // Instantiate the controller
-        return $controller->render_booking_widget(); // Call the controller method to render the form
+        $controller = new CWB_Booking_Widget_Controller();
+        return $controller->render_booking_widget();
     }
 }
 

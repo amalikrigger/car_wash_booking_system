@@ -7,13 +7,15 @@ class CWB_Plugin {
     protected $loader;
     protected $plugin_name;
     protected $version;
+    protected $public;
 
     public function __construct() {
-        $this->plugin_name = 'car-wash-booking-system'; // Plugin slug
-        $this->version = '1.0.0'; // Or get from plugin headers
+        $this->plugin_name = 'car-wash-booking-system';
+        $this->version = '1.0.0';
 
         $this->load_dependencies();
         $this->loader = new CWB_Loader();
+        $this->public = new CWB_Public( $this->get_plugin_name(), $this->get_version() );
         $this->define_admin_hooks();
         $this->define_public_hooks();
         $this->init_controllers();
@@ -35,25 +37,22 @@ class CWB_Plugin {
         // Include controllers
         include_once plugin_dir_path( __FILE__ ) . 'controllers/class-booking-widget-controller.php';
         // Include functions
+        include_once plugin_dir_path( __FILE__ ) . 'functions/functions-locations.php';
         include_once plugin_dir_path( __FILE__ ) . 'functions/functions-formatting.php';
         include_once plugin_dir_path( __FILE__ ) . 'functions/functions-availability.php';
         include_once plugin_dir_path( __FILE__ ) . 'functions/functions-debug.php';
         // Include database setup
         include_once plugin_dir_path( __FILE__ ) . 'database/class-database-setup.php';
+        // Include public class
+        include_once plugin_dir_path( __FILE__ ) . '../public/class-cwb-public.php';
     }
 
     private function define_admin_hooks() {
-
+        // Admin hooks will be defined here later
     }
 
     private function define_public_hooks() {
-        $this->loader->add_action( 'wp_enqueue_scripts', $this, 'enqueue_assets' );
-    }
-
-    public function enqueue_assets() {
-        wp_enqueue_style( 'cwbs-plugin-style', plugin_dir_url( __FILE__ ) . 'public/assets/css/styles.css' );
-        wp_enqueue_style( 'cwbs-plugin-colors', plugin_dir_url( __FILE__ ) . 'public/assets/css/colors.css' );
-        wp_enqueue_script( 'cwbs-booking-script', plugin_dir_url( __FILE__ ) . 'public/assets/js/cwb-booking.js', array( 'jquery' ), $this->version, true );
+        $this->loader->add_action( 'wp_enqueue_scripts', $this->public, 'enqueue_assets' );
     }
 
     private function init_controllers() {
@@ -62,7 +61,14 @@ class CWB_Plugin {
     }
 
     public function run() {
-        $this->loader->run(); // Run the loader to register hooks
+        $this->loader->run();
     }
 
+    public function get_plugin_name() {
+        return $this->plugin_name;
+    }
+
+    public function get_version() {
+        return $this->version;
+    }
 }

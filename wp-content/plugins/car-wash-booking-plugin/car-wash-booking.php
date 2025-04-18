@@ -15,10 +15,6 @@ function activate_car_wash_booking_system() { // Update function name with plugi
     CWB_Activator::activate();
 }
 
-/**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-cwbs-deactivator.php
- */
 function deactivate_car_wash_booking_system() { // Update function name with plugin prefix
     require_once plugin_dir_path( __FILE__ ) . 'includes/class-cwb-deactivator.php';
     CWB_Deactivator::deactivate();

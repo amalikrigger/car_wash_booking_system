@@ -1705,3 +1705,463 @@ AH00558: apache2: Could not reliably determine the server's fully qualified doma
 [17-Apr-2025 21:16:50 UTC] PHP Parse error:  syntax error, unexpected token "," in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/database/class-database-setup.php on line 628
 [17-Apr-2025 21:16:59 UTC] PHP Parse error:  syntax error, unexpected token "," in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/database/class-database-setup.php on line 628
 [17-Apr-2025 21:17:03 UTC] PHP Parse error:  syntax error, unexpected token "," in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/database/class-database-setup.php on line 628
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.48.2. Set the 'ServerName' directive globally to suppress this message
+[Thu Apr 17 22:58:16.715963 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Thu Apr 17 22:58:16.722619 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.48.4. Set the 'ServerName' directive globally to suppress this message
+[Fri Apr 18 15:45:27.813818 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Fri Apr 18 15:45:27.818401 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Fri Apr 18 17:08:24.401617 2025] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.20.0.4. Set the 'ServerName' directive globally to suppress this message
+[Fri Apr 18 17:08:34.415889 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Fri Apr 18 17:08:34.416662 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[18-Apr-2025 17:11:18 UTC] PHP Warning:  include_once(/var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/class-booking-controller.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php on line 39
+[18-Apr-2025 17:11:18 UTC] PHP Warning:  include_once(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/class-booking-controller.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php on line 39
+[18-Apr-2025 17:11:18 UTC] PHP Fatal error:  Uncaught Error: Class "CWB_Public" not found in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:22
+Stack trace:
+#0 /var/www/html/wp-content/plugins/car-wash-booking-plugin/car-wash-booking.php(28): CWB_Plugin->__construct()
+#1 /var/www/html/wp-content/plugins/car-wash-booking-plugin/car-wash-booking.php(32): run_car_wash_booking_system()
+#2 /var/www/html/wp-admin/includes/plugin.php(2318): include_once('/var/www/html/w...')
+#3 /var/www/html/wp-admin/includes/plugin.php(663): plugin_sandbox_scrape('car-wash-bookin...')
+#4 /var/www/html/wp-admin/plugins.php(58): activate_plugin('car-wash-bookin...', 'http://localhos...', false)
+#5 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php on line 22
+[18-Apr-2025 17:13:00 UTC] PHP Fatal error:  Uncaught Error: Class "CWB_Public" not found in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:22
+Stack trace:
+#0 /var/www/html/wp-content/plugins/car-wash-booking-plugin/car-wash-booking.php(28): CWB_Plugin->__construct()
+#1 /var/www/html/wp-content/plugins/car-wash-booking-plugin/car-wash-booking.php(32): run_car_wash_booking_system()
+#2 /var/www/html/wp-admin/includes/plugin.php(2318): include_once('/var/www/html/w...')
+#3 /var/www/html/wp-admin/includes/plugin.php(663): plugin_sandbox_scrape('car-wash-bookin...')
+#4 /var/www/html/wp-admin/plugins.php(58): activate_plugin('car-wash-bookin...', 'http://localhos...', false)
+#5 {main}
+  thrown in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php on line 22
+[18-Apr-2025 17:18:16 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/../../templates/booking-widget.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/class-booking-widget-controller.php on line 26
+[18-Apr-2025 17:18:16 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/../../templates/booking-widget.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/class-booking-widget-controller.php on line 26
+[18-Apr-2025 17:18:18 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/../../templates/booking-widget.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/class-booking-widget-controller.php on line 26
+[18-Apr-2025 17:18:18 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/../../templates/booking-widget.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/class-booking-widget-controller.php on line 26
+[18-Apr-2025 17:18:18 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/../../templates/booking-widget.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/class-booking-widget-controller.php on line 26
+[18-Apr-2025 17:18:18 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/../../templates/booking-widget.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/class-booking-widget-controller.php on line 26
+[18-Apr-2025 17:18:18 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, first array member is not a valid class name or object in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[18-Apr-2025 17:19:53 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-location-list.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 7
+[18-Apr-2025 17:19:53 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-location-list.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 7
+[18-Apr-2025 17:19:53 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-vehicle-list.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 8
+[18-Apr-2025 17:19:53 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-vehicle-list.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 8
+[18-Apr-2025 17:19:53 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-package-list.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 9
+[18-Apr-2025 17:19:53 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-package-list.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 9
+[18-Apr-2025 17:19:53 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-service-list.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 10
+[18-Apr-2025 17:19:53 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-service-list.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 10
+[18-Apr-2025 17:19:53 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-calendar.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 11
+[18-Apr-2025 17:19:53 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-calendar.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 11
+[18-Apr-2025 17:19:53 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-summary.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 12
+[18-Apr-2025 17:19:53 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-summary.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 12
+[18-Apr-2025 17:19:53 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, first array member is not a valid class name or object in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[18-Apr-2025 17:19:55 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-location-list.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 7
+[18-Apr-2025 17:19:55 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-location-list.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 7
+[18-Apr-2025 17:19:55 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-vehicle-list.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 8
+[18-Apr-2025 17:19:55 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-vehicle-list.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 8
+[18-Apr-2025 17:19:55 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-package-list.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 9
+[18-Apr-2025 17:19:55 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-package-list.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 9
+[18-Apr-2025 17:19:55 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-service-list.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 10
+[18-Apr-2025 17:19:55 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-service-list.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 10
+[18-Apr-2025 17:19:55 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-calendar.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 11
+[18-Apr-2025 17:19:55 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-calendar.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 11
+[18-Apr-2025 17:19:55 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-summary.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 12
+[18-Apr-2025 17:19:55 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-summary.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 12
+[18-Apr-2025 17:19:55 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, first array member is not a valid class name or object in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[18-Apr-2025 17:20:09 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-location-list.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 7
+[18-Apr-2025 17:20:09 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-location-list.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 7
+[18-Apr-2025 17:20:09 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-vehicle-list.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 8
+[18-Apr-2025 17:20:09 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-vehicle-list.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 8
+[18-Apr-2025 17:20:09 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-package-list.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 9
+[18-Apr-2025 17:20:09 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-package-list.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 9
+[18-Apr-2025 17:20:09 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-service-list.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 10
+[18-Apr-2025 17:20:09 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-service-list.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 10
+[18-Apr-2025 17:20:09 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-calendar.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 11
+[18-Apr-2025 17:20:09 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-calendar.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 11
+[18-Apr-2025 17:20:09 UTC] PHP Warning:  include(/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-summary.php): Failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 12
+[18-Apr-2025 17:20:09 UTC] PHP Warning:  include(): Failed opening '/var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget-summary.php' for inclusion (include_path='.:/usr/local/lib/php') in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/views/booking-widget.php on line 12
+[18-Apr-2025 17:20:09 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, first array member is not a valid class name or object in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[18-Apr-2025 17:21:30 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, first array member is not a valid class name or object in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[18-Apr-2025 17:24:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/admin-ajax.php on line 27
+[18-Apr-2025 17:24:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/admin-ajax.php on line 28
+[18-Apr-2025 17:24:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-includes/functions.php on line 6936
+[18-Apr-2025 17:24:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/includes/misc.php on line 1431
+[18-Apr-2025 17:24:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-includes/functions.php on line 7049
+[18-Apr-2025 17:24:06 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, first array member is not a valid class name or object in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[18-Apr-2025 17:26:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/admin-ajax.php on line 27
+[18-Apr-2025 17:26:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/admin-ajax.php on line 28
+[18-Apr-2025 17:26:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-includes/functions.php on line 6936
+[18-Apr-2025 17:26:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/includes/misc.php on line 1431
+[18-Apr-2025 17:26:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-includes/functions.php on line 7049
+[18-Apr-2025 17:26:55 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, first array member is not a valid class name or object in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[18-Apr-2025 17:28:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/admin-ajax.php on line 27
+[18-Apr-2025 17:28:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/admin-ajax.php on line 28
+[18-Apr-2025 17:28:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-includes/functions.php on line 6936
+[18-Apr-2025 17:28:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/includes/misc.php on line 1431
+[18-Apr-2025 17:28:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-includes/functions.php on line 7049
+[18-Apr-2025 17:29:47 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, first array member is not a valid class name or object in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[18-Apr-2025 17:29:49 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, first array member is not a valid class name or object in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[18-Apr-2025 17:30:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/admin-ajax.php on line 27
+[18-Apr-2025 17:30:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/admin-ajax.php on line 28
+[18-Apr-2025 17:30:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-includes/functions.php on line 6936
+[18-Apr-2025 17:30:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/includes/misc.php on line 1431
+[18-Apr-2025 17:30:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-includes/functions.php on line 7049
+[18-Apr-2025 17:30:36 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, first array member is not a valid class name or object in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[18-Apr-2025 17:30:51 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, first array member is not a valid class name or object in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[18-Apr-2025 17:32:05 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/admin-ajax.php on line 27
+[18-Apr-2025 17:32:05 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/admin-ajax.php on line 28
+[18-Apr-2025 17:32:05 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-includes/functions.php on line 6936
+[18-Apr-2025 17:32:05 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/includes/misc.php on line 1431
+[18-Apr-2025 17:32:05 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-includes/functions.php on line 7049
+[18-Apr-2025 17:32:14 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, first array member is not a valid class name or object in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[18-Apr-2025 17:33:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/admin-ajax.php on line 27
+[18-Apr-2025 17:33:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/admin-ajax.php on line 28
+[18-Apr-2025 17:33:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-includes/functions.php on line 6936
+[18-Apr-2025 17:33:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/includes/misc.php on line 1431
+[18-Apr-2025 17:33:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-includes/functions.php on line 7049
+[18-Apr-2025 17:35:07 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/admin-ajax.php on line 27
+[18-Apr-2025 17:35:07 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/admin-ajax.php on line 28
+[18-Apr-2025 17:35:07 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-includes/functions.php on line 6936
+[18-Apr-2025 17:35:07 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-admin/includes/misc.php on line 1431
+[18-Apr-2025 17:35:07 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/class-cwb.php:23) in /var/www/html/wp-includes/functions.php on line 7049
+[18-Apr-2025 17:36:24 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, first array member is not a valid class name or object in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[18-Apr-2025 17:36:52 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, first array member is not a valid class name or object in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[18-Apr-2025 17:36:55 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, first array member is not a valid class name or object in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[18-Apr-2025 17:36:58 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, first array member is not a valid class name or object in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[18-Apr-2025 17:38:00 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, first array member is not a valid class name or object in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[18-Apr-2025 17:39:07 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, first array member is not a valid class name or object in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[18-Apr-2025 17:41:13 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, class CWB_Plugin does not have a method "enqueue_assets" in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[18-Apr-2025 17:42:55 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, first array member is not a valid class name or object in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[Fri Apr 18 17:45:35.036303 2025] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.22.0.4. Set the 'ServerName' directive globally to suppress this message
+[Fri Apr 18 17:45:48.716571 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Fri Apr 18 17:45:48.717365 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[18-Apr-2025 17:46:59 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, first array member is not a valid class name or object in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#2 /var/www/html/wp-includes/script-loader.php(2262): do_action('wp_enqueue_scri...')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/general-template.php(3052): do_action('wp_head')
+#7 /var/www/html/wp-includes/template-canvas.php(17): wp_head()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown in /var/www/html/wp-includes/class-wp-hook.php on line 324
+[18-Apr-2025 17:49:50 UTC] CWBS_Public::enqueue_assets() is being called - Styles should load!
+[18-Apr-2025 17:50:11 UTC] CWBS_Public::enqueue_assets() is being called - Styles should load!
+[18-Apr-2025 17:50:17 UTC] CWBS_Public::enqueue_assets() is being called - Styles should load!
+[Fri Apr 18 17:52:34.270053 2025] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.23.0.4. Set the 'ServerName' directive globally to suppress this message
+[Fri Apr 18 17:52:46.894688 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Fri Apr 18 17:52:46.895652 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Fri Apr 18 18:09:33.065252 2025] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.24.0.4. Set the 'ServerName' directive globally to suppress this message
+[Fri Apr 18 18:09:42.273228 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Fri Apr 18 18:09:42.274097 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[18-Apr-2025 18:13:57 UTC] PHP Warning:  Undefined variable $locations in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/class-booking-widget-controller.php on line 21
+[18-Apr-2025 18:13:57 UTC] PHP Warning:  Undefined variable $location_fields_configs in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/class-booking-widget-controller.php on line 22
+[18-Apr-2025 18:13:57 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/partials/booking-widget-location-list.php on line 19
+[18-Apr-2025 18:15:19 UTC] PHP Warning:  Undefined variable $view_data in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/partials/booking-widget-location-list.php on line 17
+[18-Apr-2025 18:15:19 UTC] PHP Warning:  Trying to access array offset on value of type null in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/partials/booking-widget-location-list.php on line 17
+[18-Apr-2025 18:15:19 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/partials/booking-widget-location-list.php on line 19
+[18-Apr-2025 18:15:40 UTC] PHP Warning:  Undefined variable $view_data in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/partials/booking-widget-location-list.php on line 17
+[18-Apr-2025 18:15:40 UTC] PHP Warning:  Trying to access array offset on value of type null in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/partials/booking-widget-location-list.php on line 17
+[18-Apr-2025 18:15:40 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/partials/booking-widget-location-list.php on line 19
+[18-Apr-2025 18:15:43 UTC] PHP Warning:  Undefined variable $view_data in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/partials/booking-widget-location-list.php on line 17
+[18-Apr-2025 18:15:43 UTC] PHP Warning:  Trying to access array offset on value of type null in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/partials/booking-widget-location-list.php on line 17
+[18-Apr-2025 18:15:43 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/partials/booking-widget-location-list.php on line 19
+[18-Apr-2025 18:15:47 UTC] PHP Warning:  Undefined variable $view_data in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/partials/booking-widget-location-list.php on line 17
+[18-Apr-2025 18:15:47 UTC] PHP Warning:  Trying to access array offset on value of type null in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/partials/booking-widget-location-list.php on line 17
+[18-Apr-2025 18:15:47 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/partials/booking-widget-location-list.php on line 19
+[18-Apr-2025 18:16:26 UTC] PHP Warning:  Undefined variable $location_fields_configs in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/class-cwb-public.php on line 36
+[18-Apr-2025 18:16:35 UTC] PHP Warning:  Undefined variable $location_fields_configs in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/class-cwb-public.php on line 36
+[18-Apr-2025 18:17:22 UTC] PHP Warning:  Undefined variable $locations in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/class-booking-widget-controller.php on line 21
+[18-Apr-2025 18:17:22 UTC] PHP Warning:  Undefined variable $location_fields_configs in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/class-booking-widget-controller.php on line 22
+[18-Apr-2025 18:17:22 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/partials/booking-widget-location-list.php on line 19
+[18-Apr-2025 18:17:25 UTC] PHP Warning:  Undefined variable $locations in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/class-booking-widget-controller.php on line 21
+[18-Apr-2025 18:17:25 UTC] PHP Warning:  Undefined variable $location_fields_configs in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/class-booking-widget-controller.php on line 22
+[18-Apr-2025 18:17:25 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/partials/booking-widget-location-list.php on line 19
