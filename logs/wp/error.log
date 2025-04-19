@@ -2179,3 +2179,157 @@ AH00558: apache2: Could not reliably determine the server's fully qualified doma
 AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.22.0.4. Set the 'ServerName' directive globally to suppress this message
 [Sat Apr 19 18:29:13.752352 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
 [Sat Apr 19 18:29:13.752972 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Sat Apr 19 20:10:06.175840 2025] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.23.0.4. Set the 'ServerName' directive globally to suppress this message
+[Sat Apr 19 20:10:44.854956 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Sat Apr 19 20:10:44.855569 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[19-Apr-2025 20:11:26 UTC] WordPress database error Table 'wordpress.wp_cwb_booking_statuses' doesn't exist for query 
+        -- Independent tables (no foreign key dependencies) first
+
+        -- Booking Statuses Table
+        CREATE TABLE wp_cwb_booking_statuses (
+            id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(50) NOT NULL UNIQUE COMMENT 'e.g., Pending, Confirmed, Cancelled, Completed',
+            description VARCHAR(255),
+            is_default TINYINT(1) NOT NULL DEFAULT 0 COMMENT 'Is this the default status?',
+            created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
+            KEY idx_is_default (is_default),
+            CONSTRAINT uc_default_status CHECK (is_default = 0 OR
+                (is_default = 1 AND id = (SELECT id FROM (SELECT id FROM wp_cwb_booking_statuses WHERE is_default = 1) AS temp)))
+        ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, dbDelta
+[19-Apr-2025 20:11:26 UTC] WordPress database error Failed to open the referenced table 'wp_cwb_booking_statuses' for query 
+
+        -- Bookings Table
+        CREATE TABLE wp_cwb_bookings (
+            id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            booking_number VARCHAR(50) NOT NULL UNIQUE,
+            customer_id BIGINT UNSIGNED NOT NULL,
+            location_id BIGINT UNSIGNED NOT NULL,
+            package_id BIGINT UNSIGNED,
+            resource_id BIGINT UNSIGNED,
+            booking_status_id INT UNSIGNED NOT NULL DEFAULT 1,
+            start_datetime DATETIME NOT NULL,
+            end_datetime DATETIME NOT NULL,
+            subtotal DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+            created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
+            FOREIGN KEY (customer_id) REFERENCES wp_cwb_customers (id),
+            FOREIGN KEY (location_id) REFERENCES wp_cwb_locations (id),
+            FOREIGN KEY (package_id) REFERENCES wp_cwb_packages (id),
+            FOREIGN KEY (resource_id) REFERENCES wp_cwb_resources (id),
+            FOREIGN KEY (booking_status_id) REFERENCES wp_cwb_booking_statuses (id)
+        ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, dbDelta
+[19-Apr-2025 20:11:26 UTC] WordPress database error Failed to open the referenced table 'wp_cwb_bookings' for query 
+
+        -- Tables depending on bookings
+        
+        -- Booking details table for supplementary information
+        CREATE TABLE wp_cwb_booking_details (
+            booking_id BIGINT UNSIGNED PRIMARY KEY,
+            booking_source_id INT UNSIGNED,
+            marketing_campaign_id INT UNSIGNED,
+            vehicle_type_id BIGINT UNSIGNED NOT NULL,
+            vehicle_details VARCHAR(255),
+            notes TEXT,
+            latitude DECIMAL(10,8),
+            longitude DECIMAL(11,8),
+            FOREIGN KEY (booking_id) REFERENCES wp_cwb_bookings (id) ON DELETE CASCADE,
+            FOREIGN KEY (booking_source_id) REFERENCES wp_cwb_booking_sources (id) ON DELETE SET NULL,
+            FOREIGN KEY (marketing_campaign_id) REFERENCES wp_cwb_marketing_campaigns (id) ON DELETE SET NULL,
+            FOREIGN KEY (vehicle_type_id) REFERENCES wp_cwb_vehicle_types (id) ON DELETE RESTRICT
+        ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, dbDelta
+[19-Apr-2025 20:11:26 UTC] WordPress database error Failed to open the referenced table 'wp_cwb_bookings' for query 
+
+        -- Booking Services Table
+        CREATE TABLE wp_cwb_booking_services (
+            id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            booking_id BIGINT UNSIGNED NOT NULL,
+            service_id BIGINT UNSIGNED NOT NULL,
+            quantity INT UNSIGNED NOT NULL DEFAULT 1,
+            price DECIMAL(10,2) NOT NULL,
+            FOREIGN KEY (booking_id) REFERENCES wp_cwb_bookings (id) ON DELETE CASCADE,
+            FOREIGN KEY (service_id) REFERENCES wp_cwb_services (id) ON DELETE RESTRICT,
+            UNIQUE KEY unique_booking_service (booking_id, service_id)
+        ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, dbDelta
+[19-Apr-2025 20:11:26 UTC] WordPress database error Failed to open the referenced table 'wp_cwb_bookings' for query 
+
+        -- Booking Add-ons Table
+        CREATE TABLE wp_cwb_booking_addons (
+            id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            booking_id BIGINT UNSIGNED NOT NULL,
+            service_id BIGINT UNSIGNED NOT NULL,
+            price DECIMAL(10,2) NOT NULL,
+            FOREIGN KEY (booking_id) REFERENCES wp_cwb_bookings (id) ON DELETE CASCADE,
+            FOREIGN KEY (service_id) REFERENCES wp_cwb_services (id) ON DELETE RESTRICT
+        ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, dbDelta
+[19-Apr-2025 20:11:26 UTC] WordPress database error Failed to open the referenced table 'wp_cwb_bookings' for query 
+
+        -- Payments Table (NEW)
+        CREATE TABLE wp_cwb_payments (
+            id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            booking_id BIGINT UNSIGNED NOT NULL,
+            payment_method_id INT UNSIGNED NOT NULL, -- Foreign key to payment_methods
+            transaction_id VARCHAR(255),
+            amount DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+            tax DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+            gratuity DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+            total DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+            payment_status_id INT UNSIGNED NOT NULL DEFAULT 1, -- Foreign key to payment_statuses, default to 'Pending'
+            payment_date DATETIME,
+            created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
+            KEY idx_booking_id (booking_id),
+            KEY idx_payment_method_id (payment_method_id),
+            KEY idx_payment_status_id (payment_status_id),
+            FOREIGN KEY (booking_id) REFERENCES wp_cwb_bookings (id) ON DELETE CASCADE,
+            FOREIGN KEY (payment_method_id) REFERENCES wp_cwb_payment_methods (id) ON DELETE RESTRICT,
+            FOREIGN KEY (payment_status_id) REFERENCES wp_cwb_payment_statuses (id) ON DELETE RESTRICT
+        ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, dbDelta
+[19-Apr-2025 20:11:26 UTC] WordPress database error Failed to open the referenced table 'wp_cwb_bookings' for query 
+
+        -- Booking Status History Table
+        CREATE TABLE wp_cwb_booking_history (
+            id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            booking_id BIGINT UNSIGNED NOT NULL,
+            booking_status_id INT UNSIGNED NOT NULL,
+            notes TEXT,
+            created_by BIGINT UNSIGNED,
+            created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (booking_id) REFERENCES wp_cwb_bookings (id) ON DELETE CASCADE,
+            FOREIGN KEY (booking_status_id) REFERENCES wp_cwb_booking_statuses (id) ON DELETE RESTRICT,
+            KEY idx_booking_id (booking_id),
+            KEY idx_booking_status_id (booking_status_id)
+        ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, dbDelta
+[19-Apr-2025 20:11:26 UTC] WordPress database error Table 'wordpress.wp_cwb_booking_statuses' doesn't exist for query SELECT COUNT(*) FROM wp_cwb_booking_statuses made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[19-Apr-2025 20:11:26 UTC] WordPress database error Table 'wordpress.wp_cwb_booking_statuses' doesn't exist for query SHOW FULL COLUMNS FROM `wp_cwb_booking_statuses` made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[19-Apr-2025 20:11:26 UTC] WordPress database error Table 'wordpress.wp_cwb_booking_statuses' doesn't exist for query SHOW FULL COLUMNS FROM `wp_cwb_booking_statuses` made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[19-Apr-2025 20:11:26 UTC] WordPress database error Table 'wordpress.wp_cwb_booking_statuses' doesn't exist for query SHOW FULL COLUMNS FROM `wp_cwb_booking_statuses` made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[19-Apr-2025 20:11:26 UTC] WordPress database error Table 'wordpress.wp_cwb_booking_statuses' doesn't exist for query SHOW FULL COLUMNS FROM `wp_cwb_booking_statuses` made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[19-Apr-2025 20:11:26 UTC] WordPress database error Table 'wordpress.wp_cwb_bookings' doesn't exist for query SELECT COUNT(*) FROM wp_cwb_bookings made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[19-Apr-2025 20:11:26 UTC] WordPress database error Table 'wordpress.wp_cwb_bookings' doesn't exist for query SHOW FULL COLUMNS FROM `wp_cwb_bookings` made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[19-Apr-2025 20:11:26 UTC] WordPress database error Table 'wordpress.wp_cwb_booking_details' doesn't exist for query SHOW FULL COLUMNS FROM `wp_cwb_booking_details` made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[19-Apr-2025 20:11:26 UTC] WordPress database error Table 'wordpress.wp_cwb_bookings' doesn't exist for query SHOW FULL COLUMNS FROM `wp_cwb_bookings` made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[19-Apr-2025 20:11:26 UTC] WordPress database error Table 'wordpress.wp_cwb_booking_details' doesn't exist for query SHOW FULL COLUMNS FROM `wp_cwb_booking_details` made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[19-Apr-2025 20:11:26 UTC] WordPress database error Table 'wordpress.wp_cwb_bookings' doesn't exist for query SHOW FULL COLUMNS FROM `wp_cwb_bookings` made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[19-Apr-2025 20:11:26 UTC] WordPress database error Table 'wordpress.wp_cwb_booking_details' doesn't exist for query SHOW FULL COLUMNS FROM `wp_cwb_booking_details` made by activate_plugin, do_action('activate_car-wash-booking-plugin/car-wash-booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_Activator::activate, CWB_Database_Setup::initialize_database, CWB_Database_Setup::populate_default_data
+[19-Apr-2025 20:12:02 UTC] WordPress database error Table 'wordpress.wp_cwb_bookings' doesn't exist for query 
+            SELECT
+                DATE(start_datetime) as date,
+                TIME_FORMAT(TIME(start_datetime), '%H:%i') AS start_time,
+                TIME_FORMAT(TIME(end_datetime), '%H:%i') AS end_time
+            FROM wp_cwb_bookings
+            WHERE start_datetime BETWEEN '2025-04-19 00:00:00' AND '2025-04-25 23:59:59'
+         made by do_action('wp_ajax_cwb_get_available_slots'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_API_Endpoints->get_available_slots, CWB_Booking::get_available_slots
+[19-Apr-2025 20:12:06 UTC] WordPress database error Table 'wordpress.wp_cwb_bookings' doesn't exist for query 
+            SELECT
+                DATE(start_datetime) as date,
+                TIME_FORMAT(TIME(start_datetime), '%H:%i') AS start_time,
+                TIME_FORMAT(TIME(end_datetime), '%H:%i') AS end_time
+            FROM wp_cwb_bookings
+            WHERE start_datetime BETWEEN '2025-04-19 00:00:00' AND '2025-04-25 23:59:59'
+         made by do_action('wp_ajax_cwb_get_available_slots'), WP_Hook->do_action, WP_Hook->apply_filters, CWB_API_Endpoints->get_available_slots, CWB_Booking::get_available_slots
+[Sat Apr 19 20:23:57.031617 2025] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.24.0.4. Set the 'ServerName' directive globally to suppress this message
+[Sat Apr 19 20:24:08.760727 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Sat Apr 19 20:24:08.761461 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'

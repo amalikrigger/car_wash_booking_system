@@ -294,45 +294,44 @@ class CWB_Database_Setup {
             KEY idx_date_range (start_date, end_date)
         ) $charset_collate;
 
-        -- Finally, tables with multiple levels of dependency
-
         -- Bookings Table
         CREATE TABLE {$wpdb->prefix}cwb_bookings (
             id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            booking_number VARCHAR(50) NOT NULL,
-            booking_source_id INT UNSIGNED,
-            marketing_campaign_id INT UNSIGNED,
+            booking_number VARCHAR(50) NOT NULL UNIQUE,
             customer_id BIGINT UNSIGNED NOT NULL,
             location_id BIGINT UNSIGNED NOT NULL,
-            vehicle_type_id BIGINT UNSIGNED NOT NULL,
-            vehicle_details VARCHAR(255),
-            package_id BIGINT UNSIGNED, -- Nullable if booking can be service-based
+            package_id BIGINT UNSIGNED,
             resource_id BIGINT UNSIGNED,
             booking_status_id INT UNSIGNED NOT NULL DEFAULT 1,
             start_datetime DATETIME NOT NULL,
             end_datetime DATETIME NOT NULL,
             subtotal DECIMAL(10,2) NOT NULL DEFAULT 0.00,
-            notes TEXT,
             created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
-            latitude DECIMAL(10,8),
-            longitude DECIMAL(11,8),
-            UNIQUE KEY idx_booking_number (booking_number),
-            KEY idx_booking_date (start_datetime),
-            KEY idx_booking_status_id (booking_status_id),
-            KEY idx_booking_source_id (booking_source_id),
-            KEY idx_marketing_campaign_id (marketing_campaign_id),
-            FOREIGN KEY (customer_id) REFERENCES {$wpdb->prefix}cwb_customers (id) ON DELETE RESTRICT,
-            FOREIGN KEY (location_id) REFERENCES {$wpdb->prefix}cwb_locations (id) ON DELETE RESTRICT,
-            FOREIGN KEY (vehicle_type_id) REFERENCES {$wpdb->prefix}cwb_vehicle_types (id) ON DELETE RESTRICT,
-            FOREIGN KEY (package_id) REFERENCES {$wpdb->prefix}cwb_packages (id) ON DELETE RESTRICT,
-            FOREIGN KEY (resource_id) REFERENCES {$wpdb->prefix}cwb_resources (id) ON DELETE SET NULL,
-            FOREIGN KEY (booking_status_id) REFERENCES {$wpdb->prefix}cwb_booking_statuses (id) ON DELETE RESTRICT,
-            FOREIGN KEY (booking_source_id) REFERENCES {$wpdb->prefix}cwb_booking_sources(id) ON DELETE SET NULL,
-            FOREIGN KEY (marketing_campaign_id) REFERENCES {$wpdb->prefix}cwb_marketing_campaigns(id) ON DELETE SET NULL
+            FOREIGN KEY (customer_id) REFERENCES {$wpdb->prefix}cwb_customers (id),
+            FOREIGN KEY (location_id) REFERENCES {$wpdb->prefix}cwb_locations (id),
+            FOREIGN KEY (package_id) REFERENCES {$wpdb->prefix}cwb_packages (id),
+            FOREIGN KEY (resource_id) REFERENCES {$wpdb->prefix}cwb_resources (id),
+            FOREIGN KEY (booking_status_id) REFERENCES {$wpdb->prefix}cwb_booking_statuses (id)
         ) $charset_collate;
 
         -- Tables depending on bookings
+        
+        -- Booking details table for supplementary information
+        CREATE TABLE {$wpdb->prefix}cwb_booking_details (
+            booking_id BIGINT UNSIGNED PRIMARY KEY,
+            booking_source_id INT UNSIGNED,
+            marketing_campaign_id INT UNSIGNED,
+            vehicle_type_id BIGINT UNSIGNED NOT NULL,
+            vehicle_details VARCHAR(255),
+            notes TEXT,
+            latitude DECIMAL(10,8),
+            longitude DECIMAL(11,8),
+            FOREIGN KEY (booking_id) REFERENCES {$wpdb->prefix}cwb_bookings (id) ON DELETE CASCADE,
+            FOREIGN KEY (booking_source_id) REFERENCES {$wpdb->prefix}cwb_booking_sources (id) ON DELETE SET NULL,
+            FOREIGN KEY (marketing_campaign_id) REFERENCES {$wpdb->prefix}cwb_marketing_campaigns (id) ON DELETE SET NULL,
+            FOREIGN KEY (vehicle_type_id) REFERENCES {$wpdb->prefix}cwb_vehicle_types (id) ON DELETE RESTRICT
+        ) $charset_collate;
 
         -- Booking Services Table
         CREATE TABLE {$wpdb->prefix}cwb_booking_services (
@@ -382,12 +381,14 @@ class CWB_Database_Setup {
         CREATE TABLE {$wpdb->prefix}cwb_booking_history (
             id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             booking_id BIGINT UNSIGNED NOT NULL,
-            status VARCHAR(20) NOT NULL, -- Still using string status for history for simplicity
+            booking_status_id INT UNSIGNED NOT NULL,
             notes TEXT,
             created_by BIGINT UNSIGNED,
             created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (booking_id) REFERENCES {$wpdb->prefix}cwb_bookings (id) ON DELETE CASCADE,
-            KEY idx_booking_id (booking_id)
+            FOREIGN KEY (booking_status_id) REFERENCES {$wpdb->prefix}cwb_booking_statuses (id) ON DELETE RESTRICT,
+            KEY idx_booking_id (booking_id),
+            KEY idx_booking_status_id (booking_status_id)
         ) $charset_collate;
 
         -- Settings Table
@@ -917,52 +918,112 @@ class CWB_Database_Setup {
         $existing_bookings = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_bookings");
 
         if ($existing_bookings == 0) {
-            $bookings = [
+            $booking_data = [
                 [
-                    'booking_number' => 'BK-' . uniqid(),
-                    'customer_id' => 1,
-                    'location_id' => 1,
-                    'vehicle_type_id' => 1,
-                    'package_id' => 1,
-                    'resource_id' => 1,
-                    'booking_status_id' => 1,
-                    'start_datetime' => '2025-02-05 10:00:00',
-                    'end_datetime' => '2025-02-05 10:30:00',
-                    'subtotal' => 45.00
+                    'booking' => [
+                        'booking_number' => 'BK-' . uniqid(),
+                        'customer_id' => 1,
+                        'location_id' => 1,
+                        'package_id' => 1,
+                        'resource_id' => 1,
+                        'booking_status_id' => 1,
+                        'start_datetime' => '2025-02-05 10:00:00',
+                        'end_datetime' => '2025-02-05 10:30:00',
+                        'subtotal' => 45.00
+                    ],
+                    'details' => [
+                        'vehicle_type_id' => 1,
+                        'vehicle_details' => 'Blue Honda Civic',
+                        'notes' => 'First time customer'
+                    ]
                 ],
                 [
-                    'booking_number' => 'BK-' . uniqid(),
-                    'customer_id' => 2,
-                    'location_id' => 1,
-                    'vehicle_type_id' => 1,
-                    'package_id' => 1,
-                    'resource_id' => 1,
-                    'booking_status_id' => 1,
-                    'start_datetime' => '2025-02-05 11:00:00',
-                    'end_datetime' => '2025-02-05 11:30:00',
-                    'subtotal' => 45.00
+                    'booking' => [
+                        'booking_number' => 'BK-' . uniqid(),
+                        'customer_id' => 2,
+                        'location_id' => 1,
+                        'package_id' => 1,
+                        'resource_id' => 1,
+                        'booking_status_id' => 1,
+                        'start_datetime' => '2025-02-05 11:00:00',
+                        'end_datetime' => '2025-02-05 11:30:00',
+                        'subtotal' => 45.00
+                    ],
+                    'details' => [
+                        'vehicle_type_id' => 1,
+                        'vehicle_details' => 'Red Toyota Camry',
+                        'booking_source_id' => 1
+                    ]
                 ],
                 [
-                    'booking_number' => 'BK-' . uniqid(),
-                    'customer_id' => 3,
-                    'location_id' => 1,
-                    'vehicle_type_id' => 2,
-                    'package_id' => 2,
-                    'resource_id' => 2,
-                    'booking_status_id' => 1,
-                    'start_datetime' => '2025-02-06 09:30:00',
-                    'end_datetime' => '2025-02-06 10:00:00',
-                    'subtotal' => 50.00
+                    'booking' => [
+                        'booking_number' => 'BK-' . uniqid(),
+                        'customer_id' => 3,
+                        'location_id' => 1,
+                        'package_id' => 2,
+                        'resource_id' => 2,
+                        'booking_status_id' => 1,
+                        'start_datetime' => '2025-02-06 09:30:00',
+                        'end_datetime' => '2025-02-06 10:00:00',
+                        'subtotal' => 50.00
+                    ],
+                    'details' => [
+                        'vehicle_type_id' => 2,
+                        'vehicle_details' => 'Black Ford Explorer',
+                        'booking_source_id' => 2,
+                        'marketing_campaign_id' => 1
+                    ]
                 ],
             ];
 
-            foreach ($bookings as $booking) {
-                $wpdb->insert(
-                    "{$wpdb->prefix}cwb_bookings",
-                    $booking,
-                    ['%s', '%d', '%d', '%d', '%d', '%d', '%d', '%s', '%s', '%f']
-                );
+            $wpdb->query('START TRANSACTION');
+            
+            try {
+                foreach ($booking_data as $data) {
+                    $wpdb->insert(
+                        "{$wpdb->prefix}cwb_bookings",
+                        $data['booking'],
+                        ['%s', '%d', '%d', '%d', '%d', '%d', '%s', '%s', '%f']
+                    );
+                    
+                    $booking_id = $wpdb->insert_id;
+                    
+                    $data['details']['booking_id'] = $booking_id;
+                    
+                    $formats = ['%d', '%d'];
+                    
+                    if (isset($data['details']['booking_source_id'])) {
+                        $formats[] = '%d';
+                    }
+                    if (isset($data['details']['marketing_campaign_id'])) {
+                        $formats[] = '%d';
+                    }
+                    if (isset($data['details']['vehicle_details'])) {
+                        $formats[] = '%s';
+                    }
+                    if (isset($data['details']['notes'])) {
+                        $formats[] = '%s';
+                    }
+                    if (isset($data['details']['latitude'])) {
+                        $formats[] = '%f';
+                    }
+                    if (isset($data['details']['longitude'])) {
+                        $formats[] = '%f';
+                    }
+                    
+                    $wpdb->insert(
+                        "{$wpdb->prefix}cwb_booking_details",
+                        $data['details'],
+                        $formats
+                    );
+                }
+                
+                $wpdb->query('COMMIT');
+            } catch (Exception $e) {
+                $wpdb->query('ROLLBACK');
+                error_log('Error inserting booking data: ' . $e->getMessage());
             }
         }
     }
 }
+
