@@ -304,7 +304,6 @@ class CWB_Database_Setup {
             resource_id BIGINT UNSIGNED,
             booking_status_id INT UNSIGNED NOT NULL DEFAULT 1,
             start_datetime DATETIME NOT NULL,
-            end_datetime DATETIME NOT NULL,
             subtotal DECIMAL(10,2) NOT NULL DEFAULT 0.00,
             created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
@@ -928,7 +927,6 @@ class CWB_Database_Setup {
                         'resource_id' => 1,
                         'booking_status_id' => 1,
                         'start_datetime' => '2025-02-05 10:00:00',
-                        'end_datetime' => '2025-02-05 10:30:00',
                         'subtotal' => 45.00
                     ],
                     'details' => [
@@ -946,7 +944,6 @@ class CWB_Database_Setup {
                         'resource_id' => 1,
                         'booking_status_id' => 1,
                         'start_datetime' => '2025-02-05 11:00:00',
-                        'end_datetime' => '2025-02-05 11:30:00',
                         'subtotal' => 45.00
                     ],
                     'details' => [
@@ -964,7 +961,6 @@ class CWB_Database_Setup {
                         'resource_id' => 2,
                         'booking_status_id' => 1,
                         'start_datetime' => '2025-02-06 09:30:00',
-                        'end_datetime' => '2025-02-06 10:00:00',
                         'subtotal' => 50.00
                     ],
                     'details' => [
@@ -983,7 +979,7 @@ class CWB_Database_Setup {
                     $wpdb->insert(
                         "{$wpdb->prefix}cwb_bookings",
                         $data['booking'],
-                        ['%s', '%d', '%d', '%d', '%d', '%d', '%s', '%s', '%f']
+                        ['%s', '%d', '%d', '%d', '%d', '%d', '%s', '%f']
                     );
                     
                     $booking_id = $wpdb->insert_id;

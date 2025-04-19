@@ -38,11 +38,15 @@ class CWB_Booking {
 
         $bookings = $wpdb->get_results("
             SELECT
-                DATE(start_datetime) as date,
-                TIME_FORMAT(TIME(start_datetime), '%H:%i') AS start_time,
-                TIME_FORMAT(TIME(end_datetime), '%H:%i') AS end_time
-            FROM {$wpdb->prefix}cwb_bookings
-            WHERE start_datetime BETWEEN '{$startDate->format('Y-m-d')} 00:00:00' AND '{$endDate->format('Y-m-d')} 23:59:59'
+                DATE(b.start_datetime) as date,
+                TIME_FORMAT(TIME(b.start_datetime), '%H:%i') AS start_time,
+                TIME_FORMAT(TIME(DATE_ADD(b.start_datetime, INTERVAL 
+                    CASE 
+                        WHEN b.package_id IS NOT NULL THEN (SELECT duration FROM {$wpdb->prefix}cwb_packages WHERE id = b.package_id)
+                        ELSE 0
+                    END MINUTE)), '%H:%i') AS end_time
+            FROM {$wpdb->prefix}cwb_bookings b
+            WHERE b.start_datetime BETWEEN '{$startDate->format('Y-m-d')} 00:00:00' AND '{$endDate->format('Y-m-d')} 23:59:59'
         ");
 
         $resourceCapacity = $wpdb->get_var("SELECT SUM(capacity) FROM {$wpdb->prefix}cwb_resources");
