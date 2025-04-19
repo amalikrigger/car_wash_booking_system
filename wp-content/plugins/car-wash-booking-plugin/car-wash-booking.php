@@ -7,15 +7,15 @@ Author: GCOAT
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
-    exit; // Exit if accessed directly.
+    exit;
 }
 
-function activate_car_wash_booking_system() { // Update function name with plugin prefix
+function activate_car_wash_booking_system() {
     require_once plugin_dir_path( __FILE__ ) . 'includes/class-cwb-activator.php';
     CWB_Activator::activate();
 }
 
-function deactivate_car_wash_booking_system() { // Update function name with plugin prefix
+function deactivate_car_wash_booking_system() {
     require_once plugin_dir_path( __FILE__ ) . 'includes/class-cwb-deactivator.php';
     CWB_Deactivator::deactivate();
 }

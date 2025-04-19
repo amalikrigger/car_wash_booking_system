@@ -1,16 +1,9 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) {
-    exit; // Exit if accessed directly.
+    exit;
 }
 
 class CWB_Package {
-
-    /**
-     * Get packages by vehicle type ID.
-     *
-     * @param int $vehicle_type_id Vehicle Type ID.
-     * @return array Array of packages.
-     */
     public static function get_by_vehicle_type( $vehicle_type_id ) {
         global $wpdb;
         $table_name = $wpdb->prefix . 'cwb_packages';
@@ -27,12 +20,6 @@ class CWB_Package {
         );
     }
 
-    /**
-     * Get services associated with a package.
-     *
-     * @param int $package_id Package ID.
-     * @return array Array of services for the package.
-     */
     public static function get_services( $package_id ) {
         global $wpdb;
         $service_table = $wpdb->prefix . 'cwb_services';
@@ -48,7 +35,4 @@ class CWB_Package {
             ARRAY_A
         );
     }
-
-    // You can add more methods here later
-
 }

@@ -1,16 +1,9 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) {
-    exit; // Exit if accessed directly.
+    exit;
 }
 
 class CWB_Service {
-
-    /**
-     * Get add-on services for a package.
-     *
-     * @param int $package_id Package ID.
-     * @return array Array of add-on services.
-     */
     public static function get_addons_by_package( $package_id ) {
         global $wpdb;
         $table_name = $wpdb->prefix . 'cwb_services';
@@ -26,7 +19,4 @@ class CWB_Service {
             ARRAY_A
         );
     }
-
-    // You can add more methods here later
-
 }

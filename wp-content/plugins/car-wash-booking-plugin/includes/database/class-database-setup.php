@@ -1,6 +1,6 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) {
-    exit; // Exit if accessed directly.
+    exit;
 }
 
 class CWB_Database_Setup {
@@ -407,14 +407,12 @@ class CWB_Database_Setup {
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql);
 
-        // Fix: Call the populate_default_data method with proper scope
         self::populate_default_data();
     }
 
     public static function populate_default_data() {
         global $wpdb;
 
-        // Booking Statuses
         $booking_statuses = [
             ['name' => 'Pending',   'description' => 'Booking request received, awaiting confirmation', 'is_default' => 1],
             ['name' => 'Confirmed', 'description' => 'Booking confirmed and scheduled', 'is_default' => 0],
@@ -428,7 +426,6 @@ class CWB_Database_Setup {
             }
         }
 
-        // Payment Statuses
         $payment_statuses = [
             ['name' => 'Pending',  'description' => 'Payment pending', 'is_default' => 1],
             ['name' => 'Paid',     'description' => 'Payment successfully received', 'is_default' => 0],
@@ -442,11 +439,9 @@ class CWB_Database_Setup {
             }
         }
 
-        // Payment Methods
         $payment_methods = [
             ['name' => 'stripe_credit_card', 'code' => 'stripe-cc', 'display_name' => 'Credit Card (Stripe)', 'description' => 'Pay with credit card via Stripe', 'is_active' => 1],
             ['name' => 'paypal_express',     'code' => 'paypal',    'display_name' => 'PayPal Express',      'description' => 'Pay with PayPal Express', 'is_active' => 1],
-            // Add more payment methods as needed
         ];
         $existing_payment_methods = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_payment_methods");
         if ($existing_payment_methods == 0) {
@@ -455,7 +450,6 @@ class CWB_Database_Setup {
             }
         }
 
-        // Customer Types (Example)
         $customer_types = [
             ['name' => 'Individual', 'description' => 'Individual customer'],
             ['name' => 'Corporate',  'description' => 'Corporate client'],
@@ -467,7 +461,6 @@ class CWB_Database_Setup {
             }
         }
 
-        // Booking Sources (Example)
         $booking_sources = [
             ['name' => 'Website',    'description' => 'Bookings made via website form'],
             ['name' => 'Phone Call', 'description' => 'Bookings made via phone call'],
@@ -479,7 +472,6 @@ class CWB_Database_Setup {
             }
         }
 
-        // Marketing Campaigns (Example)
         $marketing_campaigns = [
             ['name' => 'Summer Promo 2025', 'code' => 'SUMMER25', 'start_date' => '2025-06-01', 'end_date' => '2025-08-31', 'description' => 'Summer promotion campaign'],
         ];
@@ -490,9 +482,6 @@ class CWB_Database_Setup {
             }
         }
 
-        // --- Existing Data Population (Review and Adjust as Needed) ---
-
-        // Pre-populate locations if the table is empty.
         $existing_locations = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_locations");
         if ($existing_locations == 0) {
             $wpdb->insert(
@@ -500,10 +489,10 @@ class CWB_Database_Setup {
                 [
                     'name' => 'Remote',
                     'address' => 'Remote Location',
-                    'latitude' => '34.0522', // Example latitude
-                    'longitude' => '-118.2437' // Example longitude
+                    'latitude' => '34.0522',
+                    'longitude' => '-118.2437'
                 ],
-                ['%s', '%s', '%f', '%f'] // Added latitude and longitude placeholders
+                ['%s', '%s', '%f', '%f']
             );
 
             $wpdb->insert(
@@ -511,14 +500,13 @@ class CWB_Database_Setup {
                 [
                     'name' => 'St. Croix',
                     'address' => 'St. Croix Location',
-                    'latitude' => '17.7067', // Example latitude
-                    'longitude' => '-64.7444' // Example longitude
+                    'latitude' => '17.7067',
+                    'longitude' => '-64.7444'
                 ],
-                ['%s', '%s', '%f', '%f'] // Added latitude and longitude placeholders
+                ['%s', '%s', '%f', '%f']
             );
         }
 
-        // Pre-populate location fields config - NEW DATA POPULATION
         $existing_location_fields_config = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_location_fields_config");
         if ($existing_location_fields_config == 0) {
             $locations = $wpdb->get_results("SELECT id FROM {$wpdb->prefix}cwb_locations", ARRAY_A);
@@ -625,7 +613,6 @@ class CWB_Database_Setup {
             }
         }
 
-        // Pre-populate vehicle types if the table is empty.
         $existing_vehicle_types = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_vehicle_types");
 
         if ($existing_vehicle_types == 0) {
@@ -646,13 +633,11 @@ class CWB_Database_Setup {
             }
         }
 
-        // Associate all vehicle types with both locations.
         $locations = $wpdb->get_results("SELECT id, name FROM {$wpdb->prefix}cwb_locations", ARRAY_A);
         $vehicle_types = $wpdb->get_results("SELECT id, name FROM {$wpdb->prefix}cwb_vehicle_types", ARRAY_A);
 
         foreach ($locations as $location) {
             foreach ($vehicle_types as $vehicle) {
-                // Skip associating "Minivan" with "St. Croix".
                 if ($location['name'] === 'St. Croix' && $vehicle['name'] === 'Minivan') {
                     continue;
                 }
@@ -668,7 +653,6 @@ class CWB_Database_Setup {
             }
         }
 
-        // Insert default settings if the table is empty.
         $existing_settings = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_settings");
 
         if ($existing_settings == 0) {
@@ -698,7 +682,6 @@ class CWB_Database_Setup {
             );
         }
 
-        // Insert default weekday time ranges if the table is empty.
         $existing_weekday_time_ranges = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_weekday_time_ranges");
 
         if ($existing_weekday_time_ranges == 0) {
@@ -717,7 +700,6 @@ class CWB_Database_Setup {
             }
         }
 
-        // Insert default specific date time ranges if the table is empty.
         $existing_date_time_ranges = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_date_time_ranges");
 
         if ($existing_date_time_ranges == 0) {
@@ -735,7 +717,6 @@ class CWB_Database_Setup {
             }
         }
 
-        // Insert default excluded dates if the table is empty.
         $existing_excluded_dates = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_excluded_dates");
 
         if ($existing_excluded_dates == 0) {
@@ -752,7 +733,6 @@ class CWB_Database_Setup {
             }
         }
 
-        // Insert default resources if the table is empty.
         $existing_resources = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_resources");
 
         if ($existing_resources == 0) {
@@ -770,16 +750,15 @@ class CWB_Database_Setup {
             }
         }
 
-        // Insert packages if the table is empty.
         $existing_packages = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_packages");
 
         if ($existing_packages == 0) {
             $packages = [
-                ['name' => 'Hood Wash', 'price' => 45.00, 'duration' => 40], // 40 minutes
-                ['name' => 'Fresh Cabin', 'price' => 50.00, 'duration' => 55], // 55 minutes
-                ['name' => 'Fresh & Fly', 'price' => 80.00, 'duration' => 100], // 1h 40min
-                ['name' => 'Full Detail', 'price' => 105.00, 'duration' => 110], // 1h 50min
-                ['name' => 'Deep Cleanse', 'price' => 80.00, 'duration' => 75], // 1h 15min
+                ['name' => 'Hood Wash', 'price' => 45.00, 'duration' => 40],
+                ['name' => 'Fresh Cabin', 'price' => 50.00, 'duration' => 55],
+                ['name' => 'Fresh & Fly', 'price' => 80.00, 'duration' => 100],
+                ['name' => 'Full Detail', 'price' => 105.00, 'duration' => 110],
+                ['name' => 'Deep Cleanse', 'price' => 80.00, 'duration' => 75],
             ];
 
             foreach ($packages as $package) {
@@ -791,30 +770,29 @@ class CWB_Database_Setup {
             }
         }
 
-        // Insert services if the table is empty
         $existing_services = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_services");
 
         if ($existing_services == 0) {
             $services = [
-                ['name' => 'Exterior Wash', 'price' => 25.00, 'duration' => 25], // 25 minutes
-                ['name' => 'Wheel Shine', 'price' => 15.00, 'duration' => 20], // 20 minutes
-                ['name' => 'Tire Dressing', 'price' => 10.00, 'duration' => 15], // 15 minutes
-                ['name' => 'Windows In & Out', 'price' => 20.00, 'duration' => 20], // 20 minutes
-                ['name' => 'Paint Protection', 'price' => 50.00, 'duration' => 30], // 30 minutes
-                ['name' => 'Interior Vacuum', 'price' => 30.00, 'duration' => 25], // 25 minutes
-                ['name' => 'Trim Dressing', 'price' => 15.00, 'duration' => 15], // 15 minutes
-                ['name' => 'Steam Cleaner', 'price' => 35.00, 'duration' => 40], // 40 minutes
-                ['name' => 'Trash Removal', 'price' => 10.00, 'duration' => 10], // 10 minutes
-                ['name' => 'Air Freshener', 'price' => 5.00, 'duration' => 5], // 5 minutes
-                ['name' => 'Carpet', 'price' => 20.00, 'duration' => 25], // 25 minutes
-                ['name' => 'Floor Mats', 'price' => 15.00, 'duration' => 20], // 20 minutes
-                ['name' => 'Seats', 'price' => 25.00, 'duration' => 30], // 30 minutes
-                ['name' => 'Steering Wheel', 'price' => 10.00, 'duration' => 15], // 15 minutes
-                ['name' => 'Door Shuts, Air Vents & Vinyls', 'price' => 20.00, 'duration' => 25], // 25 minutes
-                ['name' => 'Engine Clean', 'price' => 40.00, 'duration' => 45], // 45 minutes
-                ['name' => 'Headliner', 'price' => 30.00, 'duration' => 35], // 35 minutes
-                ['name' => 'Deep Trunk Clean', 'price' => 25.00, 'duration' => 30], // 30 minutes
-                ['name' => 'Trunk Vacuum', 'price' => 15.00, 'duration' => 20],    // 20 minutes
+                ['name' => 'Exterior Wash', 'price' => 25.00, 'duration' => 25],
+                ['name' => 'Wheel Shine', 'price' => 15.00, 'duration' => 20],
+                ['name' => 'Tire Dressing', 'price' => 10.00, 'duration' => 15],
+                ['name' => 'Windows In & Out', 'price' => 20.00, 'duration' => 20],
+                ['name' => 'Paint Protection', 'price' => 50.00, 'duration' => 30],
+                ['name' => 'Interior Vacuum', 'price' => 30.00, 'duration' => 25],
+                ['name' => 'Trim Dressing', 'price' => 15.00, 'duration' => 15],
+                ['name' => 'Steam Cleaner', 'price' => 35.00, 'duration' => 40],
+                ['name' => 'Trash Removal', 'price' => 10.00, 'duration' => 10],
+                ['name' => 'Air Freshener', 'price' => 5.00, 'duration' => 5],
+                ['name' => 'Carpet', 'price' => 20.00, 'duration' => 25],
+                ['name' => 'Floor Mats', 'price' => 15.00, 'duration' => 20],
+                ['name' => 'Seats', 'price' => 25.00, 'duration' => 30],
+                ['name' => 'Steering Wheel', 'price' => 10.00, 'duration' => 15],
+                ['name' => 'Door Shuts, Air Vents & Vinyls', 'price' => 20.00, 'duration' => 25],
+                ['name' => 'Engine Clean', 'price' => 40.00, 'duration' => 45],
+                ['name' => 'Headliner', 'price' => 30.00, 'duration' => 35],
+                ['name' => 'Deep Trunk Clean', 'price' => 25.00, 'duration' => 30],
+                ['name' => 'Trunk Vacuum', 'price' => 15.00, 'duration' => 20],
             ];
 
             foreach ($services as $service) {
@@ -826,7 +804,6 @@ class CWB_Database_Setup {
             }
         }
 
-        // Associate services with packages.
         $package_services = [
             'Hood Wash' => ['Exterior Wash', 'Wheel Shine', 'Tire Dressing', 'Windows In & Out', 'Paint Protection'],
             'Fresh Cabin' => ['Carpet', 'Floor Mats', 'Seats', 'Steering Wheel', 'Trash Removal', 'Trim Dressing', 'Windows In & Out', 'Interior Vacuum', 'Door Shuts, Air Vents & Vinyls', 'Air Freshener'],
@@ -848,7 +825,6 @@ class CWB_Database_Setup {
             }
         }
 
-        // Associate packages with vehicles.
         $vehicle_types = $wpdb->get_results("SELECT id, name FROM {$wpdb->prefix}cwb_vehicle_types", ARRAY_A);
 
         foreach ($vehicle_types as $vehicle) {
@@ -856,7 +832,7 @@ class CWB_Database_Setup {
 
             foreach ($packages as $package) {
                 if ($vehicle['name'] === 'Minivan' && $package['name'] !== 'Fresh & Fly') {
-                    continue; // Skip packages not allowed for Minivan
+                    continue;
                 }
 
                 $wpdb->insert(
@@ -867,7 +843,6 @@ class CWB_Database_Setup {
             }
         }
 
-        // Associate add-on services with packages.
         $existing_addons = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_package_addons");
 
         if ($existing_addons == 0) {
@@ -900,7 +875,6 @@ class CWB_Database_Setup {
             }
         }
 
-        // Insert default customers
         $existing_customers = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_customers");
 
         if ($existing_customers == 0) {
@@ -940,7 +914,6 @@ class CWB_Database_Setup {
             }
         }
 
-        // Insert default bookings for testing.
         $existing_bookings = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}cwb_bookings");
 
         if ($existing_bookings == 0) {

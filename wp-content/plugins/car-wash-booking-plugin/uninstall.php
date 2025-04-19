@@ -1,15 +1,9 @@
 <?php
-/**
- * Uninstall Car Wash Booking System
- *
- * @package Car_Wash_Booking_System
- */
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
     exit;
 }
 
-// Define database table names (consistent with your database setup)
 global $wpdb;
 $tables_to_drop = [
     "{$wpdb->prefix}cwb_booking_statuses",
@@ -43,7 +37,6 @@ $tables_to_drop = [
     "{$wpdb->prefix}cwb_settings",
 ];
 
-// Drop database tables
 foreach ( $tables_to_drop as $table_name ) {
     $wpdb->query( "DROP TABLE IF EXISTS {$table_name}" );
 }

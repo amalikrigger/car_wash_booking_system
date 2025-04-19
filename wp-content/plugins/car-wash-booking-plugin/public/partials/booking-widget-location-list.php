@@ -13,12 +13,11 @@
     <div class="cwb-main-list-item-section-content cwb-clear-fix">
         <ul class="cwb-location-list cwb-list-reset cwb-clear-fix">
             <?php
-            // Location rendering logic will be moved to a partial
-            $locations = $view_data['locations']; // Access locations from view_data
-            $first = true; // Flag to track the first location
+            $locations = $view_data['locations'];
+            $first = true;
             foreach ($locations as $location) {
                 $selected = $first ? 'cwb-state-selected' : '';
-                $default = $first ? 'data-default="true"' : ''; // Add data-default attribute for the first location
+                $default = $first ? 'data-default="true"' : '';
                 echo "<li class='cwb-location {$selected}' data-id='" . esc_attr($location['id']) . "' {$default}>
                         <div>
                             <div>" . esc_html($location['name']) . "</div>

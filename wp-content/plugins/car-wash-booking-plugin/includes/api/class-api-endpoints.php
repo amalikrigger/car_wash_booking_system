@@ -1,9 +1,8 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) {
-    exit; // Exit if accessed directly.
+    exit;
 }
 
-// Include helper function files
 include_once plugin_dir_path(__FILE__) . '../functions/functions-formatting.php';
 include_once plugin_dir_path(__FILE__) . '../functions/functions-availability.php';
 include_once plugin_dir_path(__FILE__) . '../functions/functions-debug.php';
@@ -24,9 +23,8 @@ class CWB_API_Endpoints {
         check_ajax_referer( 'cwb_nonce', 'nonce' );
 
         $location_id = intval($_POST['location_id']);
-        $vehicles = cwb_Vehicle_Type::get_by_location( $location_id ); // Use Model class
+        $vehicles = CWB_Vehicle_Type::get_by_location( $location_id );
 
-        // Generate vehicle list HTML (same as before)
         $html = '';
         if (!empty($vehicles)) {
             foreach ($vehicles as $vehicle) {
@@ -49,11 +47,11 @@ class CWB_API_Endpoints {
         check_ajax_referer( 'cwb_nonce', 'nonce' );
 
         $vehicle_type_id = intval($_POST['vehicle_type_id']);
-        $packages = cwb_Package::get_by_vehicle_type( $vehicle_type_id ); // Use Model class
+        $packages = CWB_Package::get_by_vehicle_type( $vehicle_type_id );
 
         $html = '';
         foreach ($packages as $package) {
-            $services = cwb_Package::get_services( $package['id'] ); // Use Model class
+            $services = CWB_Package::get_services( $package['id'] );
 
             $serviceListHtml = '<ul class="cwb-package-service-list cwb-list-reset cwb-clear-fix">';
             foreach ($services as $service) {
@@ -61,8 +59,7 @@ class CWB_API_Endpoints {
             }
             $serviceListHtml .= '</ul>';
 
-            // Format the duration for display (same as before)
-            $formatted_duration = cwb_format_duration($package['duration']); // Keep using helper function
+            $formatted_duration = cwb_format_duration($package['duration']);
 
             $html .= "<li class='cwb-package cwb-package-id-" . esc_attr($package['id']) . "'
                              data-id='" . esc_attr($package['id']) . "'
@@ -93,14 +90,13 @@ class CWB_API_Endpoints {
         check_ajax_referer( 'cwb_nonce', 'nonce' );
 
         $package_id = intval($_POST['package_id']);
-        $addons = cwb_Service::get_addons_by_package( $package_id ); // Use Model class
+        $addons = CWB_Service::get_addons_by_package( $package_id );
 
         $html = '';
         if (!empty($addons)) {
             $html .= '<ul class="cwb-service-list cwb-list-reset cwb-clear-fix">';
             foreach ($addons as $addon) {
-                // Format the duration for display (same as before)
-                $formatted_duration = cwb_format_duration($addon['duration']); // Keep using helper function
+                $formatted_duration = cwb_format_duration($addon['duration']);
 
                 $html .= "<li class='cwb-clear-fix cwb-service-id-" . esc_attr($addon['id']) . "'
                             data-id='" . esc_attr($addon['id']) . "'
@@ -128,21 +124,17 @@ class CWB_API_Endpoints {
     }
 
     public function get_available_slots() {
-        // For now, leave the slot logic as is in this function
-        // We will refactor this to use cwb_Booking class in a later step
         global $wpdb;
 
-        // Get inputs from AJAX (same as before)
         $date = isset($_POST['date']) ? sanitize_text_field($_POST['date']) : null;
         $duration = isset($_POST['duration']) ? intval($_POST['duration']) : null; // Expecting 'duration' now
 
-        if (!$date || !$duration) { // Check for 'duration'
+        if (!$date || !$duration) {
             wp_send_json_error(['message' => 'Invalid input data.', 'received_date' => $date, 'received_duration' => $duration]);
         }
 
         $slots = CWB_Booking::get_available_slots( $date, $duration );
 
-        // Send JSON response (same as before)
         wp_send_json_success(['slots' => $slots]);
     }
 }

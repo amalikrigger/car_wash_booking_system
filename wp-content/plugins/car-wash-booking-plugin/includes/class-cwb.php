@@ -1,7 +1,4 @@
 <?php
-/**
- * Core plugin class for Car Wash Booking System.
- */
 class CWB_Plugin {
 
     protected $loader;

@@ -1,6 +1,5 @@
 <?php
 
-// Helper function to format duration
 function cwb_format_duration($duration) {
     $hours = floor($duration / 60);
     $minutes = $duration % 60;
