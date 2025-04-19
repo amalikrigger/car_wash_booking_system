@@ -11,50 +11,40 @@
             </div>
         </div>
         <!-- Latitude and Longitude Fields -->
-        <div class="cwb-clear-fix">
-            <div class="cwb-form-field cwb-form-width-50 cwb-location-field-latitude">
+        <div class="cwb-clear-fix cwb-lat-long-field">
+            <div class="cwb-form-field cwb-form-width-50">
                 <label>Latitude *</label>
                 <input type="text" name="client_latitude" autocomplete="off" value="" required pattern="-?\d+(\.\d+)?" title="Please enter a valid latitude (e.g., 37.7749).">
             </div>
-            <div class="cwb-form-field cwb-form-width-50 cwb-location-field-longitude">
+            <div class="cwb-form-field cwb-form-width-50">
                 <label>Longitude *</label>
                 <input type="text" name="client_longitude" autocomplete="off" value="" required pattern="-?\d+(\.\d+)?" title="Please enter a valid longitude (e.g., -122.4194).">
             </div>
         </div>
         <!-- Street Field (Conditional) -->
-        <div class="cwb-location-field cwb-location-field-street">
-            <div class="cwb-form-field cwb-form-width-50 cwb-location-field cwb-location-field-street">
-                <label>Street</label>
-                <input type="text" name="client_address_street" autocomplete="off" value="">
-            </div>
+        <div class="cwb-form-field cwb-form-width-50 cwb-street-field">
+            <label>Street</label>
+            <input type="text" name="client_address_street" autocomplete="off" value="">
         </div>
         <!-- Zip Code Field (Conditional) -->
-        <div class="cwb-location-field cwb-location-field-zip_code">
-            <div class="cwb-form-field cwb-form-width-50">
+            <div class="cwb-form-field cwb-form-width-50 cwb-zip-code-field">
                 <label>ZIP Code</label>
                 <input type="text" name="client_address_post_code" autocomplete="off" value="" pattern="[0-9]{5}(-[0-9]{4})?" title="Please enter a valid ZIP code (e.g., 12345 or 12345-6789).">
             </div>
-        </div>
         <!-- City Field (Conditional) -->
-        <div class="cwb-location-field cwb-location-field-city">
-            <div class="cwb-form-field cwb-form-width-33">
-                <label>City</label>
-                <input type="text" name="client_address_city" autocomplete="off" value="" pattern="[A-Za-z\s]+" title="City should only contain letters and spaces.">
-            </div>
+        <div class="cwb-form-field cwb-form-width-33 cwb-city-field">
+            <label>City</label>
+            <input type="text" name="client_address_city" autocomplete="off" value="" pattern="[A-Za-z\s]+" title="City should only contain letters and spaces.">
         </div>
         <!-- State Field (Conditional) -->
-        <div class="cwb-location-field cwb-location-field-state">
-            <div class="cwb-form-field cwb-form-width-33">
-                <label>State</label>
-                <input type="text" name="client_address_state" autocomplete="off" value="" pattern="[A-Za-z\s]+" title="State should only contain letters and spaces.">
-            </div>
+        <div class="cwb-form-field cwb-form-width-33 cwb-state-field">
+            <label>State</label>
+            <input type="text" name="client_address_state" autocomplete="off" value="" pattern="[A-Za-z\s]+" title="State should only contain letters and spaces.">
         </div>
         <!-- Country Field (Conditional) -->
-        <div class="cwb-location-field cwb-location-field-country">
-            <div class="cwb-form-field cwb-form-width-33">
-                <label>Country</label>
-                <input type="text" name="client_address_country" autocomplete="off" value="" pattern="[A-Za-z\s]+" title="Country should only contain letters and spaces.">
-            </div>
+        <div class="cwb-form-field cwb-form-width-33 cwb-country-field">
+            <label>Country</label>
+            <input type="text" name="client_address_country" autocomplete="off" value="" pattern="[A-Za-z\s]+" title="Country should only contain letters and spaces.">
         </div>
         <div class="cwb-clear-fix">
             <div class="cwb-form-field cwb-form-width-50">
@@ -73,43 +63,15 @@
             </div>
         </div>
         <!-- Message Field (Conditional) -->
-        <div class="cwb-clear-fix cwb-location-field cwb-location-field-message">
-            <div class="cwb-form-field cwb-form-width-100">
-                <label>Message</label>
-                <textarea rows="1" cols="1" name="client_message"></textarea>
-            </div>
+        <div class="cwb-form-field cwb-form-width-100 cwb-message-field">
+            <label>Message</label>
+            <textarea rows="1" cols="1" name="client_message"></textarea>
         </div>
         <!-- Gratuity Field (Conditional) -->
-        <div class="cwb-clear-fix cwb-location-field cwb-location-field-gratuity">
-            <div class="cwb-form-field cwb-form-width-100">
-                <label>Gratuity</label>
-                <input type="text" name="gratuity" autocomplete="off" value="0.00">
-            </div>
+        <div class="cwb-form-field cwb-form-width-100 cwb-gratuity-field">
+            <label>Gratuity</label>
+            <input type="text" name="gratuity" autocomplete="off" value="0.00">
         </div>
-        <!-- Service Location Field (Conditional) -->
-        <!--
-        <div class="cwb-clear-fix cwb-location-field cwb-location-field-service_location">
-            <div class="cwb-form-field cwb-form-width-100">
-                <label>Service Location</label>
-                <select name="service_location" autocomplete="off" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
-                    <option value="" selected="">Select a location</option>
-                    <option value="Christiansted">Christiansted</option>
-                    <option value="Frederiksted">Frederiksted</option>
-                </select>
-                <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;">
-                    <span class="selection">
-                        <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-service_location-qp-container">
-                            <span class="select2-selection__rendered" id="select2-service_location-qp-container" title="Select a location">Select a location</span>
-                            <span class="select2-selection__arrow" role="presentation">
-                                <b role="presentation"></b>
-                            </span>
-                        </span>
-                    </span>
-                    <span class="dropdown-wrapper" aria-hidden="true"></span>
-                </span>
-            </div>
-        </div>
-        -->
         <div class="cwb-clear-fix">
             <div class="cwb-form-field cwb-form-width-100">
                 <label>Payment type</label>
@@ -150,6 +112,8 @@
         </div>
     </div>
 </div>
+
+<!--
 <div aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel" aria-hidden="true" style="display: none;">
     <div class="cwb-main-list-item-section-content cwb-clear-fix ">
         <div class="cwb-clear-fix">
@@ -209,3 +173,4 @@
         </div>
     </div>
 </div>
+-->

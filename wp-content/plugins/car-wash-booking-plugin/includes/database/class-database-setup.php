@@ -558,7 +558,7 @@ class CWB_Database_Setup {
                 );
                 $config = [
                     'location_id' => $location['id'],
-                    'field_name' => 'zip_code',
+                    'field_name' => 'zip-code',
                     'is_required' => 0,
                     'is_visible' => ($location['id'] == 1 ? 1 : 0),
                 ];
@@ -602,7 +602,7 @@ class CWB_Database_Setup {
                 );
                 $config = [
                     'location_id' => $location['id'],
-                    'field_name' => 'lat_long',
+                    'field_name' => 'lat-long',
                     'is_required' => 0,
                     'is_visible' => ($location['id'] == 1 ? 1 : 0),
                 ];
@@ -613,31 +613,9 @@ class CWB_Database_Setup {
                 );
                 $config = [
                     'location_id' => $location['id'],
-                    'field_name' => 'service_location',
+                    'field_name' => 'service-location',
                     'is_required' => 0,
                     'is_visible' => ($location['id'] == 2 ? 1 : 0),
-                ];
-                $wpdb->insert(
-                    "{$wpdb->prefix}cwb_location_fields_config",
-                    $config,
-                    ['%d', '%s', '%d', '%d']
-                );
-                $config = [
-                    'location_id' => $location['id'],
-                    'field_name' => 'latitude',
-                    'is_required' => ($location['id'] == 2 ? 0 : 1),
-                    'is_visible' => ($location['id'] == 2 ? 0 : 1),
-                ];
-                $wpdb->insert(
-                    "{$wpdb->prefix}cwb_location_fields_config",
-                    $config,
-                    ['%d', '%s', '%d', '%d']
-                );
-                $config = [
-                    'location_id' => $location['id'],
-                    'field_name' => 'longitude',
-                    'is_required' => ($location['id'] == 2 ? 0 : 1),
-                    'is_visible' => ($location['id'] == 2 ? 0 : 1),
                 ];
                 $wpdb->insert(
                     "{$wpdb->prefix}cwb_location_fields_config",

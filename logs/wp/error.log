@@ -2165,3 +2165,17 @@ AH00558: apache2: Could not reliably determine the server's fully qualified doma
 [18-Apr-2025 18:17:25 UTC] PHP Warning:  Undefined variable $locations in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/class-booking-widget-controller.php on line 21
 [18-Apr-2025 18:17:25 UTC] PHP Warning:  Undefined variable $location_fields_configs in /var/www/html/wp-content/plugins/car-wash-booking-plugin/includes/controllers/class-booking-widget-controller.php on line 22
 [18-Apr-2025 18:17:25 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /var/www/html/wp-content/plugins/car-wash-booking-plugin/public/partials/booking-widget-location-list.php on line 19
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.24.0.2. Set the 'ServerName' directive globally to suppress this message
+[Fri Apr 18 18:59:51.198569 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Fri Apr 18 18:59:51.201235 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.24.0.2. Set the 'ServerName' directive globally to suppress this message
+[Sat Apr 19 14:48:27.610516 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Sat Apr 19 14:48:27.613099 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Sat Apr 19 18:13:27.265235 2025] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.20.0.4. Set the 'ServerName' directive globally to suppress this message
+[Sat Apr 19 18:13:38.024098 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Sat Apr 19 18:13:38.024824 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Sat Apr 19 18:29:03.081005 2025] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.22.0.4. Set the 'ServerName' directive globally to suppress this message
+[Sat Apr 19 18:29:13.752352 2025] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.57 (Debian) PHP/8.2.16 configured -- resuming normal operations
+[Sat Apr 19 18:29:13.752972 2025] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'

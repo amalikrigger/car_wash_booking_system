@@ -10,37 +10,26 @@ jQuery(document).ready(function ($) {
     let locationFieldsConfigs = cwb_ajax.location_fields_configs; // Get location fields configs from localized data
 
     function updateBookingFormFields(locationId) {
-        // Get the configuration array for the given location ID
         const configArray = locationFieldsConfigs[locationId] || [];
-        console.log(configArray);
-        // Fields to check visibility for
         const fields = [
             'street',
-            'zip_code',
+            'zip-code',
             'city',
             'state',
             'country',
             'message',
             'gratuity',
-            'service_location',
-            'latitude',
-            'longitude'
+            'service-location',
+            'lat-long'
         ];
 
         fields.forEach(field => {
-            // Find the specific config object for this field
             const fieldConfig = configArray.find(item => item.field_name === field);
-
-            // Determine if field should be visible based on is_visible property
             const enabled = fieldConfig && (fieldConfig.is_visible === '1' || fieldConfig.is_visible === 1);
-
-            // Select the form field element
-            const fieldElement = $(`.cwb-location-field-${field}`);
+            const fieldElement = $(`.cwb-${field}-field`);
 
             if (fieldElement.length) {
                 console.log(`${enabled ? 'Show' : 'Hide'} Field: ${field}, Visible: ${fieldConfig ? fieldConfig.is_visible : 'not found'}`);
-
-                // Toggle visibility
                 fieldElement.toggleClass('cwb-state-hidden', !enabled);
             }
         });
@@ -232,46 +221,46 @@ jQuery(document).ready(function ($) {
             return;
         }
 
-    let addonDurations = [];
-    selectedAddons.forEach(addonId => {
-        const addonElement = $(`#cwb-addon-list .cwb-service-id-${addonId}.cwb-state-selected`);
-        if (addonElement.length) {
-            addonDurations.push(parseInt(addonElement.data("duration"), 10));
-        }
-    });
+        let addonDurations = [];
+        selectedAddons.forEach(addonId => {
+            const addonElement = $(`#cwb-addon-list .cwb-service-id-${addonId}.cwb-state-selected`);
+            if (addonElement.length) {
+                addonDurations.push(parseInt(addonElement.data("duration"), 10));
+            }
+        });
 
-    // Calculate total duration here on the frontend
-    let total_duration = selectedPackageDuration;
-    addonDurations.forEach(duration => {
-        total_duration += duration;
-    });
+        // Calculate total duration here on the frontend
+        let total_duration = selectedPackageDuration;
+        addonDurations.forEach(duration => {
+            total_duration += duration;
+        });
 
-    const formattedDate = date.toISOString().split("T")[0];
-    $.ajax({
-        url: cwb_ajax.ajax_url,
-        type: "POST",
-        data: {
-            action: "cwb_get_available_slots",
-            nonce: cwb_ajax.nonce,
-            date: formattedDate,
-            duration: total_duration // Send total duration
-        },
-        success: function (response) {
-            if (response.success && response.data?.slots) {
-                const slotsForWeek = response.data.slots;
-                console.log("Available slots for the week:", slotsForWeek);
-                renderCalendar(slotsForWeek, date);
-            } else {
-                console.error("No available slots:", response);
+        const formattedDate = date.toISOString().split("T")[0];
+        $.ajax({
+            url: cwb_ajax.ajax_url,
+            type: "POST",
+            data: {
+                action: "cwb_get_available_slots",
+                nonce: cwb_ajax.nonce,
+                date: formattedDate,
+                duration: total_duration // Send total duration
+            },
+            success: function (response) {
+                if (response.success && response.data?.slots) {
+                    const slotsForWeek = response.data.slots;
+                    console.log("Available slots for the week:", slotsForWeek);
+                    renderCalendar(slotsForWeek, date);
+                } else {
+                    console.error("No available slots:", response);
+                    renderCalendar([], date);
+                }
+            },
+            error: function () {
+                console.error("Failed to fetch available slots.");
                 renderCalendar([], date);
             }
-        },
-        error: function () {
-            console.error("Failed to fetch available slots.");
-            renderCalendar([], date);
-        }
-    });
-}
+        });
+    }
 
     // Arrow click event listeners
     $(".cwb-calendar-header-arrow-left").on("click", function (e) {
@@ -327,7 +316,7 @@ jQuery(document).ready(function ($) {
             currentSelectedLocationId = locationId; // Update currently selected location ID
             updateBookingFormFields(locationId); // Update form fields for the selected location
         } else if (!isAlreadySelected) {
-             // If the clicked location was not already selected but is the same as currentSelectedLocationId (shouldn't happen under normal circumstances but for robustness)
+            // If the clicked location was not already selected but is the same as currentSelectedLocationId (shouldn't happen under normal circumstances but for robustness)
             $(".cwb-location").removeClass("cwb-state-selected");
             $(this).addClass("cwb-state-selected");
         }
