@@ -43,7 +43,10 @@
             summaryDurationHours: $(".cwb-booking-summary-duration h5 span:nth-child(1)"),
             summaryDurationMinutes: $(".cwb-booking-summary-duration h5 span:nth-child(3)"),
             summaryPrice: $(".cwb-booking-summary-price h5 span:nth-child(2)"),
-            serviceListContainer: $(".cwb-main-list-item-service-list")
+            serviceListContainer: $(".cwb-main-list-item-service-list"),
+            vehicleLoadingIndicator: $(".cwb-vehicle-container .cwb-loading-indicator"),
+            vehicleEmptyState: $(".cwb-vehicle-container .cwb-empty-state"),
+            vehicleSelectionHelp: $(".cwb-vehicle-container .cwb-selection-help")
         },
 
         // Configuration
@@ -88,12 +91,10 @@
         bindEvents: function() {
             // Navigation arrows for calendar
             $(".cwb-calendar-header-arrow-left").on("click", (e) => {
-                e.preventDefault();
                 this.updateCalendar(-7); // Move back a week
             });
 
             $(".cwb-calendar-header-arrow-right").on("click", (e) => {
-                e.preventDefault();
                 this.updateCalendar(7); // Move forward a week
             });
 
@@ -161,8 +162,6 @@
 
             // Addon selection
             this.elements.addonList.on("click", ".cwb-button", (e) => {
-                e.preventDefault();
-
                 const addonItem = $(e.currentTarget).closest("li");
                 const addonId = addonItem.data("id");
                 const addonDuration = parseInt(addonItem.data("duration"), 10);
@@ -194,8 +193,6 @@
 
             // Calendar slot selection
             $(document).on("click", ".cwb-calendar-data a", (e) => {
-                e.preventDefault();
-
                 $(".cwb-calendar-data .cwb-state-selected").removeClass("cwb-state-selected");
                 
                 const listItem = $(e.currentTarget).parent();
@@ -264,11 +261,38 @@
         },
 
         /**
+         * Show vehicle loading state
+         */
+        showVehicleLoading: function() {
+            this.elements.vehicleEmptyState.addClass("cwb-state-hidden");
+            this.elements.vehicleSelectionHelp.addClass("cwb-state-hidden");
+            this.elements.vehicleLoadingIndicator.removeClass("cwb-state-hidden");
+            this.elements.vehicleList.addClass("cwb-state-hidden");
+        },
+
+        /**
+         * Hide vehicle loading state and update UI based on vehicle availability
+         * @param {boolean} hasVehicles - Whether vehicles were returned
+         */
+        hideVehicleLoading: function(hasVehicles) {
+            this.elements.vehicleLoadingIndicator.addClass("cwb-state-hidden");
+            
+            if (hasVehicles) {
+                this.elements.vehicleList.removeClass("cwb-state-hidden");
+                this.elements.vehicleSelectionHelp.removeClass("cwb-state-hidden");
+                this.elements.vehicleEmptyState.addClass("cwb-state-hidden");
+            } else {
+                this.elements.vehicleEmptyState.removeClass("cwb-state-hidden");
+                this.elements.vehicleList.addClass("cwb-state-hidden");
+                this.elements.vehicleSelectionHelp.addClass("cwb-state-hidden");
+            }
+        },
+
+        /**
          * Show error message
          * @param {string} message - Error message to display
          */
         showError: function(message) {
-            // Create or update error message container
             let errorContainer = $(".cwb-error-message");
             if (!errorContainer.length) {
                 errorContainer = $('<div class="cwb-error-message"></div>');
@@ -345,6 +369,7 @@
          * @param {number|string} locationId - Location ID
          */
         loadVehicles: function(locationId) {
+            this.showVehicleLoading();
             this.showLoading();
             
             $.ajax({
@@ -359,11 +384,16 @@
                     this.logDebug("Vehicles loaded", response);
                     this.elements.vehicleList.html(response);
 
-                    const firstVehicle = this.elements.vehicleList.find(".cwb-vehicle").first();
-                    if (firstVehicle.length) {
-                        firstVehicle.addClass("cwb-state-selected");
-                        const firstVehicleId = firstVehicle.data("id");
-                        this.loadPackages(firstVehicleId);
+                    const hasVehicles = $(response).find(".cwb-vehicle").length > 0;
+                    this.hideVehicleLoading(hasVehicles);
+
+                    if (hasVehicles) {
+                        const firstVehicle = this.elements.vehicleList.find(".cwb-vehicle").first();
+                        if (firstVehicle.length) {
+                            firstVehicle.addClass("cwb-state-selected");
+                            const firstVehicleId = firstVehicle.data("id");
+                            this.loadPackages(firstVehicleId);
+                        }
                     } else {
                         this.elements.packageList.empty();
                         this.elements.addonList.empty();
@@ -374,6 +404,7 @@
                 error: (xhr, status, error) => {
                     this.showError("Failed to load vehicles. Please try again.");
                     this.logDebug("Vehicle loading error", error);
+                    this.hideVehicleLoading(false);
                     this.hideLoading();
                 }
             });
@@ -569,3 +600,4 @@
     });
 
 })(jQuery);
+
