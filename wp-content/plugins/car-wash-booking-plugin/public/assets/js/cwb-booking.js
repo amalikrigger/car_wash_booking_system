@@ -27,6 +27,7 @@
             currentSelectedLocationId: null,
             selectedVehicleId: null,
             loadingStates: {
+                locations: false,
                 calendar: false,
                 vehicles: false,
                 packages: false,
@@ -36,6 +37,10 @@
 
         // Cache DOM elements for better performance
         elements: {
+            locationList: $(".cwb-location-list"),
+            locationLoadingIndicator: $(".cwb-location-container .cwb-loading-indicator"),
+            locationEmptyState: $(".cwb-location-container .cwb-empty-state"),
+            locationSelectionHelp: $(".cwb-location-container .cwb-selection-help"),
             vehicleList: $("#cwb-vehicle-list"),
             packageList: $("#cwb-package-list"),
             addonList: $("#cwb-addon-list"),
@@ -69,8 +74,64 @@
         init: function() {
             this.resetSelections();
             this.bindEvents();
-            this.initDefaultLocation();
+            this.checkLocationAvailability();
             this.renderCalendar([], this.state.currentDate);
+        },
+
+        /**
+         * Check if locations are available and handle the initial display
+         */
+        checkLocationAvailability: function() {
+            const locationsExist = this.elements.locationList.find('li.cwb-location').length > 0;
+            this.logDebug(`Locations found: ${locationsExist}`);
+            
+            if (locationsExist) {
+                this.hideLocationLoading(true);
+                this.initDefaultLocation();
+            } else {
+                this.showLocationLoading();
+                this.loadLocations();
+            }
+        },
+
+        /**
+         * Load locations via AJAX if they're not pre-rendered
+         */
+        loadLocations: function() {
+            this.showLocationLoading();
+            
+            $.ajax({
+                url: this.config.ajaxUrl,
+                type: "POST",
+                data: {
+                    action: "cwb_get_locations",
+                    nonce: this.config.nonce
+                },
+                success: (response) => {
+                    this.logDebug("Locations loaded", response);
+                    
+                    // Add the HTML to the DOM
+                    this.elements.locationList.html(response);
+                    
+                    // Check for locations
+                    const locationCount = this.elements.locationList.children('.cwb-location').length;
+                    const hasLocations = locationCount > 0;
+                    
+                    this.logDebug(`Location count: ${locationCount}`, hasLocations);
+                    
+                    // Update UI based on location availability
+                    this.hideLocationLoading(hasLocations);
+                    
+                    if (hasLocations) {
+                        this.initDefaultLocation();
+                    }
+                },
+                error: (xhr, status, error) => {
+                    this.showError("Failed to load locations. Please try again.");
+                    this.logDebug("Location loading error", error);
+                    this.hideLocationLoading(false);
+                }
+            });
         },
 
         /**
@@ -253,13 +314,50 @@
 
         /**
          * Set loading state for a specific component
-         * @param {string} component - Component name ('calendar', 'vehicles', 'packages', 'addons')
+         * @param {string} component - Component name ('locations', 'calendar', 'vehicles', 'packages', 'addons')
          * @param {boolean} isLoading - Whether the component is loading
          */
         setLoadingState: function(component, isLoading) {
             if (this.state.loadingStates.hasOwnProperty(component)) {
                 this.state.loadingStates[component] = isLoading;
                 this.logDebug(`Loading state for ${component}: ${isLoading}`);
+            }
+        },
+
+        /**
+         * Show location loading state
+         */
+        showLocationLoading: function() {
+            this.setLoadingState('locations', true);
+            this.elements.locationEmptyState.addClass("cwb-state-hidden");
+            this.elements.locationSelectionHelp.addClass("cwb-state-hidden");
+            this.elements.locationLoadingIndicator.removeClass("cwb-state-hidden");
+            this.elements.locationList.addClass("cwb-state-hidden");
+        },
+
+        /**
+         * Hide location loading state and update UI based on location availability
+         * @param {boolean} hasLocations - Whether locations were returned
+         */
+        hideLocationLoading: function(hasLocations) {
+            this.setLoadingState('locations', false);
+            this.elements.locationLoadingIndicator.addClass("cwb-state-hidden");
+            
+            if (hasLocations) {
+                this.logDebug("Locations found, showing location list");
+                this.elements.locationList.removeClass("cwb-state-hidden");
+                
+                // Only show help text if multiple locations exist
+                if (this.elements.locationList.children('.cwb-location').length > 1) {
+                    this.elements.locationSelectionHelp.removeClass("cwb-state-hidden");
+                }
+                
+                this.elements.locationEmptyState.addClass("cwb-state-hidden");
+            } else {
+                this.logDebug("No locations found, showing empty state");
+                this.elements.locationEmptyState.removeClass("cwb-state-hidden");
+                this.elements.locationList.addClass("cwb-state-hidden");
+                this.elements.locationSelectionHelp.addClass("cwb-state-hidden");
             }
         },
 
