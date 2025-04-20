@@ -571,6 +571,100 @@
             this.elements.summaryDurationMinutes.text(minutes);
 
             this.elements.summaryPrice.text(this.state.selectedPrice.toFixed(2));
+            
+            // Update selected services summary section
+            this.updateSelectedServicesSummary();
+        },
+
+        /**
+         * Update the selected services summary section
+         */
+        updateSelectedServicesSummary: function() {
+            // Get references to elements
+            const selectedServicesContainer = $(".cwb-selected-services-container");
+            const locationName = $(".cwb-summary-location-name");
+            const vehicleName = $(".cwb-summary-vehicle-name");
+            const packageName = $(".cwb-summary-package-name");
+            const addonContainer = $(".cwb-selected-addons");
+            const addonList = $(".cwb-summary-addon-list");
+            
+            // Check if we have enough information to show the summary
+            const hasLocationSelected = this.state.currentSelectedLocationId !== null;
+            const hasVehicleSelected = this.state.selectedVehicleId !== null;
+            const hasPackageSelected = this.state.selectedPackageId !== null;
+            
+            if (hasLocationSelected || hasVehicleSelected || hasPackageSelected) {
+                selectedServicesContainer.removeClass("cwb-state-hidden");
+                
+                // Update location name
+                if (hasLocationSelected) {
+                    const selectedLocation = $(`.cwb-location[data-id="${this.state.currentSelectedLocationId}"]`);
+                    locationName.text(selectedLocation.find("div > div:first-child").text());
+                } else {
+                    locationName.text("Not selected");
+                }
+                
+                // Update vehicle name with improved selector
+                if (hasVehicleSelected) {
+                    const selectedVehicle = $(`.cwb-vehicle[data-id="${this.state.selectedVehicleId}"]`);
+                    
+                    // Try multiple selectors to find the vehicle name
+                    let vehicleNameText = "";
+                    
+                    // First try the original selector
+                    vehicleNameText = selectedVehicle.find("div > div:first-child").text().trim();
+                    
+                    // If that's empty, try other common patterns
+                    if (!vehicleNameText) {
+                        // Try direct text content
+                        vehicleNameText = selectedVehicle.text().trim();
+                        
+                        // Try finding a heading or name element
+                        if (!vehicleNameText || vehicleNameText.length > 30) {
+                            const nameElement = selectedVehicle.find(".cwb-vehicle-name, h3, h4, .name, .title").first();
+                            if (nameElement.length) {
+                                vehicleNameText = nameElement.text().trim();
+                            }
+                        }
+                    }
+                    
+                    // Log for debugging
+                    this.logDebug("Selected vehicle element:", selectedVehicle);
+                    this.logDebug("Found vehicle name:", vehicleNameText);
+                    
+                    // Use the found name or fallback
+                    vehicleName.text(vehicleNameText || selectedVehicle.attr("title") || "Selected Vehicle");
+                } else {
+                    vehicleName.text("Not selected");
+                }
+                
+                // Update package name
+                if (hasPackageSelected) {
+                    const selectedPackage = $(`.cwb-package[data-id="${this.state.selectedPackageId}"]`);
+                    packageName.text(selectedPackage.find(".cwb-package-name").text());
+                } else {
+                    packageName.text("Not selected");
+                }
+                
+                // Update add-ons
+                if (this.state.selectedAddons && this.state.selectedAddons.length > 0) {
+                    addonList.empty();
+                    
+                    this.state.selectedAddons.forEach(addonId => {
+                        const addonElement = $(`#cwb-addon-list .cwb-service-id-${addonId}`);
+                        if (addonElement.length) {
+                            const addonName = addonElement.find(".cwb-service-name").text().trim();
+                            addonList.append(`<li>${addonName}</li>`);
+                        }
+                    });
+                    
+                    addonContainer.removeClass("cwb-state-hidden");
+                } else {
+                    addonContainer.addClass("cwb-state-hidden");
+                }
+            } else {
+                selectedServicesContainer.addClass("cwb-state-hidden");
+            }
         },
 
         /**

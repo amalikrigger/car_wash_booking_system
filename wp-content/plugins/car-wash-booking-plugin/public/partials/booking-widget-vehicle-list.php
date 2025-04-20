@@ -27,6 +27,7 @@
             <!-- Vehicle list container with improved accessibility -->
             <ul id="cwb-vehicle-list" class="cwb-vehicle-list cwb-list-reset cwb-clear-fix" role="listbox" aria-label="Available vehicle types">
                 <!-- Vehicles will be dynamically populated here -->
+                <!-- Each vehicle should have a class="cwb-vehicle-name" element containing the name -->
             </ul>
             
             <!-- Selection help message -->

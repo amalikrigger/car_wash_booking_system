@@ -208,6 +208,70 @@
     letter-spacing: 0
 }
 
+/******************************************************************************/
+/* Booking summary improvements                                              */
+/******************************************************************************/
+
+.cwb-visuallyhidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.cwb-selected-services-container {
+    margin: 30px 0;
+    padding: 20px;
+    background: #f9f9f9;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.cwb-selected-services-container h5 {
+    margin-top: 0;
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+
+.cwb-selected-services > div {
+    margin-bottom: 8px;
+}
+
+.cwb-selected-services strong {
+    color: var(--text-dark);
+}
+
+.cwb-summary-addon-list {
+    margin-left: 20px;
+}
+
+.cwb-summary-addon-list li {
+    margin-bottom: 5px;
+}
+
+.cwb-to-tab.ui-tabs .ui-tabs-nav li a i {
+    margin-right: 5px;
+}
+
+@media screen and (max-width: 767px) {
+    .cwb-selected-services-container {
+        padding: 15px;
+    }
+    
+    .cwb-to-tab.ui-tabs .ui-tabs-nav li a {
+        padding: .5em .7em;
+        font-size: 14px;
+    }
+    
+    .cwb-to-tab.ui-tabs .ui-tabs-nav li a i {
+        margin-right: 3px;
+    }
+}
 
 /******************************************************************************/
 /* Form																		  */
@@ -1467,6 +1531,19 @@ a.cwb-button:hover {
     .cwb-button {
         padding: 10px 25px 12px 25px;
     }
+
+    .cwb-selected-services-container {
+        padding: 15px;
+    }
+    
+    .cwb-to-tab.ui-tabs .ui-tabs-nav li a {
+        padding: .5em .7em;
+        font-size: 14px;
+    }
+    
+    .cwb-to-tab.ui-tabs .ui-tabs-nav li a i {
+        margin-right: 3px;
+    }
 }
 
 /**************************************************************************/
@@ -1482,3 +1559,4 @@ a.cwb-button:hover {
         float: left;
     }
 }
+
