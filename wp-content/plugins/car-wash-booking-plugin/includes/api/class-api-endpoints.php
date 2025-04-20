@@ -9,7 +9,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
-// Use WordPress standard way to include files
 require_once plugin_dir_path( __FILE__ ) . '../functions/functions-formatting.php';
 require_once plugin_dir_path( __FILE__ ) . '../functions/functions-availability.php';
 require_once plugin_dir_path( __FILE__ ) . '../functions/functions-debug.php';
@@ -235,5 +234,4 @@ class CWB_API_Endpoints {
     }
 }
 
-// Initialize the API endpoints - use consistent class name casing
 new CWB_API_Endpoints();
