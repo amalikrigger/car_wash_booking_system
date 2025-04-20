@@ -48,6 +48,9 @@
             packageEmptyState: $(".cwb-package-container .cwb-empty-state"),
             packageSelectionHelp: $(".cwb-package-container .cwb-selection-help"),
             addonList: $("#cwb-addon-list"),
+            addonLoadingIndicator: $(".cwb-addon-container .cwb-loading-indicator"),
+            addonEmptyState: $(".cwb-addon-container .cwb-empty-state"),
+            addonSelectionHelp: $(".cwb-addon-container .cwb-selection-help"),
             calendarHeader: $(".cwb-calendar-header-caption"),
             calendarSubheader: $(".cwb-calendar-subheader"),
             calendarData: $(".cwb-calendar-data"),
@@ -455,16 +458,35 @@
          */
         showAddonLoading: function() {
             this.setLoadingState('addons', true);
-            // Visual loading indicator for addons could be added here
-            this.showCalendarLoading(); // Use calendar overlay for now
+            this.elements.addonEmptyState.addClass("cwb-state-hidden");
+            this.elements.addonSelectionHelp.addClass("cwb-state-hidden");
+            this.elements.addonLoadingIndicator.removeClass("cwb-state-hidden");
+            this.elements.addonList.addClass("cwb-state-hidden");
+            this.elements.addonList.empty(); // Clear any existing addons
+            this.elements.serviceListContainer.addClass("cwb-state-disable");
         },
 
         /**
-         * Hide addon loading state
+         * Hide addon loading state and update UI based on addon availability
+         * @param {boolean} hasAddons - Whether addons were returned
          */
-        hideAddonLoading: function() {
+        hideAddonLoading: function(hasAddons) {
             this.setLoadingState('addons', false);
-            this.hideCalendarLoading(); // Use calendar overlay for now
+            this.elements.addonLoadingIndicator.addClass("cwb-state-hidden");
+            
+            if (hasAddons) {
+                this.logDebug("Addons found, showing addon list");
+                this.elements.addonList.removeClass("cwb-state-hidden");
+                this.elements.addonSelectionHelp.removeClass("cwb-state-hidden");
+                this.elements.addonEmptyState.addClass("cwb-state-hidden");
+                this.elements.serviceListContainer.removeClass("cwb-state-disable");
+            } else {
+                this.logDebug("No addons found, showing empty state");
+                this.elements.addonEmptyState.removeClass("cwb-state-hidden");
+                this.elements.addonList.addClass("cwb-state-hidden");
+                this.elements.addonSelectionHelp.addClass("cwb-state-hidden");
+                this.elements.serviceListContainer.removeClass("cwb-state-disable");
+            }
         },
 
         /**
@@ -721,17 +743,52 @@
                 },
                 success: (response) => {
                     this.logDebug("Add-ons loaded", response);
+                    
+                    // Add the HTML to the DOM
                     this.elements.addonList.html(response);
-
-                    const hasAddons = response.trim() !== "" && $(response).find("li").length > 0;
-                    this.elements.serviceListContainer.toggleClass("cwb-state-disable", !hasAddons);
-
-                    this.hideAddonLoading();
+                    
+                    // Better add-on detection with more detailed logging
+                    const responseText = response.trim();
+                    this.logDebug("Raw add-ons response", responseText);
+                    
+                    // First check if the response is empty or contains only whitespace
+                    if (responseText === "") {
+                        this.logDebug("Empty add-ons response");
+                        this.hideAddonLoading(false);
+                        return;
+                    }
+                    
+                    // Force browser to process the newly added content
+                    this.elements.addonList[0].offsetHeight;
+                    
+                    // Try multiple selector patterns to find add-ons
+                    let addonElements = this.elements.addonList.children('li');
+                    
+                    // If nothing found with the first selector, try a more general one
+                    if (addonElements.length === 0) {
+                        addonElements = this.elements.addonList.find('li');
+                        this.logDebug("Using find('li') for add-ons", addonElements.length);
+                    }
+                    
+                    const hasAddons = addonElements.length > 0;
+                    
+                    this.logDebug(`Addon elements found: ${addonElements.length}`, hasAddons);
+                    
+                    // Add additional debug info about the DOM structure
+                    if (!hasAddons) {
+                        this.logDebug("Add-on list HTML structure:", this.elements.addonList.html());
+                        this.logDebug("Add-on container:", this.elements.addonList[0]);
+                    }
+                    
+                    // Update UI based on addon availability
+                    this.hideAddonLoading(hasAddons);
                 },
                 error: (xhr, status, error) => {
                     this.showError("Failed to load add-on services. Please try again.");
                     this.logDebug("Add-on loading error", error);
-                    this.hideAddonLoading();
+                    this.logDebug("Add-on loading error status", status);
+                    this.logDebug("Add-on loading error response", xhr.responseText);
+                    this.hideAddonLoading(false);
                 }
             });
         },
