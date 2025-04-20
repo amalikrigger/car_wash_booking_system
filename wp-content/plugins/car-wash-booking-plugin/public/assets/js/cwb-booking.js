@@ -15,6 +15,27 @@
 
     // Main booking module
     const CWB_Booking = {
+        // Constants for class names and actions
+        constants: {
+            // CSS class names
+            STATE_SELECTED: 'cwb-state-selected',
+            STATE_HIDDEN: 'cwb-state-hidden',
+            STATE_DISABLE: 'cwb-state-disable',
+            
+            // AJAX action names
+            ACTION_GET_LOCATIONS: 'cwb_get_locations',
+            ACTION_GET_VEHICLES: 'cwb_get_vehicles',
+            ACTION_GET_PACKAGES: 'cwb_get_packages',
+            ACTION_GET_ADDONS: 'cwb_get_addons',
+            ACTION_GET_AVAILABLE_SLOTS: 'cwb_get_available_slots',
+            
+            // Selectors
+            SELECTOR_VEHICLE: '.cwb-vehicle',
+            SELECTOR_PACKAGE: '.cwb-package',
+            SELECTOR_LOCATION: '.cwb-location',
+            SELECTOR_ADDON: '.cwb-service-id-'
+        },
+        
         // State variables
         state: {
             selectedDate: null,
@@ -84,61 +105,79 @@
             this.checkLocationAvailability();
             this.renderCalendar([], this.state.currentDate);
         },
+        
+        /**
+         * Make an AJAX request with standardized error handling
+         * @param {string} action - The AJAX action to perform
+         * @param {object} data - Additional data for the request
+         * @returns {Promise} - Promise that resolves with the response
+         */
+        async makeRequest(action, data = {}) {
+            const requestData = {
+                ...data,
+                action,
+                nonce: this.config.nonce
+            };
+
+            try {
+                return await $.ajax({
+                    url: this.config.ajaxUrl,
+                    type: "POST",
+                    data: requestData
+                });
+            } catch (error) {
+                this.logDebug(`${action} error`, error);
+                throw error; // Re-throw to let the caller handle it
+            }
+        },
 
         /**
          * Check if locations are available and handle the initial display
          */
-        checkLocationAvailability: function() {
-            const locationsExist = this.elements.locationList.find('li.cwb-location').length > 0;
+        async checkLocationAvailability() {
+            const locationsExist = this.elements.locationList.find(`li.${this.constants.SELECTOR_LOCATION.substring(1)}`).length > 0;
             this.logDebug(`Locations found: ${locationsExist}`);
             
             if (locationsExist) {
                 this.hideLocationLoading(true);
-                this.initDefaultLocation();
+                await this.initDefaultLocation();
             } else {
                 this.showLocationLoading();
-                this.loadLocations();
+                await this.loadLocations();
             }
         },
 
         /**
          * Load locations via AJAX if they're not pre-rendered
          */
-        loadLocations: function() {
+        async loadLocations() {
             this.showLocationLoading();
             
-            $.ajax({
-                url: this.config.ajaxUrl,
-                type: "POST",
-                data: {
-                    action: "cwb_get_locations",
-                    nonce: this.config.nonce
-                },
-                success: (response) => {
-                    this.logDebug("Locations loaded", response);
-                    
-                    // Add the HTML to the DOM
-                    this.elements.locationList.html(response);
-                    
-                    // Check for locations
-                    const locationCount = this.elements.locationList.children('.cwb-location').length;
-                    const hasLocations = locationCount > 0;
-                    
-                    this.logDebug(`Location count: ${locationCount}`, hasLocations);
-                    
-                    // Update UI based on location availability
-                    this.hideLocationLoading(hasLocations);
-                    
-                    if (hasLocations) {
-                        this.initDefaultLocation();
-                    }
-                },
-                error: (xhr, status, error) => {
-                    this.showError("Failed to load locations. Please try again.");
-                    this.logDebug("Location loading error", error);
-                    this.hideLocationLoading(false);
+            try {
+                const response = await this.makeRequest(this.constants.ACTION_GET_LOCATIONS);
+                
+                this.logDebug("Locations loaded", response);
+                
+                // Add the HTML to the DOM
+                this.elements.locationList.html(response);
+                
+                // Check for locations
+                const locationCount = this.elements.locationList.children(this.constants.SELECTOR_LOCATION).length;
+                const hasLocations = locationCount > 0;
+                
+                this.logDebug(`Location count: ${locationCount}`, hasLocations);
+                
+                // Update UI based on location availability
+                this.hideLocationLoading(hasLocations);
+                
+                if (hasLocations) {
+                    await this.initDefaultLocation();
                 }
-            });
+            } catch (error) {
+                this.showError("Failed to load locations. Please try again.");
+                this.logDebug("Location loading error", error);
+                this.hideLocationLoading(false);
+            }
         },
 
         /**
@@ -153,9 +192,9 @@
             this.state.selectedPackageDuration = null;
             this.state.selectedPackageId = null;
 
-            $(".cwb-package").removeClass("cwb-state-selected");
+            $(".cwb-package").removeClass(this.constants.STATE_SELECTED);
             this.elements.addonList.empty();
-            this.elements.serviceListContainer.addClass("cwb-state-disable");
+            this.elements.serviceListContainer.addClass(this.constants.STATE_DISABLE);
 
             this.updateBookingSummary();
         },
@@ -174,40 +213,40 @@
             });
 
             // Location selection
-            $(document).on("click", ".cwb-location", (e) => {
+            $(document).on("click", this.constants.SELECTOR_LOCATION, async (e) => {
                 const locationId = $(e.currentTarget).data("id");
-                const isAlreadySelected = $(e.currentTarget).hasClass("cwb-state-selected");
+                const isAlreadySelected = $(e.currentTarget).hasClass(this.constants.STATE_SELECTED);
 
                 if (locationId !== this.state.currentSelectedLocationId) {
-                    $(".cwb-location").removeClass("cwb-state-selected");
-                    $(e.currentTarget).addClass("cwb-state-selected");
+                    $(this.constants.SELECTOR_LOCATION).removeClass(this.constants.STATE_SELECTED);
+                    $(e.currentTarget).addClass(this.constants.STATE_SELECTED);
                     this.resetSelections();
                     this.renderCalendar([], this.state.currentDate);
-                    this.loadVehicles(locationId);
+                    await this.loadVehicles(locationId);
                     this.state.currentSelectedLocationId = locationId;
                     this.updateBookingFormFields(locationId);
                 } else if (!isAlreadySelected) {
-                    $(".cwb-location").removeClass("cwb-state-selected");
-                    $(e.currentTarget).addClass("cwb-state-selected");
+                    $(this.constants.SELECTOR_LOCATION).removeClass(this.constants.STATE_SELECTED);
+                    $(e.currentTarget).addClass(this.constants.STATE_SELECTED);
                 }
             });
 
             // Vehicle selection
-            this.elements.vehicleList.on("click", ".cwb-vehicle", (e) => {
+            this.elements.vehicleList.on("click", this.constants.SELECTOR_VEHICLE, async (e) => {
                 const vehicleTypeId = $(e.currentTarget).data("id");
                 this.state.selectedVehicleId = vehicleTypeId;
-                $(".cwb-vehicle").removeClass("cwb-state-selected");
-                $(e.currentTarget).addClass("cwb-state-selected");
-                this.loadPackages(vehicleTypeId);
+                $(this.constants.SELECTOR_VEHICLE).removeClass(this.constants.STATE_SELECTED);
+                $(e.currentTarget).addClass(this.constants.STATE_SELECTED);
+                await this.loadPackages(vehicleTypeId);
             });
 
             // Package selection
-            this.elements.packageList.on("click", ".cwb-package", (e) => {
+            this.elements.packageList.on("click", this.constants.SELECTOR_PACKAGE, async (e) => {
                 const packageItem = $(e.currentTarget);
                 const packageId = packageItem.data("id");
                 const packageDuration = parseInt(packageItem.data("duration"), 10);
                 const packagePrice = parseFloat(packageItem.data("price"));
-                const isSelected = packageItem.hasClass("cwb-state-selected");
+                const isSelected = packageItem.hasClass(this.constants.STATE_SELECTED);
 
                 if (isNaN(packagePrice)) {
                     this.showError("Invalid package price. Please contact support.");
@@ -215,14 +254,14 @@
                 }
 
                 if (isSelected) {
-                    packageItem.removeClass("cwb-state-selected");
+                    packageItem.removeClass(this.constants.STATE_SELECTED);
                     this.state.selectedPackageId = null;
                     this.resetSelections();
                     this.elements.addonList.empty();
-                    this.elements.serviceListContainer.addClass("cwb-state-disable");
+                    this.elements.serviceListContainer.addClass(this.constants.STATE_DISABLE);
                 } else {
-                    $(".cwb-package").removeClass("cwb-state-selected");
-                    packageItem.addClass("cwb-state-selected");
+                    $(this.constants.SELECTOR_PACKAGE).removeClass(this.constants.STATE_SELECTED);
+                    packageItem.addClass(this.constants.STATE_SELECTED);
                     
                     this.state.selectedPackageId = packageId;
                     this.state.selectedDate = null;
@@ -232,14 +271,14 @@
                     this.state.selectedPrice = packagePrice;
                     this.state.selectedPackageDuration = packageDuration;
 
-                    this.loadAddons(packageId);
-                    this.fetchAvailableSlots(this.state.currentDate);
+                    await this.loadAddons(packageId);
+                    await this.fetchAvailableSlots(this.state.currentDate);
                     this.updateBookingSummary();
                 }
             });
 
             // Addon selection
-            this.elements.addonList.on("click", ".cwb-button", (e) => {
+            this.elements.addonList.on("click", ".cwb-button", async (e) => {
                 const addonItem = $(e.currentTarget).closest("li");
                 const addonId = addonItem.data("id");
                 const addonDuration = parseInt(addonItem.data("duration"), 10);
@@ -253,28 +292,28 @@
                 this.state.selectedDate = null;
                 this.state.selectedTime = null;
 
-                if (addonItem.hasClass("cwb-state-selected")) {
-                    addonItem.removeClass("cwb-state-selected");
+                if (addonItem.hasClass(this.constants.STATE_SELECTED)) {
+                    addonItem.removeClass(this.constants.STATE_SELECTED);
                     this.state.selectedAddons = this.state.selectedAddons.filter(id => id !== addonId);
                     this.state.selectedDuration -= addonDuration;
                     this.state.selectedPrice -= addonPrice;
                 } else {
-                    addonItem.addClass("cwb-state-selected");
+                    addonItem.addClass(this.constants.STATE_SELECTED);
                     this.state.selectedAddons.push(addonId);
                     this.state.selectedDuration += addonDuration;
                     this.state.selectedPrice += addonPrice;
                 }
 
                 this.updateBookingSummary();
-                this.fetchAvailableSlots(this.state.currentDate);
+                await this.fetchAvailableSlots(this.state.currentDate);
             });
 
             // Calendar slot selection
             $(document).on("click", ".cwb-calendar-data a", (e) => {
-                $(".cwb-calendar-data .cwb-state-selected").removeClass("cwb-state-selected");
+                $(".cwb-calendar-data .cwb-state-selected").removeClass(this.constants.STATE_SELECTED);
 
                 const listItem = $(e.currentTarget).parent();
-                listItem.addClass("cwb-state-selected");
+                listItem.addClass(this.constants.STATE_SELECTED);
 
                 this.state.selectedTime = $(e.currentTarget).data("time");
 
@@ -300,7 +339,7 @@
             $(".cwb-form-checkbox").on("click", function() {
                 const checkbox = $(this).next("input[type='checkbox']");
                 checkbox.prop("checked", !checkbox.prop("checked"));
-                $(this).toggleClass("cwb-state-selected", checkbox.prop("checked"));
+                $(this).toggleClass(this.constants.STATE_SELECTED, checkbox.prop("checked"));
             });
 
             // Prevent form submission on agreement click
@@ -312,13 +351,13 @@
         /**
          * Initialize with default location if available
          */
-        initDefaultLocation: function() {
-            const defaultLocation = $(".cwb-location[data-default='true']");
+        async initDefaultLocation() {
+            const defaultLocation = $(`${this.constants.SELECTOR_LOCATION}[data-default='true']`);
             if (defaultLocation.length) {
                 const defaultLocationId = defaultLocation.data("id");
-                this.loadVehicles(defaultLocationId);
                 this.state.currentSelectedLocationId = defaultLocationId;
                 this.updateBookingFormFields(defaultLocationId);
+                await this.loadVehicles(defaultLocationId);
             }
         },
 
@@ -339,10 +378,10 @@
          */
         showLocationLoading: function() {
             this.setLoadingState('locations', true);
-            this.elements.locationEmptyState.addClass("cwb-state-hidden");
-            this.elements.locationSelectionHelp.addClass("cwb-state-hidden");
-            this.elements.locationLoadingIndicator.removeClass("cwb-state-hidden");
-            this.elements.locationList.addClass("cwb-state-hidden");
+            this.elements.locationEmptyState.addClass(this.constants.STATE_HIDDEN);
+            this.elements.locationSelectionHelp.addClass(this.constants.STATE_HIDDEN);
+            this.elements.locationLoadingIndicator.removeClass(this.constants.STATE_HIDDEN);
+            this.elements.locationList.addClass(this.constants.STATE_HIDDEN);
         },
 
         /**
@@ -351,23 +390,23 @@
          */
         hideLocationLoading: function(hasLocations) {
             this.setLoadingState('locations', false);
-            this.elements.locationLoadingIndicator.addClass("cwb-state-hidden");
+            this.elements.locationLoadingIndicator.addClass(this.constants.STATE_HIDDEN);
             
             if (hasLocations) {
                 this.logDebug("Locations found, showing location list");
-                this.elements.locationList.removeClass("cwb-state-hidden");
+                this.elements.locationList.removeClass(this.constants.STATE_HIDDEN);
                 
                 // Only show help text if multiple locations exist
-                if (this.elements.locationList.children('.cwb-location').length > 1) {
-                    this.elements.locationSelectionHelp.removeClass("cwb-state-hidden");
+                if (this.elements.locationList.children(this.constants.SELECTOR_LOCATION).length > 1) {
+                    this.elements.locationSelectionHelp.removeClass(this.constants.STATE_HIDDEN);
                 }
                 
-                this.elements.locationEmptyState.addClass("cwb-state-hidden");
+                this.elements.locationEmptyState.addClass(this.constants.STATE_HIDDEN);
             } else {
                 this.logDebug("No locations found, showing empty state");
-                this.elements.locationEmptyState.removeClass("cwb-state-hidden");
-                this.elements.locationList.addClass("cwb-state-hidden");
-                this.elements.locationSelectionHelp.addClass("cwb-state-hidden");
+                this.elements.locationEmptyState.removeClass(this.constants.STATE_HIDDEN);
+                this.elements.locationList.addClass(this.constants.STATE_HIDDEN);
+                this.elements.locationSelectionHelp.addClass(this.constants.STATE_HIDDEN);
             }
         },
 
@@ -392,10 +431,10 @@
          */
         showVehicleLoading: function() {
             this.setLoadingState('vehicles', true);
-            this.elements.vehicleEmptyState.addClass("cwb-state-hidden");
-            this.elements.vehicleSelectionHelp.addClass("cwb-state-hidden");
-            this.elements.vehicleLoadingIndicator.removeClass("cwb-state-hidden");
-            this.elements.vehicleList.addClass("cwb-state-hidden");
+            this.elements.vehicleEmptyState.addClass(this.constants.STATE_HIDDEN);
+            this.elements.vehicleSelectionHelp.addClass(this.constants.STATE_HIDDEN);
+            this.elements.vehicleLoadingIndicator.removeClass(this.constants.STATE_HIDDEN);
+            this.elements.vehicleList.addClass(this.constants.STATE_HIDDEN);
             this.elements.vehicleList.empty(); // Clear any existing vehicles
         },
 
@@ -405,18 +444,18 @@
          */
         hideVehicleLoading: function(hasVehicles) {
             this.setLoadingState('vehicles', false);
-            this.elements.vehicleLoadingIndicator.addClass("cwb-state-hidden");
+            this.elements.vehicleLoadingIndicator.addClass(this.constants.STATE_HIDDEN);
 
             if (hasVehicles) {
                 this.logDebug("Vehicles found, showing vehicle list");
-                this.elements.vehicleList.removeClass("cwb-state-hidden");
-                this.elements.vehicleSelectionHelp.removeClass("cwb-state-hidden");
-                this.elements.vehicleEmptyState.addClass("cwb-state-hidden");
+                this.elements.vehicleList.removeClass(this.constants.STATE_HIDDEN);
+                this.elements.vehicleSelectionHelp.removeClass(this.constants.STATE_HIDDEN);
+                this.elements.vehicleEmptyState.addClass(this.constants.STATE_HIDDEN);
             } else {
                 this.logDebug("No vehicles found, showing empty state");
-                this.elements.vehicleEmptyState.removeClass("cwb-state-hidden");
-                this.elements.vehicleList.addClass("cwb-state-hidden");
-                this.elements.vehicleSelectionHelp.addClass("cwb-state-hidden");
+                this.elements.vehicleEmptyState.removeClass(this.constants.STATE_HIDDEN);
+                this.elements.vehicleList.addClass(this.constants.STATE_HIDDEN);
+                this.elements.vehicleSelectionHelp.addClass(this.constants.STATE_HIDDEN);
             }
         },
 
@@ -425,10 +464,10 @@
          */
         showPackageLoading: function() {
             this.setLoadingState('packages', true);
-            this.elements.packageEmptyState.addClass("cwb-state-hidden");
-            this.elements.packageSelectionHelp.addClass("cwb-state-hidden");
-            this.elements.packageLoadingIndicator.removeClass("cwb-state-hidden");
-            this.elements.packageList.addClass("cwb-state-hidden");
+            this.elements.packageEmptyState.addClass(this.constants.STATE_HIDDEN);
+            this.elements.packageSelectionHelp.addClass(this.constants.STATE_HIDDEN);
+            this.elements.packageLoadingIndicator.removeClass(this.constants.STATE_HIDDEN);
+            this.elements.packageList.addClass(this.constants.STATE_HIDDEN);
             this.elements.packageList.empty(); // Clear any existing packages
         },
 
@@ -438,18 +477,18 @@
          */
         hidePackageLoading: function(hasPackages) {
             this.setLoadingState('packages', false);
-            this.elements.packageLoadingIndicator.addClass("cwb-state-hidden");
+            this.elements.packageLoadingIndicator.addClass(this.constants.STATE_HIDDEN);
             
             if (hasPackages) {
                 this.logDebug("Packages found, showing package list");
-                this.elements.packageList.removeClass("cwb-state-hidden");
-                this.elements.packageSelectionHelp.removeClass("cwb-state-hidden");
-                this.elements.packageEmptyState.addClass("cwb-state-hidden");
+                this.elements.packageList.removeClass(this.constants.STATE_HIDDEN);
+                this.elements.packageSelectionHelp.removeClass(this.constants.STATE_HIDDEN);
+                this.elements.packageEmptyState.addClass(this.constants.STATE_HIDDEN);
             } else {
                 this.logDebug("No packages found, showing empty state");
-                this.elements.packageEmptyState.removeClass("cwb-state-hidden");
-                this.elements.packageList.addClass("cwb-state-hidden");
-                this.elements.packageSelectionHelp.addClass("cwb-state-hidden");
+                this.elements.packageEmptyState.removeClass(this.constants.STATE_HIDDEN);
+                this.elements.packageList.addClass(this.constants.STATE_HIDDEN);
+                this.elements.packageSelectionHelp.addClass(this.constants.STATE_HIDDEN);
             }
         },
 
@@ -458,12 +497,12 @@
          */
         showAddonLoading: function() {
             this.setLoadingState('addons', true);
-            this.elements.addonEmptyState.addClass("cwb-state-hidden");
-            this.elements.addonSelectionHelp.addClass("cwb-state-hidden");
-            this.elements.addonLoadingIndicator.removeClass("cwb-state-hidden");
-            this.elements.addonList.addClass("cwb-state-hidden");
+            this.elements.addonEmptyState.addClass(this.constants.STATE_HIDDEN);
+            this.elements.addonSelectionHelp.addClass(this.constants.STATE_HIDDEN);
+            this.elements.addonLoadingIndicator.removeClass(this.constants.STATE_HIDDEN);
+            this.elements.addonList.addClass(this.constants.STATE_HIDDEN);
             this.elements.addonList.empty(); // Clear any existing addons
-            this.elements.serviceListContainer.addClass("cwb-state-disable");
+            this.elements.serviceListContainer.addClass(this.constants.STATE_DISABLE);
         },
 
         /**
@@ -472,20 +511,20 @@
          */
         hideAddonLoading: function(hasAddons) {
             this.setLoadingState('addons', false);
-            this.elements.addonLoadingIndicator.addClass("cwb-state-hidden");
+            this.elements.addonLoadingIndicator.addClass(this.constants.STATE_HIDDEN);
             
             if (hasAddons) {
                 this.logDebug("Addons found, showing addon list");
-                this.elements.addonList.removeClass("cwb-state-hidden");
-                this.elements.addonSelectionHelp.removeClass("cwb-state-hidden");
-                this.elements.addonEmptyState.addClass("cwb-state-hidden");
-                this.elements.serviceListContainer.removeClass("cwb-state-disable");
+                this.elements.addonList.removeClass(this.constants.STATE_HIDDEN);
+                this.elements.addonSelectionHelp.removeClass(this.constants.STATE_HIDDEN);
+                this.elements.addonEmptyState.addClass(this.constants.STATE_HIDDEN);
+                this.elements.serviceListContainer.removeClass(this.constants.STATE_DISABLE);
             } else {
                 this.logDebug("No addons found, showing empty state");
-                this.elements.addonEmptyState.removeClass("cwb-state-hidden");
-                this.elements.addonList.addClass("cwb-state-hidden");
-                this.elements.addonSelectionHelp.addClass("cwb-state-hidden");
-                this.elements.serviceListContainer.removeClass("cwb-state-disable");
+                this.elements.addonEmptyState.removeClass(this.constants.STATE_HIDDEN);
+                this.elements.addonList.addClass(this.constants.STATE_HIDDEN);
+                this.elements.addonSelectionHelp.addClass(this.constants.STATE_HIDDEN);
+                this.elements.serviceListContainer.removeClass(this.constants.STATE_DISABLE);
             }
         },
 
@@ -552,7 +591,7 @@
 
                 if (fieldElement.length) {
                     this.logDebug(`Field visibility: ${field}`, enabled);
-                    fieldElement.toggleClass('cwb-state-hidden', !enabled);
+                    fieldElement.toggleClass(this.constants.STATE_HIDDEN, !enabled);
                 }
             });
         },
@@ -594,11 +633,11 @@
             const hasPackageSelected = this.state.selectedPackageId !== null;
             
             if (hasLocationSelected || hasVehicleSelected || hasPackageSelected) {
-                selectedServicesContainer.removeClass("cwb-state-hidden");
+                selectedServicesContainer.removeClass(this.constants.STATE_HIDDEN);
                 
                 // Update location name
                 if (hasLocationSelected) {
-                    const selectedLocation = $(`.cwb-location[data-id="${this.state.currentSelectedLocationId}"]`);
+                    const selectedLocation = $(`${this.constants.SELECTOR_LOCATION}[data-id="${this.state.currentSelectedLocationId}"]`);
                     locationName.text(selectedLocation.find("div > div:first-child").text());
                 } else {
                     locationName.text("Not selected");
@@ -606,7 +645,7 @@
                 
                 // Update vehicle name with improved selector
                 if (hasVehicleSelected) {
-                    const selectedVehicle = $(`.cwb-vehicle[data-id="${this.state.selectedVehicleId}"]`);
+                    const selectedVehicle = $(`${this.constants.SELECTOR_VEHICLE}[data-id="${this.state.selectedVehicleId}"]`);
                     
                     // Try multiple selectors to find the vehicle name
                     let vehicleNameText = "";
@@ -640,7 +679,7 @@
                 
                 // Update package name
                 if (hasPackageSelected) {
-                    const selectedPackage = $(`.cwb-package[data-id="${this.state.selectedPackageId}"]`);
+                    const selectedPackage = $(`${this.constants.SELECTOR_PACKAGE}[data-id="${this.state.selectedPackageId}"]`);
                     packageName.text(selectedPackage.find(".cwb-package-name").text());
                 } else {
                     packageName.text("Not selected");
@@ -651,240 +690,219 @@
                     addonList.empty();
                     
                     this.state.selectedAddons.forEach(addonId => {
-                        const addonElement = $(`#cwb-addon-list .cwb-service-id-${addonId}`);
+                        const addonElement = $(`#cwb-addon-list ${this.constants.SELECTOR_ADDON}${addonId}`);
                         if (addonElement.length) {
                             const addonName = addonElement.find(".cwb-service-name").text().trim();
                             addonList.append(`<li>${addonName}</li>`);
                         }
                     });
                     
-                    addonContainer.removeClass("cwb-state-hidden");
+                    addonContainer.removeClass(this.constants.STATE_HIDDEN);
                 } else {
-                    addonContainer.addClass("cwb-state-hidden");
+                    addonContainer.addClass(this.constants.STATE_HIDDEN);
                 }
             } else {
-                selectedServicesContainer.addClass("cwb-state-hidden");
+                selectedServicesContainer.addClass(this.constants.STATE_HIDDEN);
             }
         },
 
         /**
          * Load vehicles for a specific location
          * @param {number|string} locationId - Location ID
+         * @returns {Promise} - Promise that resolves when vehicles are loaded and processed
          */
-        loadVehicles: function(locationId) {
+        async loadVehicles(locationId) {
             this.showVehicleLoading();
 
-            $.ajax({
-                url: this.config.ajaxUrl,
-                type: "POST",
-                data: {
-                    action: "cwb_get_vehicles",
-                    nonce: this.config.nonce,
+            try {
+                const response = await this.makeRequest(this.constants.ACTION_GET_VEHICLES, {
                     location_id: locationId,
-                },
-                success: (response) => {
-                    this.logDebug("Vehicles response received", response);
+                });
+                
+                this.logDebug("Vehicles response received", response);
 
-                    // Add the HTML to the DOM
-                    this.elements.vehicleList.html(response);
+                // Add the HTML to the DOM
+                this.elements.vehicleList.html(response);
 
-                    // Check for vehicles using direct DOM inspection after insertion
-                    const vehicleCount = this.elements.vehicleList.children('.cwb-vehicle').length;
-                    const hasVehicles = vehicleCount > 0;
+                // Check for vehicles using direct DOM inspection after insertion
+                const vehicleCount = this.elements.vehicleList.children(this.constants.SELECTOR_VEHICLE).length;
+                const hasVehicles = vehicleCount > 0;
 
-                    this.logDebug(`Vehicle count: ${vehicleCount}`, hasVehicles);
+                this.logDebug(`Vehicle count: ${vehicleCount}`, hasVehicles);
 
-                    // Update UI based on vehicle availability
-                    this.hideVehicleLoading(hasVehicles);
+                // Update UI based on vehicle availability
+                this.hideVehicleLoading(hasVehicles);
 
-                    if (hasVehicles) {
-                        // Force a repaint to ensure the DOM is updated
-                        this.elements.vehicleList[0].offsetHeight;
+                if (hasVehicles) {
+                    // Force a repaint to ensure the DOM is updated
+                    this.elements.vehicleList[0].offsetHeight;
 
-                        // Get the first vehicle and select it
-                        const firstVehicle = this.elements.vehicleList.children('.cwb-vehicle').first();
+                    // Get the first vehicle and select it
+                    const firstVehicle = this.elements.vehicleList.children(this.constants.SELECTOR_VEHICLE).first();
 
-                        if (firstVehicle.length) {
-                            this.logDebug("Selecting first vehicle", firstVehicle);
+                    if (firstVehicle.length) {
+                        this.logDebug("Selecting first vehicle", firstVehicle);
 
-                            // Remove any existing selections
-                            this.elements.vehicleList.find(".cwb-vehicle").removeClass("cwb-state-selected");
+                        // Remove any existing selections
+                        this.elements.vehicleList.find(this.constants.SELECTOR_VEHICLE).removeClass(this.constants.STATE_SELECTED);
 
-                            // Select the first vehicle
-                            firstVehicle.addClass("cwb-state-selected");
+                        // Select the first vehicle
+                        firstVehicle.addClass(this.constants.STATE_SELECTED);
 
-                            // Get and store the vehicle ID
-                            const firstVehicleId = firstVehicle.data("id");
-                            this.state.selectedVehicleId = firstVehicleId;
+                        // Get and store the vehicle ID
+                        const firstVehicleId = firstVehicle.data("id");
+                        this.state.selectedVehicleId = firstVehicleId;
 
-                            // Load packages for this vehicle with a slight delay
-                            setTimeout(() => {
-                                this.loadPackages(firstVehicleId);
-                            }, 100);
-                        } else {
-                            this.logDebug("First vehicle not found even though vehicles exist");
-                        }
+                        // Load packages for this vehicle
+                        await this.loadPackages(firstVehicleId);
                     } else {
-                        this.elements.packageList.empty();
-                        this.elements.addonList.empty();
-                        this.elements.serviceListContainer.addClass("cwb-state-disable");
+                        this.logDebug("First vehicle not found even though vehicles exist");
                     }
-                },
-                error: (xhr, status, error) => {
-                    this.showError("Failed to load vehicles. Please try again.");
-                    this.logDebug("Vehicle loading error", error);
-                    this.hideVehicleLoading(false);
+                } else {
+                    this.elements.packageList.empty();
+                    this.elements.addonList.empty();
+                    this.elements.serviceListContainer.addClass(this.constants.STATE_DISABLE);
                 }
-            });
+            } catch (error) {
+                this.showError("Failed to load vehicles. Please try again.");
+                this.logDebug("Vehicle loading error", error);
+                this.hideVehicleLoading(false);
+            }
         },
 
         /**
          * Load packages for a specific vehicle type
          * @param {number|string} vehicleTypeId - Vehicle type ID
+         * @returns {Promise} - Promise that resolves when packages are loaded and processed
          */
-        loadPackages: function(vehicleTypeId) {
+        async loadPackages(vehicleTypeId) {
             this.showPackageLoading();
 
-            $.ajax({
-                url: this.config.ajaxUrl,
-                type: "POST",
-                data: {
-                    action: "cwb_get_packages",
-                    nonce: this.config.nonce,
+            try {
+                const response = await this.makeRequest(this.constants.ACTION_GET_PACKAGES, {
                     vehicle_type_id: vehicleTypeId,
-                },
-                success: (response) => {
-                    this.logDebug("Packages loaded", response);
+                });
+                
+                this.logDebug("Packages loaded", response);
+                
+                // Add the HTML to the DOM
+                this.elements.packageList.html(response);
+                
+                // Check for packages using direct DOM inspection
+                const packageCount = this.elements.packageList.children(this.constants.SELECTOR_PACKAGE).length;
+                const hasPackages = packageCount > 0;
+                
+                this.logDebug(`Package count: ${packageCount}`, hasPackages);
+                
+                // Update UI based on package availability
+                this.hidePackageLoading(hasPackages);
+                
+                if (hasPackages) {
+                    // Force a repaint to ensure the DOM is updated
+                    this.elements.packageList[0].offsetHeight;
                     
-                    // Add the HTML to the DOM
-                    this.elements.packageList.html(response);
+                    // Get the first package and select it
+                    const firstPackage = this.elements.packageList.children(this.constants.SELECTOR_PACKAGE).first();
                     
-                    // Check for packages using direct DOM inspection
-                    const packageCount = this.elements.packageList.children('.cwb-package').length;
-                    const hasPackages = packageCount > 0;
-                    
-                    this.logDebug(`Package count: ${packageCount}`, hasPackages);
-                    
-                    // Update UI based on package availability
-                    this.hidePackageLoading(hasPackages);
-                    
-                    if (hasPackages) {
-                        // Force a repaint to ensure the DOM is updated
-                        this.elements.packageList[0].offsetHeight;
+                    if (firstPackage.length) {
+                        this.logDebug("Selecting first package", firstPackage);
                         
-                        // Get the first package and select it
-                        const firstPackage = this.elements.packageList.children('.cwb-package').first();
+                        // Remove any existing selections
+                        this.elements.packageList.find(this.constants.SELECTOR_PACKAGE).removeClass(this.constants.STATE_SELECTED);
                         
-                        if (firstPackage.length) {
-                            this.logDebug("Selecting first package", firstPackage);
-                            
-                            // Remove any existing selections
-                            this.elements.packageList.find(".cwb-package").removeClass("cwb-state-selected");
-                            
-                            // Select the first package
-                            firstPackage.addClass("cwb-state-selected");
-                            
-                            // Get package details
-                            const firstPackageId = firstPackage.data("id");
-                            const packageDuration = parseInt(firstPackage.data("duration"), 10);
-                            const packagePrice = parseFloat(firstPackage.data("price"));
-                            
-                            // Store package data in state
-                            this.state.selectedPackageId = firstPackageId;
-                            this.state.selectedDuration = packageDuration;
-                            this.state.selectedPrice = packagePrice;
-                            this.state.selectedPackageDuration = packageDuration;
-                            
-                            // Update booking summary
-                            this.updateBookingSummary();
-                            
-                            // Load addons for this package with a slight delay
-                            setTimeout(() => {
-                                this.loadAddons(firstPackageId);
-                                this.fetchAvailableSlots(this.state.currentDate);
-                            }, 100);
-                        } else {
-                            this.logDebug("First package not found even though packages exist");
-                        }
+                        // Select the first package
+                        firstPackage.addClass(this.constants.STATE_SELECTED);
+                        
+                        // Get package details
+                        const firstPackageId = firstPackage.data("id");
+                        const packageDuration = parseInt(firstPackage.data("duration"), 10);
+                        const packagePrice = parseFloat(firstPackage.data("price"));
+                        
+                        // Store package data in state
+                        this.state.selectedPackageId = firstPackageId;
+                        this.state.selectedDuration = packageDuration;
+                        this.state.selectedPrice = packagePrice;
+                        this.state.selectedPackageDuration = packageDuration;
+                        
+                        // Update booking summary
+                        this.updateBookingSummary();
+                        
+                        // Load addons for this package
+                        await this.loadAddons(firstPackageId);
+                        await this.fetchAvailableSlots(this.state.currentDate);
                     } else {
-                        // If no packages, clear any addon selections too
-                        this.elements.addonList.empty();
-                        this.elements.serviceListContainer.addClass("cwb-state-disable");
+                        this.logDebug("First package not found even though packages exist");
                     }
-                },
-                error: (xhr, status, error) => {
-                    this.showError("Failed to load packages. Please try again.");
-                    this.logDebug("Package loading error", error);
-                    this.hidePackageLoading(false);
+                } else {
+                    // If no packages, clear any addon selections too
+                    this.elements.addonList.empty();
+                    this.elements.serviceListContainer.addClass(this.constants.STATE_DISABLE);
                 }
-            });
+            } catch (error) {
+                this.showError("Failed to load packages. Please try again.");
+                this.logDebug("Package loading error", error);
+                this.hidePackageLoading(false);
+            }
         },
 
         /**
          * Load add-ons for a specific package
          * @param {number|string} packageId - Package ID
+         * @returns {Promise} - Promise that resolves when add-ons are loaded
          */
-        loadAddons: function(packageId) {
+        async loadAddons(packageId) {
             this.showAddonLoading();
 
-            $.ajax({
-                url: this.config.ajaxUrl,
-                type: "POST",
-                data: {
-                    action: "cwb_get_addons",
-                    nonce: this.config.nonce,
+            try {
+                const response = await this.makeRequest(this.constants.ACTION_GET_ADDONS, {
                     package_id: packageId,
-                },
-                success: (response) => {
-                    this.logDebug("Add-ons loaded", response);
-                    
-                    // Add the HTML to the DOM
-                    this.elements.addonList.html(response);
-                    
-                    // Better add-on detection with more detailed logging
-                    const responseText = response.trim();
-                    this.logDebug("Raw add-ons response", responseText);
-                    
-                    // First check if the response is empty or contains only whitespace
-                    if (responseText === "") {
-                        this.logDebug("Empty add-ons response");
-                        this.hideAddonLoading(false);
-                        return;
-                    }
-                    
-                    // Force browser to process the newly added content
-                    this.elements.addonList[0].offsetHeight;
-                    
-                    // Try multiple selector patterns to find add-ons
-                    let addonElements = this.elements.addonList.children('li');
-                    
-                    // If nothing found with the first selector, try a more general one
-                    if (addonElements.length === 0) {
-                        addonElements = this.elements.addonList.find('li');
-                        this.logDebug("Using find('li') for add-ons", addonElements.length);
-                    }
-                    
-                    const hasAddons = addonElements.length > 0;
-                    
-                    this.logDebug(`Addon elements found: ${addonElements.length}`, hasAddons);
-                    
-                    // Add additional debug info about the DOM structure
-                    if (!hasAddons) {
-                        this.logDebug("Add-on list HTML structure:", this.elements.addonList.html());
-                        this.logDebug("Add-on container:", this.elements.addonList[0]);
-                    }
-                    
-                    // Update UI based on addon availability
-                    this.hideAddonLoading(hasAddons);
-                },
-                error: (xhr, status, error) => {
-                    this.showError("Failed to load add-on services. Please try again.");
-                    this.logDebug("Add-on loading error", error);
-                    this.logDebug("Add-on loading error status", status);
-                    this.logDebug("Add-on loading error response", xhr.responseText);
+                });
+                
+                this.logDebug("Add-ons loaded", response);
+                
+                // Add the HTML to the DOM
+                this.elements.addonList.html(response);
+                
+                // Better add-on detection with more detailed logging
+                const responseText = response.trim();
+                this.logDebug("Raw add-ons response", responseText);
+                
+                // First check if the response is empty or contains only whitespace
+                if (responseText === "") {
+                    this.logDebug("Empty add-ons response");
                     this.hideAddonLoading(false);
+                    return;
                 }
-            });
+                
+                // Force browser to process the newly added content
+                this.elements.addonList[0].offsetHeight;
+                
+                // Try multiple selector patterns to find add-ons
+                let addonElements = this.elements.addonList.children('li');
+                
+                // If nothing found with the first selector, try a more general one
+                if (addonElements.length === 0) {
+                    addonElements = this.elements.addonList.find('li');
+                    this.logDebug("Using find('li') for add-ons", addonElements.length);
+                }
+                
+                const hasAddons = addonElements.length > 0;
+                
+                this.logDebug(`Addon elements found: ${addonElements.length}`, hasAddons);
+                
+                // Add additional debug info about the DOM structure
+                if (!hasAddons) {
+                    this.logDebug("Add-on list HTML structure:", this.elements.addonList.html());
+                    this.logDebug("Add-on container:", this.elements.addonList[0]);
+                }
+                
+                // Update UI based on addon availability
+                this.hideAddonLoading(hasAddons);
+            } catch (error) {
+                this.showError("Failed to load add-on services. Please try again.");
+                this.logDebug("Add-on loading error", error);
+                this.hideAddonLoading(false);
+            }
         },
 
         /**
@@ -901,8 +919,9 @@
         /**
          * Fetch available time slots for a specific date
          * @param {Date} date - Date to check for availability
+         * @returns {Promise} - Promise that resolves when slots are fetched
          */
-        fetchAvailableSlots: function(date) {
+        async fetchAvailableSlots(date) {
             if (!this.state.selectedPackageDuration) {
                 this.logDebug("No package selected");
                 this.renderCalendar({}, date);
@@ -915,7 +934,7 @@
 
             // Add duration from selected add-ons
             this.state.selectedAddons.forEach(addonId => {
-                const addonElement = $(`#cwb-addon-list .cwb-service-id-${addonId}.cwb-state-selected`);
+                const addonElement = $(`#cwb-addon-list ${this.constants.SELECTOR_ADDON}${addonId}.${this.constants.STATE_SELECTED}`);
                 if (addonElement.length) {
                     totalDuration += parseInt(addonElement.data("duration"), 10);
                 }
@@ -923,32 +942,26 @@
 
             const formattedDate = date.toISOString().split("T")[0];
 
-            $.ajax({
-                url: this.config.ajaxUrl,
-                type: "POST",
-                data: {
-                    action: "cwb_get_available_slots",
-                    nonce: this.config.nonce,
+            try {
+                const response = await this.makeRequest(this.constants.ACTION_GET_AVAILABLE_SLOTS, {
                     date: formattedDate,
                     duration: totalDuration
-                },
-                success: (response) => {
-                    if (response.success && response.data?.slots) {
-                        this.logDebug("Available slots", response.data.slots);
-                        this.renderCalendar(response.data.slots, date);
-                    } else {
-                        this.logDebug("No available slots", response);
-                        this.renderCalendar({}, date);
-                    }
-                    this.hideCalendarLoading();
-                },
-                error: (xhr, status, error) => {
-                    this.showError("Failed to fetch available time slots. Please try again.");
-                    this.logDebug("Slot fetching error", error);
+                });
+                
+                if (response.success && response.data?.slots) {
+                    this.logDebug("Available slots", response.data.slots);
+                    this.renderCalendar(response.data.slots, date);
+                } else {
+                    this.logDebug("No available slots", response);
                     this.renderCalendar({}, date);
-                    this.hideCalendarLoading();
                 }
-            });
+                this.hideCalendarLoading();
+            } catch (error) {
+                this.showError("Failed to fetch available time slots. Please try again.");
+                this.logDebug("Slot fetching error", error);
+                this.renderCalendar({}, date);
+                this.hideCalendarLoading();
+            }
         },
 
         /**
