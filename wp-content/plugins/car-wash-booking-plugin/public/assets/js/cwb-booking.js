@@ -279,6 +279,8 @@
 
             // Addon selection
             this.elements.addonList.on("click", ".cwb-button", async (e) => {
+                e.preventDefault(); // Prevent page scrolling to top
+                
                 const addonItem = $(e.currentTarget).closest("li");
                 const addonId = addonItem.data("id");
                 const addonDuration = parseInt(addonItem.data("duration"), 10);
@@ -310,6 +312,8 @@
 
             // Calendar slot selection
             $(document).on("click", ".cwb-calendar-data a", (e) => {
+                e.preventDefault(); // Prevent page scrolling to top
+                
                 $(".cwb-calendar-data .cwb-state-selected").removeClass(this.constants.STATE_SELECTED);
 
                 const listItem = $(e.currentTarget).parent();
@@ -1030,4 +1034,3 @@
     });
 
 })(jQuery);
-
