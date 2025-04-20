@@ -24,10 +24,12 @@
                 <p>No vehicles are available for this location. Please select a different location.</p>
             </div>
             
+            <!-- Vehicle list container with improved accessibility -->
             <ul id="cwb-vehicle-list" class="cwb-vehicle-list cwb-list-reset cwb-clear-fix" role="listbox" aria-label="Available vehicle types">
                 <!-- Vehicles will be dynamically populated here -->
             </ul>
             
+            <!-- Selection help message -->
             <div class="cwb-selection-help cwb-state-hidden">
                 <p><i class="fa-solid fa-circle-info"></i> Click on a vehicle type to select it</p>
             </div>

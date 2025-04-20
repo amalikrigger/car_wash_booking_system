@@ -1,6 +1,6 @@
 /**
  * Car Wash Booking System Frontend JavaScript
- * 
+ *
  * Handles all booking-related functionality including:
  * - Location selection
  * - Vehicle selection
@@ -25,7 +25,13 @@
             selectedPackageDuration: null,
             currentDate: new Date(),
             currentSelectedLocationId: null,
-            isLoading: false
+            selectedVehicleId: null,
+            loadingStates: {
+                calendar: false,
+                vehicles: false,
+                packages: false,
+                addons: false
+            }
         },
 
         // Cache DOM elements for better performance
@@ -37,7 +43,7 @@
             calendarSubheader: $(".cwb-calendar-subheader"),
             calendarData: $(".cwb-calendar-data"),
             calendarContainer: $(".cwb-calendar-container"),
-            loadingOverlay: $(".cwb-loading-overlay"),
+            calendarLoadingOverlay: $(".cwb-loading-overlay"),
             summaryDate: $(".cwb-booking-summary-date h5 span:nth-child(2)"),
             summaryTime: $(".cwb-booking-summary-time h5 span:nth-child(2)"),
             summaryDurationHours: $(".cwb-booking-summary-duration h5 span:nth-child(1)"),
@@ -77,11 +83,11 @@
             this.state.selectedPrice = 0.00;
             this.state.selectedAddons = [];
             this.state.selectedPackageDuration = null;
-            
+
             $(".cwb-package").removeClass("cwb-state-selected");
             this.elements.addonList.empty();
             this.elements.serviceListContainer.addClass("cwb-state-disable");
-            
+
             this.updateBookingSummary();
         },
 
@@ -90,11 +96,11 @@
          */
         bindEvents: function() {
             // Navigation arrows for calendar
-            $(".cwb-calendar-header-arrow-left").on("click", (e) => {
+            $(".cwb-calendar-header-arrow-left").on("click", () => {
                 this.updateCalendar(-7); // Move back a week
             });
 
-            $(".cwb-calendar-header-arrow-right").on("click", (e) => {
+            $(".cwb-calendar-header-arrow-right").on("click", () => {
                 this.updateCalendar(7); // Move forward a week
             });
 
@@ -120,6 +126,7 @@
             // Vehicle selection
             this.elements.vehicleList.on("click", ".cwb-vehicle", (e) => {
                 const vehicleTypeId = $(e.currentTarget).data("id");
+                this.state.selectedVehicleId = vehicleTypeId;
                 $(".cwb-vehicle").removeClass("cwb-state-selected");
                 $(e.currentTarget).addClass("cwb-state-selected");
                 this.loadPackages(vehicleTypeId);
@@ -194,7 +201,7 @@
             // Calendar slot selection
             $(document).on("click", ".cwb-calendar-data a", (e) => {
                 $(".cwb-calendar-data .cwb-state-selected").removeClass("cwb-state-selected");
-                
+
                 const listItem = $(e.currentTarget).parent();
                 listItem.addClass("cwb-state-selected");
 
@@ -245,29 +252,43 @@
         },
 
         /**
-         * Show loading state
+         * Set loading state for a specific component
+         * @param {string} component - Component name ('calendar', 'vehicles', 'packages', 'addons')
+         * @param {boolean} isLoading - Whether the component is loading
          */
-        showLoading: function() {
-            this.state.isLoading = true;
-            this.elements.loadingOverlay.fadeIn(200);
+        setLoadingState: function(component, isLoading) {
+            if (this.state.loadingStates.hasOwnProperty(component)) {
+                this.state.loadingStates[component] = isLoading;
+                this.logDebug(`Loading state for ${component}: ${isLoading}`);
+            }
         },
 
         /**
-         * Hide loading state
+         * Show calendar loading state
          */
-        hideLoading: function() {
-            this.state.isLoading = false;
-            this.elements.loadingOverlay.fadeOut(200);
+        showCalendarLoading: function() {
+            this.setLoadingState('calendar', true);
+            this.elements.calendarLoadingOverlay.fadeIn(200);
+        },
+
+        /**
+         * Hide calendar loading state
+         */
+        hideCalendarLoading: function() {
+            this.setLoadingState('calendar', false);
+            this.elements.calendarLoadingOverlay.fadeOut(200);
         },
 
         /**
          * Show vehicle loading state
          */
         showVehicleLoading: function() {
+            this.setLoadingState('vehicles', true);
             this.elements.vehicleEmptyState.addClass("cwb-state-hidden");
             this.elements.vehicleSelectionHelp.addClass("cwb-state-hidden");
             this.elements.vehicleLoadingIndicator.removeClass("cwb-state-hidden");
             this.elements.vehicleList.addClass("cwb-state-hidden");
+            this.elements.vehicleList.empty(); // Clear any existing vehicles
         },
 
         /**
@@ -275,17 +296,62 @@
          * @param {boolean} hasVehicles - Whether vehicles were returned
          */
         hideVehicleLoading: function(hasVehicles) {
+            this.setLoadingState('vehicles', false);
             this.elements.vehicleLoadingIndicator.addClass("cwb-state-hidden");
-            
+
             if (hasVehicles) {
+                this.logDebug("Vehicles found, showing vehicle list");
                 this.elements.vehicleList.removeClass("cwb-state-hidden");
                 this.elements.vehicleSelectionHelp.removeClass("cwb-state-hidden");
                 this.elements.vehicleEmptyState.addClass("cwb-state-hidden");
             } else {
+                this.logDebug("No vehicles found, showing empty state");
                 this.elements.vehicleEmptyState.removeClass("cwb-state-hidden");
                 this.elements.vehicleList.addClass("cwb-state-hidden");
                 this.elements.vehicleSelectionHelp.addClass("cwb-state-hidden");
             }
+        },
+
+        /**
+         * Show package loading state
+         */
+        showPackageLoading: function() {
+            this.setLoadingState('packages', true);
+            // Visual loading indicator for packages could be added here
+            this.showCalendarLoading(); // Use calendar overlay for now
+        },
+
+        /**
+         * Hide package loading state
+         */
+        hidePackageLoading: function() {
+            this.setLoadingState('packages', false);
+            this.hideCalendarLoading(); // Use calendar overlay for now
+        },
+
+        /**
+         * Show addon loading state
+         */
+        showAddonLoading: function() {
+            this.setLoadingState('addons', true);
+            // Visual loading indicator for addons could be added here
+            this.showCalendarLoading(); // Use calendar overlay for now
+        },
+
+        /**
+         * Hide addon loading state
+         */
+        hideAddonLoading: function() {
+            this.setLoadingState('addons', false);
+            this.hideCalendarLoading(); // Use calendar overlay for now
+        },
+
+        /**
+         * Check if any component is in loading state
+         * @returns {boolean} - True if any component is loading
+         */
+        isAnyLoading: function() {
+            return Object.values(this.state.loadingStates).some(state => state === true);
         },
 
         /**
@@ -298,10 +364,10 @@
                 errorContainer = $('<div class="cwb-error-message"></div>');
                 this.elements.calendarContainer.before(errorContainer);
             }
-            
+
             errorContainer.text(message).fadeIn(300);
             setTimeout(() => errorContainer.fadeOut(300), 4000);
-            
+
             if (this.config.debug) {
                 console.error(message);
             }
@@ -354,13 +420,13 @@
         updateBookingSummary: function() {
             this.elements.summaryDate.text(this.state.selectedDate || "?");
             this.elements.summaryTime.text(this.state.selectedTime || "?");
-            
+
             const hours = Math.floor(this.state.selectedDuration / 60);
             const minutes = this.state.selectedDuration % 60;
-            
+
             this.elements.summaryDurationHours.text(hours);
             this.elements.summaryDurationMinutes.text(minutes);
-            
+
             this.elements.summaryPrice.text(this.state.selectedPrice.toFixed(2));
         },
 
@@ -370,8 +436,7 @@
          */
         loadVehicles: function(locationId) {
             this.showVehicleLoading();
-            this.showLoading();
-            
+
             $.ajax({
                 url: this.config.ajaxUrl,
                 type: "POST",
@@ -381,31 +446,57 @@
                     location_id: locationId,
                 },
                 success: (response) => {
-                    this.logDebug("Vehicles loaded", response);
+                    this.logDebug("Vehicles response received", response);
+
+                    // Add the HTML to the DOM
                     this.elements.vehicleList.html(response);
 
-                    const hasVehicles = $(response).find(".cwb-vehicle").length > 0;
+                    // Check for vehicles using direct DOM inspection after insertion
+                    const vehicleCount = this.elements.vehicleList.children('.cwb-vehicle').length;
+                    const hasVehicles = vehicleCount > 0;
+
+                    this.logDebug(`Vehicle count: ${vehicleCount}`, hasVehicles);
+
+                    // Update UI based on vehicle availability
                     this.hideVehicleLoading(hasVehicles);
 
                     if (hasVehicles) {
-                        const firstVehicle = this.elements.vehicleList.find(".cwb-vehicle").first();
+                        // Force a repaint to ensure the DOM is updated
+                        this.elements.vehicleList[0].offsetHeight;
+
+                        // Get the first vehicle and select it
+                        const firstVehicle = this.elements.vehicleList.children('.cwb-vehicle').first();
+
                         if (firstVehicle.length) {
+                            this.logDebug("Selecting first vehicle", firstVehicle);
+
+                            // Remove any existing selections
+                            this.elements.vehicleList.find(".cwb-vehicle").removeClass("cwb-state-selected");
+
+                            // Select the first vehicle
                             firstVehicle.addClass("cwb-state-selected");
+
+                            // Get and store the vehicle ID
                             const firstVehicleId = firstVehicle.data("id");
-                            this.loadPackages(firstVehicleId);
+                            this.state.selectedVehicleId = firstVehicleId;
+
+                            // Load packages for this vehicle with a slight delay
+                            setTimeout(() => {
+                                this.loadPackages(firstVehicleId);
+                            }, 100);
+                        } else {
+                            this.logDebug("First vehicle not found even though vehicles exist");
                         }
                     } else {
                         this.elements.packageList.empty();
                         this.elements.addonList.empty();
                         this.elements.serviceListContainer.addClass("cwb-state-disable");
                     }
-                    this.hideLoading();
                 },
                 error: (xhr, status, error) => {
                     this.showError("Failed to load vehicles. Please try again.");
                     this.logDebug("Vehicle loading error", error);
                     this.hideVehicleLoading(false);
-                    this.hideLoading();
                 }
             });
         },
@@ -415,8 +506,8 @@
          * @param {number|string} vehicleTypeId - Vehicle type ID
          */
         loadPackages: function(vehicleTypeId) {
-            this.showLoading();
-            
+            this.showPackageLoading();
+
             $.ajax({
                 url: this.config.ajaxUrl,
                 type: "POST",
@@ -428,12 +519,12 @@
                 success: (response) => {
                     this.logDebug("Packages loaded", response);
                     this.elements.packageList.html(response);
-                    this.hideLoading();
+                    this.hidePackageLoading();
                 },
                 error: (xhr, status, error) => {
                     this.showError("Failed to load packages. Please try again.");
                     this.logDebug("Package loading error", error);
-                    this.hideLoading();
+                    this.hidePackageLoading();
                 }
             });
         },
@@ -443,8 +534,8 @@
          * @param {number|string} packageId - Package ID
          */
         loadAddons: function(packageId) {
-            this.showLoading();
-            
+            this.showAddonLoading();
+
             $.ajax({
                 url: this.config.ajaxUrl,
                 type: "POST",
@@ -456,16 +547,16 @@
                 success: (response) => {
                     this.logDebug("Add-ons loaded", response);
                     this.elements.addonList.html(response);
-                    
+
                     const hasAddons = response.trim() !== "" && $(response).find("li").length > 0;
                     this.elements.serviceListContainer.toggleClass("cwb-state-disable", !hasAddons);
-                    
-                    this.hideLoading();
+
+                    this.hideAddonLoading();
                 },
                 error: (xhr, status, error) => {
                     this.showError("Failed to load add-on services. Please try again.");
                     this.logDebug("Add-on loading error", error);
-                    this.hideLoading();
+                    this.hideAddonLoading();
                 }
             });
         },
@@ -492,10 +583,10 @@
                 return;
             }
 
-            this.showLoading();
+            this.showCalendarLoading();
 
             let totalDuration = this.state.selectedPackageDuration;
-            
+
             // Add duration from selected add-ons
             this.state.selectedAddons.forEach(addonId => {
                 const addonElement = $(`#cwb-addon-list .cwb-service-id-${addonId}.cwb-state-selected`);
@@ -505,7 +596,7 @@
             });
 
             const formattedDate = date.toISOString().split("T")[0];
-            
+
             $.ajax({
                 url: this.config.ajaxUrl,
                 type: "POST",
@@ -523,13 +614,13 @@
                         this.logDebug("No available slots", response);
                         this.renderCalendar({}, date);
                     }
-                    this.hideLoading();
+                    this.hideCalendarLoading();
                 },
                 error: (xhr, status, error) => {
                     this.showError("Failed to fetch available time slots. Please try again.");
                     this.logDebug("Slot fetching error", error);
                     this.renderCalendar({}, date);
-                    this.hideLoading();
+                    this.hideCalendarLoading();
                 }
             });
         },
@@ -566,7 +657,7 @@
 
                 // Add time slots
                 let dataCell = `<td role="gridcell" data-date="${formattedDate}"><div>`;
-                
+
                 if (slotData.length > 0) {
                     dataCell += `<ul class="cwb-list-reset">`;
                     slotData.forEach((slot) => {
@@ -576,7 +667,7 @@
                 } else {
                     dataCell += `<div class="cwb-no-slots-message">Not available</div>`;
                 }
-                
+
                 dataCell += `</div></td>`;
                 this.elements.calendarData.append(dataCell);
             }

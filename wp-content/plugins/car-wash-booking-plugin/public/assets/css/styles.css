@@ -513,6 +513,12 @@
     border-style: solid;
     text-align: center;
     margin: 0 6px 12px 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+.cwb-vehicle-list > li.cwb-state-selected {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .cwb-vehicle-list > li:only-child {
@@ -538,6 +544,42 @@
 
 .cwb-vehicle-list > li > div > div + div {
     top: 5px;
+}
+
+/* Improved empty state styling */
+.cwb-empty-state {
+    padding: 30px 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border: 1px dashed #e2e6e7;
+    border-radius: 4px;
+}
+
+.cwb-empty-state p {
+    color: #777;
+    margin: 0;
+}
+
+/* Loading indicator styling */
+.cwb-loading-indicator {
+    padding: 20px;
+    text-align: center;
+}
+
+.cwb-loading-spinner {
+    color: var(--primary-color);
+}
+
+.cwb-loading-spinner i {
+    margin-right: 10px;
+}
+
+/* Help message styling */
+.cwb-selection-help {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+    color: #777;
 }
 
 /******************************************************************************/
