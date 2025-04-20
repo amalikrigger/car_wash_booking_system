@@ -61,12 +61,6 @@ class CWB_API_Endpoints {
         wp_die();
     }
 
-    /**
-     * Render vehicles HTML
-     *
-     * @param array $vehicles List of vehicle types
-     * @return string HTML content
-     */
     private function render_vehicles_html($vehicles) {
         $html = '';
         
@@ -107,12 +101,6 @@ class CWB_API_Endpoints {
         wp_die();
     }
 
-    /**
-     * Render packages HTML
-     *
-     * @param array $packages List of packages
-     * @return string HTML content
-     */
     private function render_packages_html($packages) {
         $html = '';
         
@@ -176,12 +164,6 @@ class CWB_API_Endpoints {
         wp_die();
     }
 
-    /**
-     * Render add-ons HTML
-     *
-     * @param array $addons List of add-ons
-     * @return string HTML content
-     */
     private function render_addons_html($addons) {
         $html = '';
         
@@ -214,9 +196,6 @@ class CWB_API_Endpoints {
         return $html;
     }
 
-    /**
-     * Get available time slots
-     */
     public function get_available_slots() {
         check_ajax_referer( 'cwb_nonce', 'nonce' );
 
