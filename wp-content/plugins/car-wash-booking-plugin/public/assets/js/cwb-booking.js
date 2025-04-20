@@ -23,6 +23,7 @@
             selectedPrice: 0.00,
             selectedAddons: [],
             selectedPackageDuration: null,
+            selectedPackageId: null,
             currentDate: new Date(),
             currentSelectedLocationId: null,
             selectedVehicleId: null,
@@ -43,6 +44,9 @@
             locationSelectionHelp: $(".cwb-location-container .cwb-selection-help"),
             vehicleList: $("#cwb-vehicle-list"),
             packageList: $("#cwb-package-list"),
+            packageLoadingIndicator: $(".cwb-package-container .cwb-loading-indicator"),
+            packageEmptyState: $(".cwb-package-container .cwb-empty-state"),
+            packageSelectionHelp: $(".cwb-package-container .cwb-selection-help"),
             addonList: $("#cwb-addon-list"),
             calendarHeader: $(".cwb-calendar-header-caption"),
             calendarSubheader: $(".cwb-calendar-subheader"),
@@ -144,6 +148,7 @@
             this.state.selectedPrice = 0.00;
             this.state.selectedAddons = [];
             this.state.selectedPackageDuration = null;
+            this.state.selectedPackageId = null;
 
             $(".cwb-package").removeClass("cwb-state-selected");
             this.elements.addonList.empty();
@@ -208,13 +213,15 @@
 
                 if (isSelected) {
                     packageItem.removeClass("cwb-state-selected");
+                    this.state.selectedPackageId = null;
                     this.resetSelections();
                     this.elements.addonList.empty();
                     this.elements.serviceListContainer.addClass("cwb-state-disable");
                 } else {
                     $(".cwb-package").removeClass("cwb-state-selected");
                     packageItem.addClass("cwb-state-selected");
-
+                    
+                    this.state.selectedPackageId = packageId;
                     this.state.selectedDate = null;
                     this.state.selectedTime = null;
                     this.state.selectedAddons = [];
@@ -415,16 +422,32 @@
          */
         showPackageLoading: function() {
             this.setLoadingState('packages', true);
-            // Visual loading indicator for packages could be added here
-            this.showCalendarLoading(); // Use calendar overlay for now
+            this.elements.packageEmptyState.addClass("cwb-state-hidden");
+            this.elements.packageSelectionHelp.addClass("cwb-state-hidden");
+            this.elements.packageLoadingIndicator.removeClass("cwb-state-hidden");
+            this.elements.packageList.addClass("cwb-state-hidden");
+            this.elements.packageList.empty(); // Clear any existing packages
         },
 
         /**
-         * Hide package loading state
+         * Hide package loading state and update UI based on package availability
+         * @param {boolean} hasPackages - Whether packages were returned
          */
-        hidePackageLoading: function() {
+        hidePackageLoading: function(hasPackages) {
             this.setLoadingState('packages', false);
-            this.hideCalendarLoading(); // Use calendar overlay for now
+            this.elements.packageLoadingIndicator.addClass("cwb-state-hidden");
+            
+            if (hasPackages) {
+                this.logDebug("Packages found, showing package list");
+                this.elements.packageList.removeClass("cwb-state-hidden");
+                this.elements.packageSelectionHelp.removeClass("cwb-state-hidden");
+                this.elements.packageEmptyState.addClass("cwb-state-hidden");
+            } else {
+                this.logDebug("No packages found, showing empty state");
+                this.elements.packageEmptyState.removeClass("cwb-state-hidden");
+                this.elements.packageList.addClass("cwb-state-hidden");
+                this.elements.packageSelectionHelp.addClass("cwb-state-hidden");
+            }
         },
 
         /**
@@ -616,13 +639,67 @@
                 },
                 success: (response) => {
                     this.logDebug("Packages loaded", response);
+                    
+                    // Add the HTML to the DOM
                     this.elements.packageList.html(response);
-                    this.hidePackageLoading();
+                    
+                    // Check for packages using direct DOM inspection
+                    const packageCount = this.elements.packageList.children('.cwb-package').length;
+                    const hasPackages = packageCount > 0;
+                    
+                    this.logDebug(`Package count: ${packageCount}`, hasPackages);
+                    
+                    // Update UI based on package availability
+                    this.hidePackageLoading(hasPackages);
+                    
+                    if (hasPackages) {
+                        // Force a repaint to ensure the DOM is updated
+                        this.elements.packageList[0].offsetHeight;
+                        
+                        // Get the first package and select it
+                        const firstPackage = this.elements.packageList.children('.cwb-package').first();
+                        
+                        if (firstPackage.length) {
+                            this.logDebug("Selecting first package", firstPackage);
+                            
+                            // Remove any existing selections
+                            this.elements.packageList.find(".cwb-package").removeClass("cwb-state-selected");
+                            
+                            // Select the first package
+                            firstPackage.addClass("cwb-state-selected");
+                            
+                            // Get package details
+                            const firstPackageId = firstPackage.data("id");
+                            const packageDuration = parseInt(firstPackage.data("duration"), 10);
+                            const packagePrice = parseFloat(firstPackage.data("price"));
+                            
+                            // Store package data in state
+                            this.state.selectedPackageId = firstPackageId;
+                            this.state.selectedDuration = packageDuration;
+                            this.state.selectedPrice = packagePrice;
+                            this.state.selectedPackageDuration = packageDuration;
+                            
+                            // Update booking summary
+                            this.updateBookingSummary();
+                            
+                            // Load addons for this package with a slight delay
+                            setTimeout(() => {
+                                this.loadAddons(firstPackageId);
+                                this.fetchAvailableSlots(this.state.currentDate);
+                            }, 100);
+                        } else {
+                            this.logDebug("First package not found even though packages exist");
+                        }
+                    } else {
+                        // If no packages, clear any addon selections too
+                        this.elements.addonList.empty();
+                        this.elements.serviceListContainer.addClass("cwb-state-disable");
+                    }
                 },
                 error: (xhr, status, error) => {
                     this.showError("Failed to load packages. Please try again.");
                     this.logDebug("Package loading error", error);
-                    this.hidePackageLoading();
+                    this.hidePackageLoading(false);
                 }
             });
         },
